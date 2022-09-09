@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/2022-09-08_01_create_genders_dictonary.yml
+  - include:
+      file: db/changelog/changeset/2022-09-08_02_create_worktypes_dictonary.yml
+  - include:
+      file: db/changelog/changeset/2022-09-08_03_create_positions_dictonary.yml
+  - include:
+      file: db/changelog/changeset/2022-09-08_04_create_ranges_dictonary.yml
+  - include:
+      file: db/changelog/changeset/2022-09-08_05_create_employees_table.yml
+  - include:
+      file: db/changelog/changeset/2022-09-08_06_create_employee_position_range_table.yml
+  - include:
+      file: db/changelog/changeset/2022-09-08_07_create_worktimes_table.yml
+  - include:
+      file: db/changelog/changeset/2022-09-08_08_add_genders_data.yml

@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Andrey
+      changes:
+        - insert:
+            tableName: genders
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: genders_sequence
+              - column:
+                  name: name
+                  value: "Male"
+  - changeSet:
+      id: 2
+      author: Andrey
+      changes:
+        - insert:
+            tableName: genders
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: genders_sequence
+              - column:
+                  name: name
+                  value: "Female"

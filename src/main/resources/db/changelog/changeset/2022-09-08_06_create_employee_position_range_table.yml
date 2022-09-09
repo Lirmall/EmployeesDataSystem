@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Andrey
+      changes:
+        - createSequence:
+            sequenceName: employee_position_range_sequence
+            increment by: 1
+  - changeSet:
+      id: 2
+      author: Andrey
+      changes:
+        - createTable:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: employee_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: employee_id
+                    references: employees(id)
+              - column:
+                  name: position_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: position_id
+                    references: positions(id)
+              - column:
+                  name: position_range
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: position_range
+                    references: ranges(id)
+              - column:
+                  name: position_change_date
+                  type: date
+                  constraints:
+                    nullable: false

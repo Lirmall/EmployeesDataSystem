@@ -54,3 +54,14 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+tasks.register("bootRunH2"){
+    description = "Runs the Spring Boot application with the test profile"
+    println(description)
+    doFirst {
+        tasks.bootRun.configure {
+            systemProperty("spring.profiles.active", "test")
+        }
+    }
+    finalizedBy("bootRun")
+}

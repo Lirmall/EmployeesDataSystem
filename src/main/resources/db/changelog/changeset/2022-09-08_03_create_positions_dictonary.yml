@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Andrey
+      changes:
+        - createSequence:
+            sequenceName: position_sequence
+            increment by: 1;
+  - changeSet:
+      id: 2
+      author: Andrey
+      changes:
+        - createTable:
+            tableName: positions
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(225)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: worktype_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: worktype
+                    references: worktypes(id)
+              - column:
+                  name: salary
+                  type: numeric
+                  constraints:
+                    nullable: false
