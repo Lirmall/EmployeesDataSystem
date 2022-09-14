@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Andrey
+      changes:
+        - insert:
+            tableName: ranges
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: ranges_sequence
+              - column:
+                  name: name
+                  value: "1 range"
+  - changeSet:
+      id: 2
+      author: Andrey
+      changes:
+        - insert:
+            tableName: ranges
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: ranges_sequence
+              - column:
+                  name: name
+                  value: "2 range"
+  - changeSet:
+      id: 3
+      author: Andrey
+      changes:
+        - insert:
+            tableName: ranges
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: ranges_sequence
+              - column:
+                  name: name
+                  value: "3 range"
+  - changeSet:
+      id: 4
+      author: Andrey
+      changes:
+        - insert:
+            tableName: ranges
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: ranges_sequence
+              - column:
+                  name: name
+                  value: "Non-range"

@@ -53,3 +53,18 @@ databaseChangeLog:
               - column:
                   name: salary
                   type: NUMERIC
+                  constraints:
+                    nullable: false
+              - column:
+                  name: workstart_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dismissed
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: dismissed_date
+                  type: DATE

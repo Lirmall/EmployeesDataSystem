@@ -17,3 +17,9 @@ databaseChangeLog:
       file: db/changelog/changeset/2022-09-08_08_add_genders_data.yml
   - include:
       file: db/changelog/changeset/2022-09-14_01_add_worktypes_data.yml
+  - include:
+      file: db/changelog/changeset/2022-09-14_02_add_positions_data.yml
+  - include:
+      file: db/changelog/changeset/2022-09-14_03_add_ranges_data.yml
+  - include:
+      file: db/changelog/changeset/2022-09-14_04_add_employees_data.yml

@@ -1,0 +1,101 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Andrey
+      changes:
+        - insert:
+            tableName: positions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: position_sequence
+              - column:
+                  name: name
+                  value: "Mechanic"
+              - column:
+                  name: worktype_id
+                  value: 2
+              - column:
+                  name: salary
+                  value: 10000.00
+  - changeSet:
+      id: 2
+      author: Andrey
+      changes:
+        - insert:
+            tableName: positions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: position_sequence
+              - column:
+                  name: name
+                  value: "Master mechanic"
+              - column:
+                  name: worktype_id
+                  value: 1
+              - column:
+                  name: salary
+                  value: 18000.00
+  - changeSet:
+      id: 3
+      author: Andrey
+      changes:
+        - insert:
+            tableName: positions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: position_sequence
+              - column:
+                  name: name
+                  value: "Engineer"
+              - column:
+                  name: worktype_id
+                  value: 1
+              - column:
+                  name: salary
+                  value: 20000.00
+  - changeSet:
+      id: 4
+      author: Andrey
+      changes:
+        - insert:
+            tableName: positions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: position_sequence
+              - column:
+                  name: name
+                  value: "Chief engineer"
+              - column:
+                  name: worktype_id
+                  value: 1
+              - column:
+                  name: salary
+                  value: 25000.00
+  - changeSet:
+      id: 5
+      author: Andrey
+      changes:
+        - insert:
+            tableName: positions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: position_sequence
+              - column:
+                  name: name
+                  value: "Technical director"
+              - column:
+                  name: worktype_id
+                  value: 1
+              - column:
+                  name: salary
+                  value: 20000.00

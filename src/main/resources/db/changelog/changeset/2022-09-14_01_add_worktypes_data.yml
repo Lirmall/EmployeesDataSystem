@@ -12,7 +12,7 @@ databaseChangeLog:
                   valueSequenceNext: worktypes_sequence
               - column:
                   name: name
-                  value: "Hourly"
+                  value: "Salary"
   - changeSet:
       id: 2
       author: Andrey
@@ -26,4 +26,4 @@ databaseChangeLog:
                   valueSequenceNext: worktypes_sequence
               - column:
                   name: name
-                  value: "Salary"
+                  value: "Hourly"
