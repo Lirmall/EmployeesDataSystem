@@ -50,3 +50,6 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: worktype_id
                     references: worktypes(id)
+              - column:
+                  name: salary
+                  type: NUMERIC

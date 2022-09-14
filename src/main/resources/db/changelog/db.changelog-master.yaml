@@ -15,3 +15,5 @@ databaseChangeLog:
       file: db/changelog/changeset/2022-09-08_07_create_worktimes_table.yml
   - include:
       file: db/changelog/changeset/2022-09-08_08_add_genders_data.yml
+  - include:
+      file: db/changelog/changeset/2022-09-14_01_add_worktypes_data.yml

@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Andrey
+      changes:
+        - insert:
+            tableName: worktypes
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: worktypes_sequence
+              - column:
+                  name: name
+                  value: "Hourly"
+  - changeSet:
+      id: 2
+      author: Andrey
+      changes:
+        - insert:
+            tableName: worktypes
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: worktypes_sequence
+              - column:
+                  name: name
+                  value: "Salary"
