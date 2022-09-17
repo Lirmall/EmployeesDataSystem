@@ -1,0 +1,392 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 1
+              - column:
+                  name: position_id
+                  value: 1
+              - column:
+                  name: position_range
+                  value: 3
+              - column:
+                  name: position_change_date
+                  value: "2000-05-14"
+  - changeSet:
+      id: 2
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 1
+              - column:
+                  name: position_id
+                  value: 1
+              - column:
+                  name: position_range
+                  value: 2
+              - column:
+                  name: position_change_date
+                  value: "2000-08-14"
+  - changeSet:
+      id: 3
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 2
+              - column:
+                  name: position_id
+                  value: 1
+              - column:
+                  name: position_range
+                  value: 3
+              - column:
+                  name: position_change_date
+                  value: "1999-03-12"
+  - changeSet:
+      id: 4
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 3
+              - column:
+                  name: position_id
+                  value: 1
+              - column:
+                  name: position_range
+                  value: 1
+              - column:
+                  name: position_change_date
+                  value: "2001-04-16"
+  - changeSet:
+      id: 5
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 4
+              - column:
+                  name: position_id
+                  value: 3
+              - column:
+                  name: position_range
+                  value: 4
+              - column:
+                  name: position_change_date
+                  value: "2000-04-16"
+  - changeSet:
+      id: 6
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 5
+              - column:
+                  name: position_id
+                  value: 3
+              - column:
+                  name: position_range
+                  value: 4
+              - column:
+                  name: position_change_date
+                  value: "2010-06-18"
+  - changeSet:
+      id: 7
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 9
+              - column:
+                  name: position_id
+                  value: 3
+              - column:
+                  name: position_range
+                  value: 4
+              - column:
+                  name: position_change_date
+                  value: "2008-08-14"
+  - changeSet:
+      id: 8
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 6
+              - column:
+                  name: position_id
+                  value: 1
+              - column:
+                  name: position_range
+                  value: 4
+              - column:
+                  name: position_change_date
+                  value: "1997-10-17"
+  - changeSet:
+      id: 9
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 7
+              - column:
+                  name: position_id
+                  value: 3
+              - column:
+                  name: position_range
+                  value: 4
+              - column:
+                  name: position_change_date
+                  value: "2020-11-20"
+  - changeSet:
+      id: 10
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 8
+              - column:
+                  name: position_id
+                  value: 3
+              - column:
+                  name: position_range
+                  value: 4
+              - column:
+                  name: position_change_date
+                  value: "1980-06-08"
+  - changeSet:
+      id: 11
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 6
+              - column:
+                  name: position_id
+                  value: 1
+              - column:
+                  name: position_range
+                  value: 3
+              - column:
+                  name: position_change_date
+                  value: "1997-10-17"
+  - changeSet:
+      id: 12
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 8
+              - column:
+                  name: position_id
+                  value: 4
+              - column:
+                  name: position_range
+                  value: 4
+              - column:
+                  name: position_change_date
+                  value: "1983-09-18"
+  - changeSet:
+      id: 13
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 6
+              - column:
+                  name: position_id
+                  value: 1
+              - column:
+                  name: position_range
+                  value: 2
+              - column:
+                  name: position_change_date
+                  value: "1999-12-27"
+  - changeSet:
+      id: 14
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 6
+              - column:
+                  name: position_id
+                  value: 1
+              - column:
+                  name: position_range
+                  value: 1
+              - column:
+                  name: position_change_date
+                  value: "2001-11-07"
+  - changeSet:
+      id: 15
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 6
+              - column:
+                  name: position_id
+                  value: 2
+              - column:
+                  name: position_range
+                  value: 4
+              - column:
+                  name: position_change_date
+                  value: "2022-09-07"
+  - changeSet:
+      id: 16
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 7
+              - column:
+                  name: position_id
+                  value: 4
+              - column:
+                  name: position_range
+                  value: 4
+              - column:
+                  name: position_change_date
+                  value: "2022-09-03"
+  - changeSet:
+      id: 17
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employee_position_range
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employee_position_range_sequence
+              - column:
+                  name: employee_id
+                  value: 8
+              - column:
+                  name: position_id
+                  value: 5
+              - column:
+                  name: position_range
+                  value: 4
+              - column:
+                  name: position_change_date
+                  value: "2022-09-03"

@@ -23,3 +23,5 @@ databaseChangeLog:
       file: db/changelog/changeset/2022-09-14_03_add_ranges_data.yml
   - include:
       file: db/changelog/changeset/2022-09-14_04_add_employees_data.yml
+  - include:
+      file: db/changelog/changeset/2022-09-15_01_add_empl_pos_range_data.yml

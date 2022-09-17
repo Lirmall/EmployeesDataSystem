@@ -32,6 +32,6 @@ databaseChangeLog:
                     references: worktypes(id)
               - column:
                   name: salary
-                  type: numeric
+                  type: DOUBLE
                   constraints:
                     nullable: false

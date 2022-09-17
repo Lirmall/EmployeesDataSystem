@@ -20,7 +20,7 @@ databaseChangeLog:
                   name: third_name
                   value: "Ivanovich"
               - column:
-                  name: gender
+                  name: gender_id
                   value: 1
               - column:
                   name: birthday
@@ -30,7 +30,7 @@ databaseChangeLog:
                   value: 2
               - column:
                   name: salary
-                  value: 14000.00
+                  value: 12000.00
               - column:
                   name: workstart_date
                   value: "2000-05-14"
@@ -61,7 +61,7 @@ databaseChangeLog:
                   name: third_name
                   value: "Petrovich"
               - column:
-                  name: gender
+                  name: gender_id
                   value: 1
               - column:
                   name: birthday
@@ -71,7 +71,7 @@ databaseChangeLog:
                   value: 2
               - column:
                   name: salary
-                  value: 12000.00
+                  value: 11000.00
               - column:
                   name: workstart_date
                   value: "1999-03-12"
@@ -102,7 +102,7 @@ databaseChangeLog:
                   name: third_name
                   value: "Sidorovich"
               - column:
-                  name: gender
+                  name: gender_id
                   value: 1
               - column:
                   name: birthday
@@ -112,7 +112,7 @@ databaseChangeLog:
                   value: 2
               - column:
                   name: salary
-                  value: 14000.00
+                  value: 13000.00
               - column:
                   name: workstart_date
                   value: "2001-04-16"
@@ -143,7 +143,7 @@ databaseChangeLog:
                   name: third_name
                   value: "Ivanovna"
               - column:
-                  name: gender
+                  name: gender_id
                   value: 2
               - column:
                   name: birthday
@@ -153,7 +153,7 @@ databaseChangeLog:
                   value: 1
               - column:
                   name: salary
-                  value: 14000.00
+                  value: 20000.00
               - column:
                   name: workstart_date
                   value: "2000-04-16"
@@ -163,3 +163,208 @@ databaseChangeLog:
               - column:
                   name: dismissed_date
                   value: null
+  - changeSet:
+      id: 5
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employees
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employees_sequence
+              - column:
+                  name: second_name
+                  value: "Minaeva"
+              - column:
+                  name: first_name
+                  value: "Elena"
+              - column:
+                  name: third_name
+                  value: "Anatolyevna"
+              - column:
+                  name: gender_id
+                  value: 2
+              - column:
+                  name: birthday
+                  value: "1990-08-15"
+              - column:
+                  name: worktype_id
+                  value: 1
+              - column:
+                  name: salary
+                  value: 20000.00
+              - column:
+                  name: workstart_date
+                  value: "2010-06-18"
+              - column:
+                  name: dismissed
+                  value: false
+              - column:
+                  name: dismissed_date
+                  value: null
+  - changeSet:
+      id: 6
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employees
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employees_sequence
+              - column:
+                  name: second_name
+                  value: "Popov"
+              - column:
+                  name: first_name
+                  value: "Sergey"
+              - column:
+                  name: third_name
+                  value: "Gennadievch"
+              - column:
+                  name: gender_id
+                  value: 1
+              - column:
+                  name: birthday
+                  value: "1975-07-18"
+              - column:
+                  name: worktype_id
+                  value: 1
+              - column:
+                  name: salary
+                  value: 18000.00
+              - column:
+                  name: workstart_date
+                  value: "1997-10-17"
+              - column:
+                  name: dismissed
+                  value: false
+              - column:
+                  name: dismissed_date
+                  value: null
+  - changeSet:
+      id: 7
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employees
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employees_sequence
+              - column:
+                  name: second_name
+                  value: "Fomin"
+              - column:
+                  name: first_name
+                  value: "Alexey"
+              - column:
+                  name: third_name
+                  value: "Petrovich"
+              - column:
+                  name: gender_id
+                  value: 1
+              - column:
+                  name: birthday
+                  value: "2000-09-18"
+              - column:
+                  name: worktype_id
+                  value: 1
+              - column:
+                  name: salary
+                  value: 20000.00
+              - column:
+                  name: workstart_date
+                  value: "2020-11-20"
+              - column:
+                  name: dismissed
+                  value: false
+              - column:
+                  name: dismissed_date
+                  value: null
+  - changeSet:
+      id: 8
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employees
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employees_sequence
+              - column:
+                  name: second_name
+                  value: "Sazhin"
+              - column:
+                  name: first_name
+                  value: "Alexander"
+              - column:
+                  name: third_name
+                  value: "Vladimirovich"
+              - column:
+                  name: gender_id
+                  value: 1
+              - column:
+                  name: birthday
+                  value: "1965-06-25"
+              - column:
+                  name: worktype_id
+                  value: 1
+              - column:
+                  name: salary
+                  value: 30000.00
+              - column:
+                  name: workstart_date
+                  value: "1980-06-08"
+              - column:
+                  name: dismissed
+                  value: false
+              - column:
+                  name: dismissed_date
+                  value: null
+  - changeSet:
+      id: 9
+      author: Andrey
+      changes:
+        - insert:
+            tableName: employees
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: employees_sequence
+              - column:
+                  name: second_name
+                  value: "Kozlov"
+              - column:
+                  name: first_name
+                  value: "Alexey"
+              - column:
+                  name: third_name
+                  value: "Ivanovich"
+              - column:
+                  name: gender_id
+                  value: 1
+              - column:
+                  name: birthday
+                  value: "1985-08-14"
+              - column:
+                  name: worktype_id
+                  value: 1
+              - column:
+                  name: salary
+                  value: 20000.00
+              - column:
+                  name: workstart_date
+                  value: "2008-08-17"
+              - column:
+                  name: dismissed
+                  value: true
+              - column:
+                  name: dismissed_date
+                  value: "2022-09-02"

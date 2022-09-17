@@ -32,7 +32,7 @@ databaseChangeLog:
                   name: third_name
                   type: varchar(225)
               - column:
-                  name: gender
+                  name: gender_id
                   type: BIGINT
                   constraints:
                     nullable: false
@@ -52,7 +52,7 @@ databaseChangeLog:
                     references: worktypes(id)
               - column:
                   name: salary
-                  type: NUMERIC
+                  type: DOUBLE
                   constraints:
                     nullable: false
               - column:

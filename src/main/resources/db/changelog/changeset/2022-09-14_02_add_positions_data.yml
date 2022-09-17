@@ -98,4 +98,4 @@ databaseChangeLog:
                   value: 1
               - column:
                   name: salary
-                  value: 20000.00
+                  value: 30000.00

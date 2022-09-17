@@ -23,3 +23,8 @@ databaseChangeLog:
                   type: varchar(225)
                   constraints:
                     nullable: false
+              - column:
+                  name: bonus
+                  type: DOUBLE
+                  constraints:
+                    nullable: false
