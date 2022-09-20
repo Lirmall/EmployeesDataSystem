@@ -18,7 +18,7 @@ databaseChangeLog:
                   value: 2
               - column:
                   name: salary
-                  value: 10000.00
+                  value: 100.00
   - changeSet:
       id: 2
       author: Andrey

@@ -30,7 +30,7 @@ databaseChangeLog:
                   value: 2
               - column:
                   name: salary
-                  value: 12000.00
+                  value: 120.00
               - column:
                   name: workstart_date
                   value: "2000-05-14"
@@ -71,7 +71,7 @@ databaseChangeLog:
                   value: 2
               - column:
                   name: salary
-                  value: 11000.00
+                  value: 110.00
               - column:
                   name: workstart_date
                   value: "1999-03-12"
@@ -112,7 +112,7 @@ databaseChangeLog:
                   value: 2
               - column:
                   name: salary
-                  value: 13000.00
+                  value: 130.00
               - column:
                   name: workstart_date
                   value: "2001-04-16"
