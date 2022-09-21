@@ -9,7 +9,7 @@ import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseExcepti
 import ru.klokov.employeesdatasystem.mappers.WorktypeEntityDTOMapper;
 import ru.klokov.employeesdatasystem.services.WorktypeService;
 import ru.klokov.employeesdatasystem.specifications.Response;
-import ru.klokov.employeesdatasystem.specifications.worktypesSpecification.gendersSpecification.WorktypeSearchModel;
+import ru.klokov.employeesdatasystem.specifications.worktypesSpecification.WorktypeSearchModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,7 +50,7 @@ public class WorktypeController {
     }
 
     @PostMapping("/filter")
-    public Response<WorktypeDTO> getGenders(@RequestBody WorktypeSearchModel request) {
+    public Response<WorktypeDTO> getWorktypes(@RequestBody WorktypeSearchModel request) {
         Long countOfTotalElements = worktypeService.getCountOfTotalItems();
         Page<WorktypeEntity> genders = worktypeService.findByFilter(request);
 

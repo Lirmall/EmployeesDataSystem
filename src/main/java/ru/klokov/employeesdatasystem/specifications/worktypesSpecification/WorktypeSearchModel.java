@@ -1,4 +1,4 @@
-package ru.klokov.employeesdatasystem.specifications.worktypesSpecification.gendersSpecification;
+package ru.klokov.employeesdatasystem.specifications.worktypesSpecification;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

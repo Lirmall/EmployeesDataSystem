@@ -66,7 +66,7 @@ public class GenderService {
 
     @Transactional(readOnly = true)
     public Page<GenderEntity> findByFilter(GendersSearchModel request) {
-        Sort sort = sortColumnChecker.genderSortColumnCheck(request);
+        Sort sort = sortColumnChecker.sortColumnCheck(request);
 
         int page = request.getPages() != null ? request.getPages() : 0;
         int size = request.getLimit() != null ? request.getLimit() : 5;

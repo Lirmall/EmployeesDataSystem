@@ -1,9 +1,8 @@
-package ru.klokov.employeesdatasystem.specifications.worktypesSpecification.gendersSpecification;
+package ru.klokov.employeesdatasystem.specifications.worktypesSpecification;
 
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.CollectionUtils;
-import ru.klokov.employeesdatasystem.entities.GenderEntity;
 import ru.klokov.employeesdatasystem.entities.WorktypeEntity;
 
 import javax.persistence.criteria.*;
