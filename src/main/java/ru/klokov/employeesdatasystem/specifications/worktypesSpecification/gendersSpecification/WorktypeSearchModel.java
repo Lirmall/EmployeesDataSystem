@@ -1,4 +1,4 @@
-package ru.klokov.employeesdatasystem.specifications.gendersSpecification;
+package ru.klokov.employeesdatasystem.specifications.worktypesSpecification.gendersSpecification;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class GendersSearchModel extends AbstractDictionarySearchModel {
+public class WorktypeSearchModel extends AbstractDictionarySearchModel {
     List<Long> ids;
     List<String> names;
 

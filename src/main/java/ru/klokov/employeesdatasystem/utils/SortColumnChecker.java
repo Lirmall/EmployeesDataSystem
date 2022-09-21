@@ -2,11 +2,21 @@ package ru.klokov.employeesdatasystem.utils;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
+import ru.klokov.employeesdatasystem.specifications.AbstractDictionarySearchModel;
 import ru.klokov.employeesdatasystem.specifications.gendersSpecification.GendersSearchModel;
+import ru.klokov.employeesdatasystem.specifications.worktypesSpecification.gendersSpecification.WorktypeSearchModel;
 
 @Component
 public class SortColumnChecker {
     public Sort genderSortColumnCheck(GendersSearchModel request) {
+        return dictionarySortColumnChecker(request);
+    }
+
+    public Sort worktypeSortColumnCheck(WorktypeSearchModel request) {
+        return dictionarySortColumnChecker(request);
+    }
+
+    private Sort dictionarySortColumnChecker(AbstractDictionarySearchModel request) {
         Sort.Direction sortDirection = Sort.Direction.ASC;
         String sortColumn = request.getSortColumn();
         String substring;
