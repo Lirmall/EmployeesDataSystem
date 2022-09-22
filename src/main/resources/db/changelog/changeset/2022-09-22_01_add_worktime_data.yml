@@ -1,0 +1,145 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Andrey
+      changes:
+        - insert:
+            tableName: worktimes
+            columns:
+              - column:
+                  name: employee_id
+                  value: 1
+              - column:
+                  name: worktime
+                  value: 72
+              - column:
+                  name: date
+                  value: "2022-09-10"
+  - changeSet:
+      id: 2
+      author: Andrey
+      changes:
+        - insert:
+            tableName: worktimes
+            columns:
+              - column:
+                  name: employee_id
+                  value: 2
+              - column:
+                  name: worktime
+                  value: 60
+              - column:
+                  name: date
+                  value: "2022-09-10"
+  - changeSet:
+      id: 3
+      author: Andrey
+      changes:
+        - insert:
+            tableName: worktimes
+            columns:
+              - column:
+                  name: employee_id
+                  value: 3
+              - column:
+                  name: worktime
+                  value: 56
+              - column:
+                  name: date
+                  value: "2022-09-10"
+  - changeSet:
+      id: 4
+      author: Andrey
+      changes:
+        - insert:
+            tableName: worktimes
+            columns:
+              - column:
+                  name: employee_id
+                  value: 4
+              - column:
+                  name: worktime
+                  value: 56
+              - column:
+                  name: date
+                  value: "2022-09-10"
+  - changeSet:
+      id: 5
+      author: Andrey
+      changes:
+        - insert:
+            tableName: worktimes
+            columns:
+              - column:
+                  name: employee_id
+                  value: 5
+              - column:
+                  name: worktime
+                  value: 56
+              - column:
+                  name: date
+                  value: "2022-09-10"
+  - changeSet:
+      id: 6
+      author: Andrey
+      changes:
+        - insert:
+            tableName: worktimes
+            columns:
+              - column:
+                  name: employee_id
+                  value: 6
+              - column:
+                  name: worktime
+                  value: 56
+              - column:
+                  name: date
+                  value: "2022-09-10"
+  - changeSet:
+      id: 7
+      author: Andrey
+      changes:
+        - insert:
+            tableName: worktimes
+            columns:
+              - column:
+                  name: employee_id
+                  value: 7
+              - column:
+                  name: worktime
+                  value: 56
+              - column:
+                  name: date
+                  value: "2022-09-10"
+  - changeSet:
+      id: 8
+      author: Andrey
+      changes:
+        - insert:
+            tableName: worktimes
+            columns:
+              - column:
+                  name: employee_id
+                  value: 8
+              - column:
+                  name: worktime
+                  value: 56
+              - column:
+                  name: date
+                  value: "2022-09-10"
+  - changeSet:
+      id: 9
+      author: Andrey
+      changes:
+        - insert:
+            tableName: worktimes
+            columns:
+              - column:
+                  name: employee_id
+                  value: 9
+              - column:
+                  name: worktime
+                  value: 16
+              - column:
+                  name: date
+                  value: "2022-09-02"
