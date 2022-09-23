@@ -3,13 +3,13 @@ package ru.klokov.employeesdatasystem.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import ru.klokov.employeesdatasystem.dto.WorktypeDTO;
-import ru.klokov.employeesdatasystem.entities.WorktypeEntity;
+import ru.klokov.employeesdatasystem.dto.PositionDTO;
+import ru.klokov.employeesdatasystem.entities.PositionEntity;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
-import ru.klokov.employeesdatasystem.mappers.WorktypeEntityDTOMapper;
-import ru.klokov.employeesdatasystem.services.WorktypeService;
+import ru.klokov.employeesdatasystem.mappers.PositionEntityDTOMapper;
+import ru.klokov.employeesdatasystem.services.PositionService;
 import ru.klokov.employeesdatasystem.specifications.Response;
-import ru.klokov.employeesdatasystem.specifications.worktypesSpecification.WorktypeSearchModel;
+import ru.klokov.employeesdatasystem.specifications.positionsSpecification.PositionSearchModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,44 +21,44 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class PositionController {
 
-    private final WorktypeEntityDTOMapper worktypeEntityDTOMapper;
-    private final WorktypeService worktypeService;
+    private final PositionEntityDTOMapper positionEntityDTOMapper;
+    private final PositionService positionService;
 
     @GetMapping
-    public List<WorktypeDTO> findAll() {
-        List<WorktypeEntity> allGenders = worktypeService.findAll();
-        List<WorktypeDTO> result = new ArrayList<>();
+    public List<PositionDTO> findAll() {
+        List<PositionEntity> allPositions = positionService.findAll();
+        List<PositionDTO> result = new ArrayList<>();
 
-        for (WorktypeEntity genders : allGenders) {
-            result.add(worktypeEntityDTOMapper.convertFromEntity(genders));
+        for (PositionEntity position : allPositions) {
+            result.add(positionEntityDTOMapper.convertFromEntity(position));
         }
         return result;
     }
 
     @GetMapping("/{id}")
-    public WorktypeDTO getById(@PathVariable("id") Long id) {
-        WorktypeEntity genderEntity;
+    public PositionDTO getById(@PathVariable("id") Long id) {
+        PositionEntity positionEntity;
 
         try {
-            genderEntity = worktypeService.findById(id);
+            positionEntity = positionService.findById(id);
         } catch (NoSuchElementException e) {
             e.printStackTrace();
             throw new NoMatchingEntryInDatabaseException("Unable to find gender with id = " + id);
         }
 
-        return worktypeEntityDTOMapper.convertFromEntity(genderEntity);
+        return positionEntityDTOMapper.convertFromEntity(positionEntity);
     }
 
     @PostMapping("/filter")
-    public Response<WorktypeDTO> getGenders(@RequestBody WorktypeSearchModel request) {
-        Long countOfTotalElements = worktypeService.getCountOfTotalItems();
-        Page<WorktypeEntity> genders = worktypeService.findByFilter(request);
+    public Response<PositionDTO> getGenders(@RequestBody PositionSearchModel request) {
+        Long countOfTotalElements = positionService.getCountOfTotalItems();
+        Page<PositionEntity> genders = positionService.findByFilter(request);
 
         if(genders.isEmpty()) {
             return new Response<>(Collections.emptyList(), countOfTotalElements, 0L);
         } else {
-            Page<WorktypeDTO> WorktypeDTOS = genders.map(worktypeEntityDTOMapper::convertFromEntity);
-            return new Response<>(WorktypeDTOS.toList(), countOfTotalElements, WorktypeDTOS.getTotalElements());
+            Page<PositionDTO> positionDTOS = genders.map(positionEntityDTOMapper::convertFromEntity);
+            return new Response<>(positionDTOS.toList(), countOfTotalElements, positionDTOS.getTotalElements());
         }
     }
 }
