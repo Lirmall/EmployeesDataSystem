@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
 
 @Getter
 @Setter
@@ -17,7 +14,7 @@ public class PositionDTO {
 
     private String name;
 
-    private String worktype;
+    private WorktypeDTO worktype;
 
     private Double salary;
 }
