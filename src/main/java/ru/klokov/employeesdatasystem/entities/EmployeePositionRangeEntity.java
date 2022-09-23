@@ -28,18 +28,26 @@ public class EmployeePositionRangeEntity {
     private Long id;
 
     @Column(name = "employee_id", insertable = false, updatable = false)
-    private Long employee_id;
+    private Long employeeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "worktype_id")
+    @JoinColumn(name = "employee_id")
     private EmployeeEntity employee;
 
-//    @Column(name = "position_id", insertable = false, updatable = false)
-//    private Long position_id;
-//
-//    @Column(name = "position_range", insertable = false, updatable = false)
-//    private Long position_range;
-//
-//    @Column(name = "position_change_date")
-//    private LocalDate positionChangeDate;
+    @Column(name = "position_id", insertable = false, updatable = false)
+    private Long positionId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "position_id")
+    private PositionEntity position;
+
+    @Column(name = "position_range", insertable = false, updatable = false)
+    private Long positionRange;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "position_range")
+    private RangeEntity range;
+
+    @Column(name = "position_change_date")
+    private LocalDate positionChangeDate;
 }

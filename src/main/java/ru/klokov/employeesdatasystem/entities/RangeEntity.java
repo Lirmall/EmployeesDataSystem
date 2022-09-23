@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ranges")
@@ -31,4 +32,7 @@ public class RangeEntity {
 
     @Column(name = "bonus")
     private Double bonus;
+
+    @OneToMany(mappedBy = "range", fetch = FetchType.LAZY)
+    private List<EmployeePositionRangeEntity> positionRangeEntities;
 }

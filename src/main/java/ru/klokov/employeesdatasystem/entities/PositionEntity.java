@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "positions")
@@ -40,4 +41,7 @@ public class PositionEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "worktype_id")
     private WorktypeEntity worktype;
+
+    @OneToMany(mappedBy = "position", fetch = FetchType.LAZY)
+    private List<EmployeePositionRangeEntity> positionRangeEntityList;
 }

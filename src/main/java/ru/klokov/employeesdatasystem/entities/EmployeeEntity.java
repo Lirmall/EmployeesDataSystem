@@ -67,6 +67,6 @@ public class EmployeeEntity {
     @Column(name = "dismissed_date")
     private LocalDate dismissedDate;
 
-    @OneToMany(mappedBy = "employee_id", fetch = FetchType.LAZY)
-    private List<EmployeePositionRangeEntity> positions;
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
+    private List<EmployeePositionRangeEntity> positionRangeEntityList;
 }
