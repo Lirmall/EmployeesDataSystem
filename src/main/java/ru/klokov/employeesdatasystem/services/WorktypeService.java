@@ -48,28 +48,11 @@ public class WorktypeService {
     }
 
     @Transactional(readOnly = true)
-    public WorktypeEntity findWorktypeByName(String name) {
-        Optional<WorktypeEntity> foundWorktype;
-
-        if (name == null || name.isEmpty()) {
-            throw new NullOrEmptyArgumentexception("Name can't be null or empty string");
-        } else {
-            foundWorktype = worktypeRepository.findWorktypeEntityByName(name);
-        }
-
-        if (foundWorktype.isPresent()) {
-            return foundWorktype.get();
-        } else {
-            throw new NoMatchingEntryInDatabaseException("Worktype wit name =  " + name + " not found in database");
-        }
-    }
-
-    @Transactional(readOnly = true)
     public Page<WorktypeEntity> findByFilter(WorktypeSearchModel request) {
         Sort sort = sortColumnChecker.sortColumnCheck(request);
 
         int page = request.getPages() != null ? request.getPages() : 0;
-        int size = request.getLimit() != null ? request.getLimit() : 5;
+        int size = (request.getLimit() != null && request.getLimit() != 0) ? request.getLimit() : 5;
 
         Pageable pageable = PageRequest.of(page, size, sort);
 

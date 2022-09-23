@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.klokov.employeesdatasystem.entities.EmployeeEntity;
+import ru.klokov.employeesdatasystem.dto.WorktypeDTO;
 import ru.klokov.employeesdatasystem.entities.PositionEntity;
 import ru.klokov.employeesdatasystem.entities.WorktypeEntity;
 import ru.klokov.employeesdatasystem.exceptions.AlreadyCreatedException;
@@ -21,7 +21,6 @@ import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -73,7 +72,7 @@ public class PositionService {
         Sort sort = sortColumnChecker.sortColumnCheck(request);
 
         int page = request.getPages() != null ? request.getPages() : 0;
-        int size = request.getLimit() != null ? request.getLimit() : 5;
+        int size = (request.getLimit() != null && request.getLimit() != 0) ? request.getLimit() : 5;
 
         Pageable pageable = PageRequest.of(page, size, sort);
 
@@ -109,6 +108,10 @@ public class PositionService {
         PositionEntity savedPosition = positionRepository.save(positionEntity);
 
         return positionRepository.findPositionEntityByName(savedPosition.getName());
+    }
+
+    public WorktypeEntity worktypeCheck(WorktypeDTO worktypeDTO) {
+        return positionWorktypeService.worktypeCheck(worktypeDTO);
     }
 
 //    private void delete(PositionEntity positionEntity) {

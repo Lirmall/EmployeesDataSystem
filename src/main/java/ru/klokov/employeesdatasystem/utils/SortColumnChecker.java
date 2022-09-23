@@ -70,10 +70,13 @@ public class SortColumnChecker {
             switch (substring) {
                 case "name":
                     column = "name";
+                    break;
                 case "worktypeid":
                     column = "worktypeId";
+                    break;
                 case "salaries":
                     column = "salaries";
+                    break;
                 default:
                     column = "id";
             }
@@ -106,8 +109,10 @@ public class SortColumnChecker {
             switch (substring) {
                 case "names":
                     column = "names";
+                    break;
                 case "bonuses":
                     column = "bonuses";
+                    break;
                 default:
                     column = "id";
             }

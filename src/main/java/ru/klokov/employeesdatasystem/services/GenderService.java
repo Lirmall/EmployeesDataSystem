@@ -69,7 +69,7 @@ public class GenderService {
         Sort sort = sortColumnChecker.sortColumnCheck(request);
 
         int page = request.getPages() != null ? request.getPages() : 0;
-        int size = request.getLimit() != null ? request.getLimit() : 5;
+        int size = (request.getLimit() != null && request.getLimit() != 0) ? request.getLimit() : 5;
 
         Pageable pageable = PageRequest.of(page, size, sort);
 

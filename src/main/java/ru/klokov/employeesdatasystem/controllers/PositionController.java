@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import ru.klokov.employeesdatasystem.dto.PositionDTO;
 import ru.klokov.employeesdatasystem.entities.PositionEntity;
+import ru.klokov.employeesdatasystem.entities.WorktypeEntity;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.mappers.PositionEntityDTOMapper;
 import ru.klokov.employeesdatasystem.services.PositionService;
@@ -50,15 +51,30 @@ public class PositionController {
     }
 
     @PostMapping("/filter")
-    public Response<PositionDTO> getGenders(@RequestBody PositionSearchModel request) {
+    public Response<PositionDTO> getPositions(@RequestBody PositionSearchModel request) {
         Long countOfTotalElements = positionService.getCountOfTotalItems();
         Page<PositionEntity> genders = positionService.findByFilter(request);
 
-        if(genders.isEmpty()) {
+        if (genders.isEmpty()) {
             return new Response<>(Collections.emptyList(), countOfTotalElements, 0L);
         } else {
             Page<PositionDTO> positionDTOS = genders.map(positionEntityDTOMapper::convertFromEntity);
             return new Response<>(positionDTOS.toList(), countOfTotalElements, positionDTOS.getTotalElements());
         }
+    }
+
+    @PostMapping
+    public PositionDTO add(@RequestBody PositionDTO positionDTO) {
+        positionDTO.setId(null);
+
+        PositionEntity positionEntity = positionEntityDTOMapper.convertFromDTO(positionDTO);
+
+        WorktypeEntity worktype = positionService.worktypeCheck(positionDTO.getWorktype());
+
+        positionEntity.setWorktype(worktype);
+
+        PositionEntity createdPosition =positionService.create(positionEntity);
+
+        return positionEntityDTOMapper.convertFromEntity(createdPosition);
     }
 }

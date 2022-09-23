@@ -3,11 +3,15 @@ package ru.klokov.employeesdatasystem.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.klokov.employeesdatasystem.dto.WorktypeDTO;
+import ru.klokov.employeesdatasystem.entities.PositionEntity;
 import ru.klokov.employeesdatasystem.entities.WorktypeEntity;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.exceptions.NullOrEmptyArgumentexception;
+import ru.klokov.employeesdatasystem.repositories.PositionRepository;
 import ru.klokov.employeesdatasystem.repositories.WorktypeRepository;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -15,6 +19,7 @@ import java.util.Optional;
 public class PositionWorktypeService {
 
     private final WorktypeRepository worktypeRepository;
+    private final PositionRepository positionRepository;
 
     @Transactional(readOnly = true)
     public WorktypeEntity findWorktypeByName(String name) {
@@ -31,5 +36,53 @@ public class PositionWorktypeService {
         } else {
             throw new NoMatchingEntryInDatabaseException("Worktype with name =  " + name + " not found in database");
         }
+    }
+
+    @Transactional(readOnly = true)
+    public WorktypeEntity findWorktypeById(Long id) {
+        Optional<WorktypeEntity> foundWorktype;
+
+        if (id == null) {
+            throw new NullOrEmptyArgumentexception("Id can't be null");
+        } else {
+            foundWorktype = worktypeRepository.findById(id);
+        }
+
+        if (foundWorktype.isPresent()) {
+            return foundWorktype.get();
+        } else {
+            throw new NoMatchingEntryInDatabaseException("Worktype wit id =  " + id + " not found in database");
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public PositionEntity findPositionByName(String name) {
+        return positionRepository.findPositionEntityByName(name);
+    }
+
+    @Transactional(readOnly = true)
+    public WorktypeEntity worktypeCheck(WorktypeDTO worktypeDTO) {
+        if(worktypeDTO == null) {
+            return null;
+        }
+
+        WorktypeEntity worktypeEntity = null;
+
+        if (worktypeDTO.getName() != null) {
+            worktypeEntity = findWorktypeByName(worktypeDTO.getName());
+        }
+
+        if (worktypeEntity == null) {
+            if (worktypeDTO.getId() == null) {
+                return worktypeEntity;
+            }
+            Long positionId = worktypeDTO.getId();
+            try {
+                worktypeEntity = findWorktypeById(positionId);
+            } catch (NoSuchElementException e) {
+                return null;
+            }
+        }
+        return worktypeEntity;
     }
 }

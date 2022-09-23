@@ -7,14 +7,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.klokov.employeesdatasystem.entities.GenderEntity;
 import ru.klokov.employeesdatasystem.entities.RangeEntity;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.exceptions.NullOrEmptyArgumentexception;
 import ru.klokov.employeesdatasystem.repositories.RangeRepository;
 import ru.klokov.employeesdatasystem.specifications.rangesSpecification.RangeSearchModel;
 import ru.klokov.employeesdatasystem.specifications.rangesSpecification.RangeSpecification;
-import ru.klokov.employeesdatasystem.specifications.worktypesSpecification.WorktypeSpecification;
 import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
 
 import java.util.List;
@@ -59,7 +57,7 @@ public class RangeService {
         Sort sort = sortColumnChecker.sortColumnCheck(request);
 
         int page = request.getPages() != null ? request.getPages() : 0;
-        int size = request.getLimit() != null ? request.getLimit() : 5;
+        int size = (request.getLimit() != null && request.getLimit() != 0) ? request.getLimit() : 5;
 
         Pageable pageable = PageRequest.of(page, size, sort);
 
