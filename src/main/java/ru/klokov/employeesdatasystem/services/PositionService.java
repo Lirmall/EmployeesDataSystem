@@ -8,11 +8,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.klokov.employeesdatasystem.dto.WorktypeDTO;
+import ru.klokov.employeesdatasystem.entities.EmployeePositionRangeEntity;
 import ru.klokov.employeesdatasystem.entities.PositionEntity;
 import ru.klokov.employeesdatasystem.entities.WorktypeEntity;
 import ru.klokov.employeesdatasystem.exceptions.AlreadyCreatedException;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.exceptions.NullOrEmptyArgumentexception;
+import ru.klokov.employeesdatasystem.exceptions.PositionHasEmployeesException;
 import ru.klokov.employeesdatasystem.repositories.PositionRepository;
 import ru.klokov.employeesdatasystem.specifications.positionsSpecification.PositionSearchModel;
 import ru.klokov.employeesdatasystem.specifications.positionsSpecification.PositionSpecification;
@@ -21,6 +23,7 @@ import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -28,10 +31,11 @@ public class PositionService {
     private final PositionRepository positionRepository;
     private final SortColumnChecker sortColumnChecker;
     private final PositionWorktypeService positionWorktypeService;
+    private final EmplPosRangeService emplPosRangeService;
 
     @Transactional
     public PositionEntity create(PositionEntity positionToCreate) {
-        if(findPositionByName(positionToCreate.getName()) == null) {
+        if (findPositionByName(positionToCreate.getName()) == null) {
             positionToCreate.setId(null);
             positionRepository.save(positionToCreate);
             return positionRepository.findPositionEntityByName(positionToCreate.getName());
@@ -47,7 +51,7 @@ public class PositionService {
 
     @Transactional(readOnly = true)
     public PositionEntity findById(Long id) {
-        Optional<PositionEntity> foundPosition ;
+        Optional<PositionEntity> foundPosition;
 
         if (id == null) {
             throw new NullOrEmptyArgumentexception("Id can't be null");
@@ -55,7 +59,7 @@ public class PositionService {
             foundPosition = positionRepository.findById(id);
         }
 
-        if(foundPosition.isPresent()) {
+        if (foundPosition.isPresent()) {
             return foundPosition.get();
         } else {
             throw new NoMatchingEntryInDatabaseException("Position wit id =  " + id + " not found in database");
@@ -96,7 +100,7 @@ public class PositionService {
 
         WorktypeEntity worktypeEntity = positionWorktypeService.findWorktypeByName(updateData.getWorktype().getName());
 
-        if(positionEntities.size() == 1) {
+        if (positionEntities.size() == 1) {
             positionEntity = positionEntities.get(0);
             positionEntity.setWorktype(worktypeEntity);
         } else if (positionEntities.isEmpty()) {
@@ -114,9 +118,24 @@ public class PositionService {
         return positionWorktypeService.worktypeCheck(worktypeDTO);
     }
 
-//    private void delete(PositionEntity positionEntity) {
-//        Set<EmployeeEntity> employeesWithPosition =
-//    }
+    @Transactional
+    public void deleteById(Long id) {
+        PositionEntity positionToDelete = findById(id);
+        delete(positionToDelete);
+    }
+
+    private void delete(PositionEntity positionEntity) {
+        Set<EmployeePositionRangeEntity> employeesWithPosition =
+                emplPosRangeService.findActualEmployeeWithPosition(positionEntity.getId());
+
+        if (employeesWithPosition.isEmpty()) {
+            positionRepository.delete(positionEntity);
+        } else {
+            throw new PositionHasEmployeesException(
+                    String.format("The position cannot be deleted. There are %d employees with this position",
+                            employeesWithPosition.size()));
+        }
+    }
 
     public long getCountOfTotalItems() {
         return positionRepository.count();

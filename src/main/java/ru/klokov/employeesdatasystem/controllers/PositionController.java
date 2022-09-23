@@ -77,4 +77,9 @@ public class PositionController {
 
         return positionEntityDTOMapper.convertFromEntity(createdPosition);
     }
+
+    @DeleteMapping("/{id}")
+    public void deletePositionById(@PathVariable("id") Long id) {
+        positionService.deleteById(id);
+    }
 }
