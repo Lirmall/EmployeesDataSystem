@@ -98,10 +98,12 @@ public class PositionService {
 
         List<PositionEntity> positionEntities = findByFilter(positionSearchModel).toList();
 
-        WorktypeEntity worktypeEntity = positionWorktypeService.findWorktypeByName(updateData.getWorktype().getName());
+        WorktypeEntity worktypeEntity =
+                positionWorktypeService.findWorktypeByName(updateData.getWorktype().getName());
 
         if (positionEntities.size() == 1) {
             positionEntity = positionEntities.get(0);
+            updateData(positionEntity, updateData);
             positionEntity.setWorktype(worktypeEntity);
         } else if (positionEntities.isEmpty()) {
             throw new NoMatchingEntryInDatabaseException("Position with name " + updateData.getName() + " not found in database");
@@ -112,6 +114,14 @@ public class PositionService {
         PositionEntity savedPosition = positionRepository.save(positionEntity);
 
         return positionRepository.findPositionEntityByName(savedPosition.getName());
+    }
+
+    private void updateData(PositionEntity positionToUpdate, PositionEntity updateData){
+
+        positionToUpdate.setName(updateData.getName());
+        positionToUpdate.setWorktype(updateData.getWorktype());
+        positionToUpdate.setSalary(updateData.getSalary());
+
     }
 
     public WorktypeEntity worktypeCheck(WorktypeDTO worktypeDTO) {

@@ -78,7 +78,29 @@ public class PositionController {
         return positionEntityDTOMapper.convertFromEntity(createdPosition);
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping("/{name}")
+    public PositionDTO updateByName(@RequestBody PositionDTO positionDTO) {
+        String name = positionDTO.getName();
+
+        PositionEntity positionToUpdate;
+
+        if(name != null) {
+            positionToUpdate = positionService.findPositionByName(name);
+        } else {
+            throw new NoMatchingEntryInDatabaseException("Unable to find position with empty or null name");
+        }
+
+        PositionEntity updatePositionData = positionEntityDTOMapper.convertFromDTO(positionDTO);
+
+        if(positionToUpdate != null) {
+            PositionEntity updatedPosition = positionService.putUpdate(positionService.findPositionByName(name), updatePositionData);
+            return positionEntityDTOMapper.convertFromEntity(updatedPosition);
+        } else {
+            throw new NoMatchingEntryInDatabaseException("Position with name \"" + name + "\" not found");
+        }
+    }
+
+        @DeleteMapping("/{id}")
     public void deletePositionById(@PathVariable("id") Long id) {
         positionService.deleteById(id);
     }

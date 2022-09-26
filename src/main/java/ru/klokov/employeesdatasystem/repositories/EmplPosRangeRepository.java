@@ -18,9 +18,9 @@ public interface EmplPosRangeRepository extends JpaRepository<EmployeePositionRa
             "and epr.position_change_date=pcdepr.max_pcd " +
             "inner join " +
             "           (select id, second_name, dismissed from employees " +
-            "            group by id) as e " +
+            "            ) as e " +
             "on pcdepr.employee_id=e.id " +
-            "where dismissed=false and epr.position_id=:id " +
-            "order by employee_id", nativeQuery = true)
+            "where e.dismissed=false and epr.position_id=:id " +
+            "order by epr.employee_id", nativeQuery = true)
     Set<EmployeePositionRangeEntity> findActualEmployeeWithPosition(Long id);
 }
