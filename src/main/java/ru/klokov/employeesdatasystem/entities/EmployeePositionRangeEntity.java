@@ -3,6 +3,7 @@ package ru.klokov.employeesdatasystem.entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,13 +16,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class EmployeePositionRangeEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employees_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_position_range_sequence")
     @GenericGenerator(
-            name="employees_sequence",
+            name="employee_position_range_sequence",
             strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
             parameters = {
                     @org.hibernate.annotations.Parameter(name = "increment_size", value = "1"),
-                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "employees_sequence")
+                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "employee_position_range_sequence")
             }
     )
     @Column(name = "id")
@@ -38,6 +39,7 @@ public class EmployeePositionRangeEntity {
     private Long positionId;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "position_id")
     private PositionEntity position;
 
