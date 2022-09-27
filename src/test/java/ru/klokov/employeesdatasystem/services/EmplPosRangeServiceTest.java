@@ -8,6 +8,9 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import ru.klokov.employeesdatasystem.entities.*;
 
+import java.util.List;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -30,6 +33,9 @@ class EmplPosRangeServiceTest {
 
     @Test
     void findActualEmployeeWithPosition() {
+        Set<EmployeePositionRangeEntity> entitySet =  emplPosRangeService.findActualEmployeeWithPosition(1L);
+
+        assertEquals(3, entitySet.size());
     }
 
     @Test
