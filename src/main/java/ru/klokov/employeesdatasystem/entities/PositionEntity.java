@@ -35,13 +35,13 @@ public class PositionEntity {
     @Column(name = "worktype_id", insertable = false, updatable = false)
     private Long worktypeId;
 
-    @Column(name = "salary")
-    private Double salary;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "worktype_id")
     private WorktypeEntity worktype;
 
-    @OneToMany(mappedBy = "position", fetch = FetchType.LAZY)
+    @Column(name = "salary")
+    private Double salary;
+
+    @OneToMany(mappedBy = "position", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<EmployeePositionRangeEntity> positionRangeEntityList;
 }

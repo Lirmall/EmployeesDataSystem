@@ -38,11 +38,11 @@ public class EmployeeEntity {
     @Column(name = "third_name")
     private String thirdName;
 
-    @Column(name = "genger_id", insertable = false, updatable = false)
+    @Column(name = "gender_id", insertable = false, updatable = false)
     private Long genderId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "genger_id")
+    @JoinColumn(name = "gender_id")
     private GenderEntity gender;
 
     @Column(name = "birthday")
