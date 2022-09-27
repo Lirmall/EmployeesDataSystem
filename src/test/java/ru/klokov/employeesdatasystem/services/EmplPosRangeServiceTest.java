@@ -28,9 +28,6 @@ class EmplPosRangeServiceTest {
     @Autowired
     private RangeService rangeService;
 
-    @Autowired
-    private
-
     @Test
     void findActualEmployeeWithPosition() {
     }
