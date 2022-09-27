@@ -34,7 +34,7 @@ class EmplPosRangeServiceTest {
 
     @Test
     void addEmployeePositionRangeEntity() {
-        System.out.println("count1 = " + emplPosRangeService.getCountOfTotalItems());
+        assertEquals(17, emplPosRangeService.getCountOfTotalItems());
 
         EmployeeEntity employee = employeeService.findById(2L);
 
@@ -44,6 +44,6 @@ class EmplPosRangeServiceTest {
 
         emplPosRangeService.addEmployeePositionRangeEntity(employee, position, range);
 
-        System.out.println("count2 = " + emplPosRangeService.getCountOfTotalItems());
+        assertEquals(18, emplPosRangeService.getCountOfTotalItems());
     }
 }
