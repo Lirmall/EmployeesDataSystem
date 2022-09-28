@@ -8,12 +8,8 @@ import ru.klokov.employeesdatasystem.entities.EmployeePositionRangeEntity;
 import ru.klokov.employeesdatasystem.entities.PositionEntity;
 import ru.klokov.employeesdatasystem.entities.RangeEntity;
 import ru.klokov.employeesdatasystem.repositories.EmplPosRangeRepository;
-import ru.klokov.employeesdatasystem.repositories.RangeRepository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -21,10 +17,6 @@ import java.util.Set;
 public class EmplPosRangeService {
     private final EmplPosRangeRepository emplPosRangeRepository;
     private final RangeService rangeService;
-
-    @PersistenceContext
-    private final EntityManager entityManager;
-
 
     @Transactional(readOnly = true)
     public Set<EmployeePositionRangeEntity> findActualEmployeeWithPosition(Long id) {
@@ -44,8 +36,6 @@ public class EmplPosRangeService {
         }
 
         epr.setPositionChangeDate(LocalDate.now());
-
-//        entityManager.persist(epr);
 
         emplPosRangeRepository.save(epr);
 
