@@ -35,7 +35,7 @@ public class PositionEntity {
     @Column(name = "worktype_id", insertable = false, updatable = false)
     private Long worktypeId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "worktype_id")
     private WorktypeEntity worktype;
 
