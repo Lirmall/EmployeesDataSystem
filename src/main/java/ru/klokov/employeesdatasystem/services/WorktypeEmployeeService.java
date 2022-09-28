@@ -1,21 +1,14 @@
 package ru.klokov.employeesdatasystem.services;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.klokov.employeesdatasystem.entities.WorktypeEntity;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.exceptions.NullOrEmptyArgumentexception;
 import ru.klokov.employeesdatasystem.repositories.WorktypeRepository;
-import ru.klokov.employeesdatasystem.specifications.worktypesSpecification.WorktypeSearchModel;
-import ru.klokov.employeesdatasystem.specifications.worktypesSpecification.WorktypeSpecification;
 import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
