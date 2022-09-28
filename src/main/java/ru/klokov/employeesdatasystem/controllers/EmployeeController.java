@@ -32,7 +32,7 @@ public class EmployeeController {
     public EmployeeDTO add(@RequestBody CreateEmployeeDTO createEmployeeDTO) {
         CreateEmployeeEntity createEmployeeEntity = createEmployeeEntityDTOMapper.convertFromDTO(createEmployeeDTO);
 
-        EmployeeEntity createdEmployee = employeeService.create2(createEmployeeEntity);
+        EmployeeEntity createdEmployee = employeeService.create(createEmployeeEntity);
 
         return employeeEntityDTOMapper.convertFromEntity(createdEmployee);
     }

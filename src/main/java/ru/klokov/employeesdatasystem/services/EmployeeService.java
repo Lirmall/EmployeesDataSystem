@@ -35,7 +35,7 @@ public class EmployeeService {
     private final EmplPosRangeService emplPosRangeService;
 
     @Transactional
-    public EmployeeEntity create2(CreateEmployeeEntity entity) {
+    public EmployeeEntity create(CreateEmployeeEntity entity) {
         EmployeeEntity employeeToCreate = new EmployeeEntity();
         PositionEntity position = positionEmployeeService.findPositionByName(entity.getPosition().getName());
 
