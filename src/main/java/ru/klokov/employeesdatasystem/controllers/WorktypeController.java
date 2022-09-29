@@ -50,15 +50,15 @@ public class WorktypeController {
     }
 
     @PostMapping("/filter")
-    public Response<WorktypeDTO> getWorktypes(@RequestBody WorktypeSearchModel request) {
+    public Response<WorktypeDTO> getWorktypesByFilter(@RequestBody WorktypeSearchModel request) {
         Long countOfTotalElements = worktypeService.getCountOfTotalItems();
         Page<WorktypeEntity> genders = worktypeService.findByFilter(request);
 
         if(genders.isEmpty()) {
             return new Response<>(Collections.emptyList(), countOfTotalElements, 0L);
         } else {
-            Page<WorktypeDTO> WorktypeDTOS = genders.map(worktypeEntityDTOMapper::convertFromEntity);
-            return new Response<>(WorktypeDTOS.toList(), countOfTotalElements, WorktypeDTOS.getTotalElements());
+            Page<WorktypeDTO> worktypeDTOS = genders.map(worktypeEntityDTOMapper::convertFromEntity);
+            return new Response<>(worktypeDTOS.toList(), countOfTotalElements, worktypeDTOS.getTotalElements());
         }
     }
 }
