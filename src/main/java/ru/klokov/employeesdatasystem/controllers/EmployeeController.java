@@ -4,16 +4,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import ru.klokov.employeesdatasystem.dto.CreateEmployeeDTO;
+import ru.klokov.employeesdatasystem.dto.DismissEmployeeDTO;
 import ru.klokov.employeesdatasystem.dto.EmployeeDTO;
 import ru.klokov.employeesdatasystem.entities.CreateEmployeeEntity;
+import ru.klokov.employeesdatasystem.entities.DismissEmployeeEntity;
 import ru.klokov.employeesdatasystem.entities.EmployeeEntity;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.mappers.CreateEmployeeEntityDTOMapper;
+import ru.klokov.employeesdatasystem.mappers.DismissEmployeeEntityDTOMapper;
 import ru.klokov.employeesdatasystem.mappers.EmployeeEntityDTOMapper;
 import ru.klokov.employeesdatasystem.services.EmployeeService;
 import ru.klokov.employeesdatasystem.specifications.Response;
 import ru.klokov.employeesdatasystem.specifications.employeeSpecification.worktypesSpecification.EmployeeSearchModel;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +31,7 @@ public class EmployeeController {
     private final EmployeeEntityDTOMapper employeeEntityDTOMapper;
     private final EmployeeService employeeService;
     private final CreateEmployeeEntityDTOMapper createEmployeeEntityDTOMapper;
+    private final DismissEmployeeEntityDTOMapper dismissEmployeeEntityDTOMapper;
 
     @PostMapping
     public EmployeeDTO add(@RequestBody CreateEmployeeDTO createEmployeeDTO) {
@@ -73,5 +78,15 @@ public class EmployeeController {
             Page<EmployeeDTO> rangeDTOS = genders.map(employeeEntityDTOMapper::convertFromEntity);
             return new Response<>(rangeDTOS.toList(), countOfTotalElements, rangeDTOS.getTotalElements());
         }
+    }
+
+
+    @PostMapping("/dismiss")
+    public EmployeeDTO dismissEmployee(@RequestBody DismissEmployeeDTO dismissEmployeeDTO) {
+        DismissEmployeeEntity dismissEmployeeEntity = dismissEmployeeEntityDTOMapper.convertFromDTO(dismissEmployeeDTO);
+
+        EmployeeEntity dismissedEmployee = employeeService.dismissEmployee(dismissEmployeeEntity);
+
+        return employeeEntityDTOMapper.convertFromEntity(dismissedEmployee);
     }
 }

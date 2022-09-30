@@ -11,6 +11,7 @@ import ru.klokov.employeesdatasystem.dto.GenderDTO;
 import ru.klokov.employeesdatasystem.dto.WorktypeDTO;
 import ru.klokov.employeesdatasystem.entities.CreateEmployeeEntity;
 import ru.klokov.employeesdatasystem.entities.CreateEmployeeEntityTestData;
+import ru.klokov.employeesdatasystem.entities.DismissEmployeeEntity;
 import ru.klokov.employeesdatasystem.entities.EmployeeEntity;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.specifications.employeeSpecification.worktypesSpecification.EmployeeSearchModel;
@@ -162,5 +163,28 @@ class EmployeeServiceTest {
     @Test
     void getCountOfTotalItemsTest() {
         assertEquals(9, employeeService.getCountOfTotalItems());
+    }
+
+    @Test
+    void dismissEmployeeTest() {
+        EmployeeEntity employee = employeeService.findById(1L);
+
+        DismissEmployeeEntity dismissEmployeeEntity = new DismissEmployeeEntity();
+
+        LocalDate dismissDate = LocalDate.of(2022, 8, 30);
+
+        dismissEmployeeEntity.setSecondName(employee.getSecondName());
+        dismissEmployeeEntity.setFirstName(employee.getFirstName());
+        dismissEmployeeEntity.setThirdName(employee.getThirdName());
+        dismissEmployeeEntity.setWorkstartDate(employee.getWorkstartDate());
+        dismissEmployeeEntity.setBirthdayDate(employee.getBirthday());
+        dismissEmployeeEntity.setDismissDate(dismissDate);
+
+        employeeService.dismissEmployee(dismissEmployeeEntity);
+
+        EmployeeEntity dismissedEmployee = employeeService.findById(1L);
+
+        assertEquals(true, dismissedEmployee.getDismissed());
+        assertEquals(dismissDate, dismissedEmployee.getDismissedDate());
     }
 }

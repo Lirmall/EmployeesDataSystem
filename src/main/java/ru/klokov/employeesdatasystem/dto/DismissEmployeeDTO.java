@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateEmployeeDTO {
+public class DismissEmployeeDTO {
     private String secondName;
     private String firstName;
     private String thirdName;
@@ -20,10 +20,9 @@ public class CreateEmployeeDTO {
     @ApiModelProperty(value = "birthdayDate", example = "\"YYYY-MM-DD\"")
     private LocalDate birthdayDate;
 
-    private PositionDTO positionDTO;
-    private GenderDTO genderDTO;
-    private RangeDTO rangeDTO;
-
     @ApiModelProperty(value = "workstartDate", example = "\"YYYY-MM-DD\"")
     private LocalDate workstartDate;
+
+    @ApiModelProperty(value = "dismissDate", example = "\"YYYY-MM-DD\"")
+    private LocalDate dismissDate;
 }

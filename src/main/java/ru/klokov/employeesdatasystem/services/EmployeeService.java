@@ -165,6 +165,43 @@ public class EmployeeService {
         return findEntities;
     }
 
+    @Transactional
+    public EmployeeEntity dismissEmployee(DismissEmployeeEntity dismissEmployeeEntity) {
+
+        List<EmployeeEntity> employeeEntityList = findEmployeeEntityByDismissEmployee(dismissEmployeeEntity);
+
+        EmployeeEntity employee;
+
+        if(employeeEntityList.size() == 1) {
+            employee = employeeEntityList.get(0);
+        } else {
+            throw new AlreadyCreatedException("Employees was founded: " + employeeEntityList.size());
+        }
+
+        employee.setDismissed(true);
+        employee.setDismissedDate(dismissEmployeeEntity.getDismissDate());
+
+        employeeRepository.save(employee);
+
+        List<EmployeeEntity> employeeEntities = findEmployeeEntityByEmployee(employee);
+
+        if(employeeEntities.size() == 1) {
+            return employeeEntities.get(0);
+        } else {
+            throw new AlreadyCreatedException("More than one employee was founded");
+        }
+    }
+
+    private List<EmployeeEntity> findEmployeeEntityByDismissEmployee(DismissEmployeeEntity dismissEmployeeEntity) {
+        List<EmployeeEntity> findEntities = employeeRepository.findEmployeeEntityByBirthday(dismissEmployeeEntity.getBirthdayDate());
+        findEntities.removeIf(employee -> !Objects.equals(employee.getSecondName(), dismissEmployeeEntity.getSecondName()));
+        findEntities.removeIf(employee -> !Objects.equals(employee.getFirstName(), dismissEmployeeEntity.getFirstName()));
+        findEntities.removeIf(employee -> !Objects.equals(employee.getThirdName(), dismissEmployeeEntity.getThirdName()));
+        findEntities.removeIf(employee -> !Objects.equals(employee.getWorkstartDate(), dismissEmployeeEntity.getWorkstartDate()));
+
+        return findEntities;
+    }
+
     public long getCountOfTotalItems() {
         return employeeRepository.count();
     }
