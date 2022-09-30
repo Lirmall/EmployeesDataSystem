@@ -27,7 +27,7 @@ public class EmployeeRangeService {
         }
     }
 
-    private RangeEntity findRangeById(Long id) {
+    public RangeEntity findRangeById(Long id) {
         Optional<RangeEntity> foundRange;
 
         if (id == null) {

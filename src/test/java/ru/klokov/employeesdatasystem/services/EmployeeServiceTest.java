@@ -9,10 +9,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import ru.klokov.employeesdatasystem.dto.GenderDTO;
 import ru.klokov.employeesdatasystem.dto.WorktypeDTO;
-import ru.klokov.employeesdatasystem.entities.CreateEmployeeEntity;
-import ru.klokov.employeesdatasystem.entities.CreateEmployeeEntityTestData;
-import ru.klokov.employeesdatasystem.entities.DismissEmployeeEntity;
-import ru.klokov.employeesdatasystem.entities.EmployeeEntity;
+import ru.klokov.employeesdatasystem.entities.*;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.specifications.employeeSpecification.worktypesSpecification.EmployeeSearchModel;
 
@@ -31,6 +28,12 @@ class EmployeeServiceTest {
 
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    private PositionService positionService;
+
+    @Autowired
+    private RangeService rangeService;
 
     @Test
     void createTest() {
@@ -186,5 +189,33 @@ class EmployeeServiceTest {
 
         assertEquals(true, dismissedEmployee.getDismissed());
         assertEquals(dismissDate, dismissedEmployee.getDismissedDate());
+    }
+
+    @Test
+    void updateEmployeeTest() {
+        EmployeeEntity employee = employeeService.findById(1L);
+
+        PositionEntity position = positionService.findPositionByName("Engineer");
+
+        RangeEntity range = rangeService.findById(1L);
+
+        UpdateEmployeeEntity updateEmployee = new UpdateEmployeeEntity();
+
+        LocalDate date = LocalDate.of(2022, 8, 30);
+
+        updateEmployee.setSecondName(employee.getSecondName());
+        updateEmployee.setFirstName(employee.getFirstName());
+        updateEmployee.setThirdName(employee.getThirdName());
+        updateEmployee.setBirthdayDate(employee.getBirthday());
+        updateEmployee.setUpdateDate(date);
+        updateEmployee.setPosition(position);
+        updateEmployee.setRange(range);
+
+        employeeService.updateEmployee(updateEmployee);
+
+        EmployeeEntity updatedEmployee = employeeService.findById(1L);
+
+        System.out.println(updatedEmployee.getSalary());
+
     }
 }

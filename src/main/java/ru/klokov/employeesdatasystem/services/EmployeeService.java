@@ -166,6 +166,43 @@ public class EmployeeService {
     }
 
     @Transactional
+    public EmployeeEntity updateEmployee(UpdateEmployeeEntity updateEmployee) {
+        List<EmployeeEntity> employeeEntityList = findEmployeeEntityByUpdateEmployee(updateEmployee);
+
+        EmployeeEntity employee;
+
+        if(employeeEntityList.size() == 1) {
+            employee = employeeEntityList.get(0);
+        } else {
+            throw new AlreadyCreatedException("Employees was founded: " + employeeEntityList.size());
+        }
+
+        PositionEntity position = positionEmployeeService.findPositionByName(updateEmployee.getPosition().getName());
+        RangeEntity range;
+
+        if(position.getName().equals("Mechanic")) {
+            range = updateEmployee.getRange();
+        } else {
+            range = employeeRangeService.findRangeById(4L);
+        }
+
+        employee.setWorktype(position.getWorktype());
+        employee.setSalary(position.getSalary() * range.getBonus());
+
+        employeeRepository.save(employee);
+
+        emplPosRangeService.addEmployeePositionRangeEntity(employee, position, range);
+
+        List<EmployeeEntity> employeeEntities = findEmployeeEntityByEmployee(employee);
+
+        if(employeeEntities.size() == 1) {
+            return employeeEntities.get(0);
+        } else {
+            throw new AlreadyCreatedException("Employees was founded: " + employeeEntityList.size());
+        }
+    }
+
+    @Transactional
     public EmployeeEntity dismissEmployee(DismissEmployeeEntity dismissEmployeeEntity) {
 
         List<EmployeeEntity> employeeEntityList = findEmployeeEntityByDismissEmployee(dismissEmployeeEntity);
@@ -199,6 +236,14 @@ public class EmployeeService {
         findEntities.removeIf(employee -> !Objects.equals(employee.getThirdName(), dismissEmployeeEntity.getThirdName()));
         findEntities.removeIf(employee -> !Objects.equals(employee.getWorkstartDate(), dismissEmployeeEntity.getWorkstartDate()));
 
+        return findEntities;
+    }
+
+    private List<EmployeeEntity> findEmployeeEntityByUpdateEmployee(UpdateEmployeeEntity updateEmployee) {
+        List<EmployeeEntity> findEntities = employeeRepository.findEmployeeEntityByBirthday(updateEmployee.getBirthdayDate());
+        findEntities.removeIf(employee -> !Objects.equals(employee.getFirstName(), updateEmployee.getFirstName()));
+        findEntities.removeIf(employee -> !Objects.equals(employee.getSecondName(), updateEmployee.getSecondName()));
+        findEntities.removeIf(employee -> !Objects.equals(employee.getThirdName(), updateEmployee.getThirdName()));
         return findEntities;
     }
 

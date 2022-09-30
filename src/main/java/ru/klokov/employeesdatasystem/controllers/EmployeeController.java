@@ -6,13 +6,16 @@ import org.springframework.web.bind.annotation.*;
 import ru.klokov.employeesdatasystem.dto.CreateEmployeeDTO;
 import ru.klokov.employeesdatasystem.dto.DismissEmployeeDTO;
 import ru.klokov.employeesdatasystem.dto.EmployeeDTO;
+import ru.klokov.employeesdatasystem.dto.UpdateEmployeeDTO;
 import ru.klokov.employeesdatasystem.entities.CreateEmployeeEntity;
 import ru.klokov.employeesdatasystem.entities.DismissEmployeeEntity;
 import ru.klokov.employeesdatasystem.entities.EmployeeEntity;
+import ru.klokov.employeesdatasystem.entities.UpdateEmployeeEntity;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.mappers.CreateEmployeeEntityDTOMapper;
 import ru.klokov.employeesdatasystem.mappers.DismissEmployeeEntityDTOMapper;
 import ru.klokov.employeesdatasystem.mappers.EmployeeEntityDTOMapper;
+import ru.klokov.employeesdatasystem.mappers.UpdateEmployeeEntityDTOMapper;
 import ru.klokov.employeesdatasystem.services.EmployeeService;
 import ru.klokov.employeesdatasystem.specifications.Response;
 import ru.klokov.employeesdatasystem.specifications.employeeSpecification.worktypesSpecification.EmployeeSearchModel;
@@ -32,6 +35,7 @@ public class EmployeeController {
     private final EmployeeService employeeService;
     private final CreateEmployeeEntityDTOMapper createEmployeeEntityDTOMapper;
     private final DismissEmployeeEntityDTOMapper dismissEmployeeEntityDTOMapper;
+    private final UpdateEmployeeEntityDTOMapper updateEmployeeEntityDTOMapper;
 
     @PostMapping
     public EmployeeDTO add(@RequestBody CreateEmployeeDTO createEmployeeDTO) {
@@ -86,6 +90,15 @@ public class EmployeeController {
         DismissEmployeeEntity dismissEmployeeEntity = dismissEmployeeEntityDTOMapper.convertFromDTO(dismissEmployeeDTO);
 
         EmployeeEntity dismissedEmployee = employeeService.dismissEmployee(dismissEmployeeEntity);
+
+        return employeeEntityDTOMapper.convertFromEntity(dismissedEmployee);
+    }
+
+    @PostMapping("/update")
+    public EmployeeDTO updateEmployee(@RequestBody UpdateEmployeeDTO updateEmployeeDTO) {
+        UpdateEmployeeEntity updateEmployeeEntity = updateEmployeeEntityDTOMapper.convertFromDTO(updateEmployeeDTO);
+
+        EmployeeEntity dismissedEmployee = employeeService.updateEmployee(updateEmployeeEntity);
 
         return employeeEntityDTOMapper.convertFromEntity(dismissedEmployee);
     }
