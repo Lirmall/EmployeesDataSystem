@@ -8,6 +8,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import ru.klokov.employeesdatasystem.entities.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -52,4 +53,17 @@ class EmplPosRangeServiceTest {
 
         assertEquals(18, emplPosRangeService.getCountOfTotalItems());
     }
+
+    @Test
+    void findByEmployeeIdWherePositionChangeDateLessThan() {
+        Long id = 8L;
+        LocalDate date = LocalDate.of(2022, 8, 3);
+
+        List<EmployeePositionRangeEntity> entityList = emplPosRangeService.findByEmployeeIdWherePositionChangeDateLessThan(id, date);
+
+        for (EmployeePositionRangeEntity epr : entityList) {
+            System.out.println(epr.getPositionChangeDate());
+        }
+    }
+
 }

@@ -250,4 +250,9 @@ public class EmployeeService {
     public long getCountOfTotalItems() {
         return employeeRepository.count();
     }
+
+    @Transactional(readOnly = true)
+    public List<EmployeeEntity> findEmployeeEntitiesByBirthday(LocalDate birthday) {
+        return employeeRepository.findEmployeeEntityByBirthday(birthday);
+    }
 }

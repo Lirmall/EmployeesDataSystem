@@ -343,7 +343,7 @@ databaseChangeLog:
                   value: 4
               - column:
                   name: position_change_date
-                  value: "2022-09-07"
+                  value: "2022-08-07"
   - changeSet:
       id: 16
       author: Andrey
@@ -389,4 +389,4 @@ databaseChangeLog:
                   value: 4
               - column:
                   name: position_change_date
-                  value: "2022-09-03"
+                  value: "2022-08-03"

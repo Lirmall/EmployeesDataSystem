@@ -5,6 +5,9 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import ru.klokov.employeesdatasystem.entities.EmployeePositionRangeEntity;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public interface EmplPosRangeRepository extends JpaRepository<EmployeePositionRangeEntity, Long>, JpaSpecificationExecutor<EmployeePositionRangeEntity> {
@@ -23,4 +26,13 @@ public interface EmplPosRangeRepository extends JpaRepository<EmployeePositionRa
             "where e.dismissed=false and epr.position_id=:id " +
             "order by epr.employee_id", nativeQuery = true)
     Set<EmployeePositionRangeEntity> findActualEmployeeWithPosition(Long id);
+
+    ArrayList<EmployeePositionRangeEntity> findEmployeePositionRangeEntitiesByEmployeeId(Long id);
+    List<EmployeePositionRangeEntity> findEmployeePositionRangeEntitiesByEmployeeIdAndPositionChangeDateIsBetween(Long id, LocalDate periodStart, LocalDate periodEnd);
+    List<EmployeePositionRangeEntity> findEmployeePositionRangeEntitiesByEmployeeIdAndPositionChangeDateLessThan(Long id, LocalDate periodStart);
+
+//    @Query(value = "select id, employee_id, position_id, position_range, max(position_change_date) \n" +
+//            "             from EMPLOYEE_POSITION_RANGE where position_change_date<:periodStart and employee_id=:id\n" +
+//            "             group by employee_id, id order by position_change_date desc limit 1", nativeQuery = true)
+//    EmployeePositionRangeEntity findEmployeePositionRangeEntityOnPeriodStart(Long id, LocalDate periodStart);
 }

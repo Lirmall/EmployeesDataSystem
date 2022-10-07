@@ -10,6 +10,7 @@ import ru.klokov.employeesdatasystem.entities.RangeEntity;
 import ru.klokov.employeesdatasystem.repositories.EmplPosRangeRepository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -40,6 +41,17 @@ public class EmplPosRangeService {
         emplPosRangeRepository.save(epr);
 
         return epr;
+    }
+
+    @Transactional(readOnly = true)
+    public List<EmployeePositionRangeEntity> findEmployeePositionRangeEntitiesByEmployeeId(Long id) {
+        return emplPosRangeRepository.findEmployeePositionRangeEntitiesByEmployeeId(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<EmployeePositionRangeEntity> findByEmployeeIdWherePositionChangeDateLessThan(Long id, LocalDate periodStart) {
+        return emplPosRangeRepository.findEmployeePositionRangeEntitiesByEmployeeIdAndPositionChangeDateLessThan(id, periodStart);
+
     }
 
     public long getCountOfTotalItems() {

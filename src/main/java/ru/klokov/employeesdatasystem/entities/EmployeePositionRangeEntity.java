@@ -38,7 +38,7 @@ public class EmployeePositionRangeEntity {
     @Column(name = "position_id", insertable = false, updatable = false)
     private Long positionId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "position_id")
     private PositionEntity position;
@@ -46,7 +46,7 @@ public class EmployeePositionRangeEntity {
     @Column(name = "position_range", insertable = false, updatable = false)
     private Long positionRange;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "position_range")
     private RangeEntity range;
 
