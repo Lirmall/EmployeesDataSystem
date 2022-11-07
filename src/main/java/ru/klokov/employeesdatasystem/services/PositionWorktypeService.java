@@ -62,7 +62,7 @@ public class PositionWorktypeService {
 
     @Transactional(readOnly = true)
     public WorktypeEntity worktypeCheck(WorktypeDTO worktypeDTO) {
-        if(worktypeDTO == null) {
+        if (worktypeDTO == null) {
             return null;
         }
 
@@ -76,13 +76,30 @@ public class PositionWorktypeService {
             if (worktypeDTO.getId() == null) {
                 return worktypeEntity;
             }
-            Long positionId = worktypeDTO.getId();
+            Long worktypeId = worktypeDTO.getId();
             try {
-                worktypeEntity = findWorktypeById(positionId);
+                worktypeEntity = findWorktypeById(worktypeId);
             } catch (NoSuchElementException e) {
                 return null;
             }
         }
+        return worktypeEntity;
+    }
+
+    @Transactional(readOnly = true)
+    public WorktypeEntity worktypeCheckByName(String worktypeName) {
+        if (worktypeName == null) {
+            return null;
+        }
+
+        WorktypeEntity worktypeEntity = null;
+
+        try {
+            worktypeEntity = findWorktypeByName(worktypeName);
+        } catch (NoSuchElementException e) {
+            return null;
+        }
+
         return worktypeEntity;
     }
 }

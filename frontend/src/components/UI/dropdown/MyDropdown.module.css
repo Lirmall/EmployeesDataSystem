@@ -1,0 +1,20 @@
+.myDropdown {
+    padding: 5px 15px;
+    color: gray;
+    font-size: 14px;
+    background: transparent;
+    border: 1px solid teal;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.myDropdownMenu {
+    padding: 5px 15px;
+    color: gray;
+    font-size: 14px;
+    background: white;
+    border: 1px solid teal;
+    cursor: pointer;
+    text-align: left;
+}

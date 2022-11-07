@@ -3,6 +3,7 @@ package ru.klokov.employeesdatasystem.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import ru.klokov.employeesdatasystem.dto.AddPositionDTO;
 import ru.klokov.employeesdatasystem.dto.PositionDTO;
 import ru.klokov.employeesdatasystem.entities.PositionEntity;
 import ru.klokov.employeesdatasystem.entities.WorktypeEntity;
@@ -62,45 +63,135 @@ public class PositionController {
             return new Response<>(positionDTOS.toList(), countOfTotalElements, positionDTOS.getTotalElements());
         }
     }
+//
+//    @PostMapping("/new")
+//    public PositionDTO add(@RequestBody PositionDTO positionDTO) {
+//        positionDTO.setId(null);
+//
+//        PositionEntity positionEntity = positionEntityDTOMapper.convertFromDTO(positionDTO);
+//
+//        WorktypeEntity worktype = positionService.worktypeCheck(positionDTO.getWorktype());
+//
+//        positionEntity.setWorktype(worktype);
+//
+//        PositionEntity createdPosition = positionService.create(positionEntity);
+//
+//        return positionEntityDTOMapper.convertFromEntity(createdPosition);
+//    }
 
-    @PostMapping
-    public PositionDTO add(@RequestBody PositionDTO positionDTO) {
-        positionDTO.setId(null);
+    @PostMapping("/new")
+    public PositionDTO add(@RequestBody AddPositionDTO addPositionDTO) {
 
-        PositionEntity positionEntity = positionEntityDTOMapper.convertFromDTO(positionDTO);
+        PositionEntity positionEntity = new PositionEntity();
 
-        WorktypeEntity worktype = positionService.worktypeCheck(positionDTO.getWorktype());
+        WorktypeEntity worktype = positionService.worktypeCheck(addPositionDTO.getWorktype());
 
+        positionEntity.setName(addPositionDTO.getName());
+        positionEntity.setSalary(addPositionDTO.getSalary());
         positionEntity.setWorktype(worktype);
 
-        PositionEntity createdPosition =positionService.create(positionEntity);
+        PositionEntity createdPosition = positionService.create(positionEntity);
 
         return positionEntityDTOMapper.convertFromEntity(createdPosition);
     }
 
-    @PutMapping("/{name}")
-    public PositionDTO updateByName(@RequestBody PositionDTO positionDTO) {
-        String name = positionDTO.getName();
+//    @PutMapping("/{name}")
+//    public PositionDTO updateByName(@RequestBody PositionDTO positionDTO) {
+//        String name = positionDTO.getName();
+//
+//        PositionEntity positionToUpdate;
+//
+//        if(name != null) {
+//            positionToUpdate = positionService.findPositionByName(name);
+//        } else {
+//            throw new NoMatchingEntryInDatabaseException("Unable to find position with empty or null name");
+//        }
+//
+//        PositionEntity updatePositionData = positionEntityDTOMapper.convertFromDTO(positionDTO);
+//
+//        if(positionToUpdate != null) {
+//            PositionEntity updatedPosition = positionService.putUpdate(positionService.findPositionByName(name), updatePositionData);
+//            return positionEntityDTOMapper.convertFromEntity(updatedPosition);
+//        } else {
+//            throw new NoMatchingEntryInDatabaseException("Position with name \"" + name + "\" not found");
+//        }
+//    }
+
+//    @PutMapping("/put/{id}")
+//    public PositionDTO putUpdateById(@RequestBody PositionDTO positionDTO) {
+//        String name = positionDTO.getName();
+//        Long id = positionDTO.getId();
+//
+//        PositionEntity positionToUpdate;
+//
+//        if (name != null) {
+//            positionToUpdate = positionService.findById(id);
+//        } else {
+//            throw new NoMatchingEntryInDatabaseException("Unable to find position with empty or null id");
+//        }
+//
+//        PositionEntity updatePositionData = positionEntityDTOMapper.convertFromDTO(positionDTO);
+//
+//        if (positionToUpdate != null) {
+//            PositionEntity updatedPosition = positionService.putUpdate(positionService.findById(id), updatePositionData);
+//            return positionEntityDTOMapper.convertFromEntity(updatedPosition);
+//        } else {
+//            throw new NoMatchingEntryInDatabaseException("Position with id \"" + id + "\" not found");
+//        }
+//    }
+
+//    @PatchMapping("/{id}")
+//    public PositionDTO patchUpdateById(@RequestBody PositionDTO positionDTO) {
+//        String name = positionDTO.getName();
+//        Long id = positionDTO.getId();
+//
+//        PositionEntity positionToUpdate;
+//
+//        if (name != null) {
+//            positionToUpdate = positionService.findById(id);
+//        } else {
+//            throw new NoMatchingEntryInDatabaseException("Unable to find position with empty or null id");
+//        }
+//
+//        PositionEntity updatePositionData = positionEntityDTOMapper.convertFromDTO(positionDTO);
+//
+//        if (positionToUpdate != null) {
+//            PositionEntity updatedPosition = positionService.patchUpdate(positionService.findById(id), updatePositionData);
+//            return positionEntityDTOMapper.convertFromEntity(updatedPosition);
+//        } else {
+//            throw new NoMatchingEntryInDatabaseException("Position with id \"" + id + "\" not found");
+//        }
+//    }
+
+    @PatchMapping("/{id}")
+    public PositionDTO patchUpdateById(@RequestBody AddPositionDTO addPositionDTO) {
+        String name = addPositionDTO.getName();
+        Long id = addPositionDTO.getId();
 
         PositionEntity positionToUpdate;
 
-        if(name != null) {
-            positionToUpdate = positionService.findPositionByName(name);
+        if (name != null) {
+            positionToUpdate = positionService.findById(id);
         } else {
-            throw new NoMatchingEntryInDatabaseException("Unable to find position with empty or null name");
+            throw new NoMatchingEntryInDatabaseException("Unable to find position with empty or null id");
         }
 
-        PositionEntity updatePositionData = positionEntityDTOMapper.convertFromDTO(positionDTO);
+        WorktypeEntity worktype = positionService.worktypeCheck(addPositionDTO.getWorktype());
 
-        if(positionToUpdate != null) {
-            PositionEntity updatedPosition = positionService.putUpdate(positionService.findPositionByName(name), updatePositionData);
+        PositionEntity updatePositionData = new PositionEntity();
+        updatePositionData.setName(addPositionDTO.getName());
+        updatePositionData.setSalary(addPositionDTO.getSalary());
+        updatePositionData.setWorktype(worktype);
+
+        if (positionToUpdate != null) {
+            PositionEntity updatedPosition = positionService.patchUpdate(positionService.findById(id), updatePositionData);
             return positionEntityDTOMapper.convertFromEntity(updatedPosition);
         } else {
-            throw new NoMatchingEntryInDatabaseException("Position with name \"" + name + "\" not found");
+            throw new NoMatchingEntryInDatabaseException("Position with id \"" + id + "\" not found");
         }
     }
 
-        @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")
     public void deletePositionById(@PathVariable("id") Long id) {
         positionService.deleteById(id);
     }

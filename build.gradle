@@ -49,6 +49,13 @@ dependencies {
 
     // https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
     implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+//
+////     https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+//    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.6.1'
+
+    // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
+    implementation group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.11.RELEASE'
+
 }
 
 tasks.named('test') {

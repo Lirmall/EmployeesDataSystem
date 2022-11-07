@@ -88,7 +88,7 @@ public class PositionService {
     }
 
     @Transactional
-    public PositionEntity putUpdate(PositionEntity positionToUpdate, PositionEntity updateData) {
+    public PositionEntity patchUpdate(PositionEntity positionToUpdate, PositionEntity updateData) {
         PositionEntity positionEntity;
         updateData.setId(null);
 
@@ -126,6 +126,10 @@ public class PositionService {
 
     public WorktypeEntity worktypeCheck(WorktypeDTO worktypeDTO) {
         return positionWorktypeService.worktypeCheck(worktypeDTO);
+    }
+
+    public WorktypeEntity worktypeCheck(String worktypeName) {
+        return positionWorktypeService.worktypeCheckByName(worktypeName);
     }
 
     @Transactional
