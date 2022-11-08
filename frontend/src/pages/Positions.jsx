@@ -47,7 +47,7 @@ function Positions() {
                 Add position by modal
             </MyButton>
             <PositionAddModal key="modalAddWithPositionForm" visible={modalAdd} setVisible={setModalAdd}>
-                <PositionForm setModal={setModalAdd} addToArray={addPositionToArray}/>
+                <PositionForm setModal={setModalAdd}/>
             </PositionAddModal>
 
             {
