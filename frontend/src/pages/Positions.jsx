@@ -13,6 +13,7 @@ function Positions() {
     // ])
 
     const [positions, setPositions] = useState([])
+    const [modalEdit, setModalEdit] = useState(false);
     const [modalAdd, setModalAdd] = useState(false);
 
     const [fetchPositions, isLoading] = useFetching(async () => {
@@ -26,6 +27,18 @@ function Positions() {
 
     const [selectedSortPositions, setSelectedSortPositions] = useState('')
 
+    const removePositionFromArray = (position) => {
+        setPositions(positions.filter(p => p.id !== position.id))
+    }
+
+    const addPositionToArray = (newPosition) => {
+        // setPositions([...positions, newPosition])
+        setModalAdd(false)
+    }
+
+//------------------------------------------------------------
+
+
     return (
         <div className="App">
 
@@ -33,8 +46,8 @@ function Positions() {
             <MyButton style={{marginTop: 30}} onClick={() => setModalAdd(true)}>
                 Add position by modal
             </MyButton>
-            <PositionAddModal visible={modalAdd} setVisible={setModalAdd}>
-                <PositionForm setModal={setModalAdd}/>
+            <PositionAddModal key="modalAddWithPositionForm" visible={modalAdd} setVisible={setModalAdd}>
+                <PositionForm setModal={setModalAdd} addToArray={addPositionToArray}/>
             </PositionAddModal>
 
             {
@@ -42,7 +55,11 @@ function Positions() {
                     ?
                     <div>
                         <h1 style={{margin: '15px 0', textAlign: 'center'}}>Positions</h1>
-                        <PositionsTable positions={positions}/>
+                        <PositionsTable
+                            key="positionTableOnPositionsPage"
+                            positions={positions}
+                            removePositionFromArray={removePositionFromArray}
+                        />
                     </div>
                     :
                     <div>
@@ -50,6 +67,7 @@ function Positions() {
                         <MyButton type="button">Download positions</MyButton>
                     </div>
             }
+
         </div>
     );
 }

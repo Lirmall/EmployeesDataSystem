@@ -10,7 +10,7 @@ import WorktypeService from "../../../API/WorktypeService";
 import PositionEditForm from "../forms/PositionEditForm";
 import PositionService from "../../../API/PositionService";
 
-const PositionsTable = ({positions}) => {
+const PositionsTable = ({positions, removePositionFromArray}) => {
     const [position, setPosition] = useState({name: '', salary: '', worktype: ''})
 
     const [modalEdit, setModalEditVisible] = useState(false);
@@ -82,7 +82,10 @@ const PositionsTable = ({positions}) => {
                     >
                         Edit
                     </MyButton>
-                    <MyButton style={{color: 'red', marginLeft: 5}} onClick={() => deletePosition(pos.id)}>Delete</MyButton>
+                    <MyButton style={{color: 'red', marginLeft: 5}} onClick={() => {
+                        deletePosition(pos.id);
+                        removePositionFromArray(pos)
+                    }}>Delete</MyButton>
                 </ButtonGroup>
             </td>
         </tr>
