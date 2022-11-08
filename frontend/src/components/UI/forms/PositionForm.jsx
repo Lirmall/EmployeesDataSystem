@@ -7,7 +7,7 @@ import WorktypeService from "../../../API/WorktypeService";
 import {Dropdown} from "react-bootstrap";
 import classes from "../dropdown/MyDropdown.module.css"
 
-const PositionForm = ({create}) => {
+const PositionForm = ({setModal}) => {
     const [position, setPosition] = useState({name: '', salary: '', worktype: ''})
 
     const [worktypes, setWorktypes] = useState([])
@@ -32,6 +32,7 @@ const PositionForm = ({create}) => {
 
         // create(newPosition)
         setPosition({name: '', salary: '', worktype: ''})
+        setModal(false)
     }
 
     const sendWithFetch = async (url, data) => {
@@ -61,21 +62,23 @@ const PositionForm = ({create}) => {
     return (
         <form>
             <MyInput
+                key ="positionNameInputAdd"
                 value={position.name}
                 onChange={e => setPosition({...position, name: e.target.value})}
                 type="text"
                 placeholder="Position name"/>
             <MyInput
+                key ="positionNameSalaryAdd"
                 value={position.salary}
                 onChange={e => setPosition({...position, salary: e.target.value})}
                 type="number"
                 placeholder="Position salary"/>
-            <Dropdown className="mt-2 mb-2">
+            <Dropdown key="worktypesDropdownAdd" className="mt-2 mb-2">
                 <Dropdown.Toggle
                     className={classes.myDropdown}>{position.worktype || 'Select worktype'}</Dropdown.Toggle>
                 <Dropdown.Menu className={classes.myDropdownMenu}>
                     {worktypes.map(worktype =>
-                        <p style={{margin: "15px 0"}}>
+                        <p key="dropdownPTagAdd" style={{margin: "15px 0"}}>
                             <Dropdown.Item
                                 className={classes.myDropdown}
                                 key={worktype.id}

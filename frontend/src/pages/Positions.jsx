@@ -13,7 +13,6 @@ function Positions() {
     // ])
 
     const [positions, setPositions] = useState([])
-    const [modalEdit, setModalEdit] = useState(false);
     const [modalAdd, setModalAdd] = useState(false);
 
     const [fetchPositions, isLoading] = useFetching(async () => {
@@ -27,18 +26,6 @@ function Positions() {
 
     const [selectedSortPositions, setSelectedSortPositions] = useState('')
 
-    const createPosition = (newPosition) => {
-        setPositions([...positions, newPosition])
-        setModalAdd(false)
-    }
-
-    const removePosition = (position) => {
-        setPositions(positions.filter(p => p.id !== position.id))
-    }
-
-//------------------------------------------------------------
-
-
     return (
         <div className="App">
 
@@ -47,7 +34,7 @@ function Positions() {
                 Add position by modal
             </MyButton>
             <PositionAddModal visible={modalAdd} setVisible={setModalAdd}>
-                <PositionForm create={createPosition}/>
+                <PositionForm setModal={setModalAdd}/>
             </PositionAddModal>
 
             {
@@ -63,7 +50,6 @@ function Positions() {
                         <MyButton type="button">Download positions</MyButton>
                     </div>
             }
-
         </div>
     );
 }
