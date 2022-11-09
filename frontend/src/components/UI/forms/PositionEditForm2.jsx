@@ -11,13 +11,6 @@ import PositionService from "../../../API/PositionService";
 const PositionEditForm2 = ({id}) => {
     console.log("id in PositionEditForm2")
     console.log(id);
-    // return false;
-
-    // if (posit.worktype) {
-    //     console.log("posit in PositionEditForm2 with worktype")
-    //     console.log(posit);
-    //     console.log(posit.worktype);
-    // }
 
     const [position, setPosition] = useState({
         id: 0,
@@ -28,15 +21,6 @@ const PositionEditForm2 = ({id}) => {
             name: ''
         }
     })
-
-    // const [position, setPosition] = useState({
-    //     id: posit.id,
-    //     name: posit.name,
-    //     salary: posit.salary,
-    //     worktype: posit.worktype.name})
-
-    // if (posit.worktype) {
-    // }
 
     const [worktypes, setWorktypes] = useState([])
 
@@ -50,11 +34,6 @@ const PositionEditForm2 = ({id}) => {
         console.log("response.data",response.data)
         setPosition(response.data)
     })
-
-    // useEffect(() => {
-    //     fetchWorktypes();
-    //     fetchPosition(id);
-    // }, [])
 
     useEffect(() => {
         fetchWorktypes();
@@ -106,10 +85,10 @@ const PositionEditForm2 = ({id}) => {
                 />
                 <Dropdown key="worktypesDropdown" className="mt-2 mb-2">
                     <Dropdown.Toggle
-                        className={classes.myDropdown}>{position.worktype || 'Select worktype'}</Dropdown.Toggle>
+                        className={classes.myDropdown}>{position.worktype?.name || 'Select worktype'}</Dropdown.Toggle>
                     <Dropdown.Menu className={classes.myDropdownMenu}>
                         {worktypes.map(worktype =>
-                            <p key="dropdownPTag"
+                            <p key={"dropdownPTag" + worktype.id}
                                style={{margin: "15px 0"}}>
                                 <Dropdown.Item
                                     className={classes.myDropdown}
