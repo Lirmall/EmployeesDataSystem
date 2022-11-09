@@ -6,13 +6,37 @@ import {useFetching} from "../../hooks/useFetching";
 import WorktypeService from "../../../API/WorktypeService";
 import {Dropdown} from "react-bootstrap";
 import classes from "../dropdown/MyDropdown.module.css"
+import PositionService from "../../../API/PositionService";
 
-const PositionEditForm2 = (props) => {
+const PositionEditForm2 = ({id}) => {
+    console.log("id in PositionEditForm2")
+    console.log(id);
+    // return false;
+
+    // if (posit.worktype) {
+    //     console.log("posit in PositionEditForm2 with worktype")
+    //     console.log(posit);
+    //     console.log(posit.worktype);
+    // }
+
     const [position, setPosition] = useState({
-        id: props.posit.id,
-        name: props.posit.name,
-        salary: props.posit.salary,
-        worktype: props.posit.worktype.name})
+        id: 0,
+        name: '',
+        salary: 0,
+        worktype: {
+            id: 0,
+            name: ''
+        }
+    })
+
+    // const [position, setPosition] = useState({
+    //     id: posit.id,
+    //     name: posit.name,
+    //     salary: posit.salary,
+    //     worktype: posit.worktype.name})
+
+    // if (posit.worktype) {
+    // }
 
     const [worktypes, setWorktypes] = useState([])
 
@@ -21,9 +45,27 @@ const PositionEditForm2 = (props) => {
         setWorktypes(response.data)
     })
 
+    const [fetchPosition, isLoadingPosition] = useFetching(async (positionId) => {
+        const response = await PositionService.getById(positionId);
+        console.log("response.data",response.data)
+        setPosition(response.data)
+    })
+
+    // useEffect(() => {
+    //     fetchWorktypes();
+    //     fetchPosition(id);
+    // }, [])
+
     useEffect(() => {
         fetchWorktypes();
     }, [])
+
+    useEffect(() => {
+        if(id) {
+            fetchPosition(id);
+        }
+    }, [id])
+
 
     const testUrl = '/positions/'
 
@@ -47,39 +89,47 @@ const PositionEditForm2 = (props) => {
     }
 
     return (
-        <form>
-            <MyInput
-                type="text"
-                defaultValue={position.name}
-                onChange={e => setPosition({...position, name: e.target.value})}
-            />
-            <MyInput
-                type="number"
-                defaultValue={position.salary}
-                onChange={e => setPosition({...position, salary: e.target.value})}
-            />
-            <Dropdown className="mt-2 mb-2">
-                <Dropdown.Toggle
-                    className={classes.myDropdown}>{position.worktype || 'Select worktype'}</Dropdown.Toggle>
-                <Dropdown.Menu className={classes.myDropdownMenu}>
-                    {worktypes.map(worktype =>
-                        <p style={{margin: "15px 0"}}>
-                            <Dropdown.Item
-                                className={classes.myDropdown}
-                                key={worktype.id}
-                                defaultValue={position.worktype.name}
-                                onClick={() => setPosition({...position, worktype: worktype.name})}
-                            >
-                                {worktype.name}
-                            </Dropdown.Item>
-                        </p>
-                    )}
-                </Dropdown.Menu>
-            </Dropdown>
-            <MyButton style={{marginTop: "4px"}} type="button" onClick={editPosition}>Save changes</MyButton>
-        </form>
-
+        <div>
+        {position.id
+            ? <form key="positions-Edit-Form">
+                <MyInput
+                    key="positionNameInput"
+                    type="text"
+                    defaultValue={position.name}
+                    onChange={e => setPosition({...position, name: e.target.value})}
+                />
+                <MyInput
+                    key="positionSalaryInput"
+                    type="number"
+                    defaultValue={position.salary}
+                    onChange={e => setPosition({...position, salary: e.target.value})}
+                />
+                <Dropdown key="worktypesDropdown" className="mt-2 mb-2">
+                    <Dropdown.Toggle
+                        className={classes.myDropdown}>{position.worktype || 'Select worktype'}</Dropdown.Toggle>
+                    <Dropdown.Menu className={classes.myDropdownMenu}>
+                        {worktypes.map(worktype =>
+                            <p key="dropdownPTag"
+                               style={{margin: "15px 0"}}>
+                                <Dropdown.Item
+                                    className={classes.myDropdown}
+                                    key={worktype.id}
+                                    defaultValue={position.worktype?.name}
+                                    onClick={() => setPosition({...position, worktype: worktype.name})}
+                                >
+                                    {worktype.name}
+                                </Dropdown.Item>
+                            </p>
+                        )}
+                    </Dropdown.Menu>
+                </Dropdown>
+                <MyButton style={{marginTop: "4px"}} type="button" onClick={editPosition}>Save changes</MyButton>
+            </form>
+            : <h1>Downloading edit form, please, wait...</h1>
+        }
+        </div>
     );
-};
+}
+    ;
 
-export default PositionEditForm2;
+    export default PositionEditForm2;

@@ -7,7 +7,7 @@ import WorktypeService from "../../../API/WorktypeService";
 import {Dropdown} from "react-bootstrap";
 import classes from "../dropdown/MyDropdown.module.css"
 
-const PositionForm = ({setModal}) => {
+const PositionForm = ({setModal, addToArray}) => {
     const [position, setPosition] = useState({name: '', salary: '', worktype: ''})
 
     const [worktypes, setWorktypes] = useState([])
@@ -28,11 +28,19 @@ const PositionForm = ({setModal}) => {
             ...position, id: Date.now()
         }
 
-        sendData2(testUrl, newPosition)
+        sendData2(testUrl, newPosition).then(() => {
+            addToArray();
+        })
 
         // create(newPosition)
         setPosition({name: '', salary: '', worktype: ''})
         setModal(false)
+    }
+
+    const sendData2 = async (url, data) => {
+        const response = await axios.post(url, data)
+        console.log(data)
+        console.log(url)
     }
 
     const sendWithFetch = async (url, data) => {
@@ -48,13 +56,6 @@ const PositionForm = ({setModal}) => {
         console.log(data)
         console.log(url)
         return await response.json()
-    }
-
-    const sendData2 = async (url, data) => {
-        const response = axios.post(url, data)
-        console.log(data)
-        console.log(url)
-        return await response
     }
 
     const testUrl = '/positions/new'

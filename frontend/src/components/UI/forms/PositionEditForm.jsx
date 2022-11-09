@@ -8,8 +8,7 @@ import {Dropdown} from "react-bootstrap";
 import classes from "../dropdown/MyDropdown.module.css"
 
 const PositionEditForm = (props) => {
-    console.log("props")
-    console.log(props);
+    console.log("props in PositionEditForm", props)
     // return false;
 
     const [position, setPosition] = useState({
@@ -69,7 +68,7 @@ const PositionEditForm = (props) => {
                     className={classes.myDropdown}>{position.worktype || 'Select worktype'}</Dropdown.Toggle>
                 <Dropdown.Menu className={classes.myDropdownMenu}>
                     {worktypes.map(worktype =>
-                        <p style={{margin: "15px 0"}}>
+                        <p key="dropdownPTag" style={{margin: "15px 0"}}>
                             <Dropdown.Item
                                 className={classes.myDropdown}
                                 key={worktype.id}

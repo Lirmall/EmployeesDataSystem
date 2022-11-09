@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useReducer, useState} from "react";
 import {useFetching} from "../components/hooks/useFetching";
 import PositionService from "../API/PositionService";
 import MyButton from "../components/UI/button/MyButton";
 import PositionAddModal from "../components/UI/myModal/PositionAddModal";
 import PositionForm from "../components/UI/forms/PositionForm";
 import PositionsTable from "../components/UI/tables/PositionsTable";
+import App from "../App";
 
 function Positions() {
     // const [positions, setPositions] = useState([
@@ -18,11 +19,18 @@ function Positions() {
 
     const [fetchPositions, isLoading] = useFetching(async () => {
         const response = await PositionService.getAll();
+        console.log("fetched!")
+
         setPositions(response.data)
+
+        console.log("\"1\" " + positions.length)
     })
 
     useEffect(() => {
         fetchPositions();
+
+        console.log("\"2\" " + positions.length)
+
     }, [])
 
     const [selectedSortPositions, setSelectedSortPositions] = useState('')
@@ -31,9 +39,32 @@ function Positions() {
         setPositions(positions.filter(p => p.id !== position.id))
     }
 
-    const addPositionToArray = (newPosition) => {
+    console.log("\"3\" " + positions.length)
+
+    const addPositionToArray = () => {
         // setPositions([...positions, newPosition])
         setModalAdd(false)
+        downloadFromServer()
+        update()
+
+        console.log("\"4\" " + positions.length)
+    }
+
+    console.log("\"5\" " + positions.length)
+
+    function update() {
+        // eslint-disable-next-line no-undef
+        ReactDOM.render(<App/>, document.getElementById("root"))
+    }
+
+    async function downloadFromServer() {
+        const response = await PositionService.getAll();
+        console.log("fetched2!")
+
+        setPositions(response.data)
+
+        console.log("\"6\" " + positions.length)
+        console.log("\"7\" " + response.data.length)
     }
 
 //------------------------------------------------------------
@@ -41,13 +72,11 @@ function Positions() {
 
     return (
         <div className="App">
-
-            {/*<PositionForm create={createPosition}/>*/}
             <MyButton style={{marginTop: 30}} onClick={() => setModalAdd(true)}>
                 Add position by modal
             </MyButton>
             <PositionAddModal key="modalAddWithPositionForm" visible={modalAdd} setVisible={setModalAdd}>
-                <PositionForm setModal={setModalAdd}/>
+                <PositionForm setModal={setModalAdd} addToArray={addPositionToArray}/>
             </PositionAddModal>
 
             {

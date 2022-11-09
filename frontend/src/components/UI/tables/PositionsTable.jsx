@@ -72,6 +72,7 @@ const PositionsTable = ({positions, removePositionFromArray}) => {
                 <PositionEditModal key ="positionEditModal" visible={modalEdit} setVisible={setModalEditVisible}>
                     <PositionEditForm posit={pos}/>
                 </PositionEditModal>
+                <p style={{textAlign: "center"}}>Edit form</p>
                 <PositionEditForm posit={pos}/>
                 <ButtonGroup>
                     <MyButton style={{marginRight: 2}} size="sm" color="primary"
@@ -82,7 +83,7 @@ const PositionsTable = ({positions, removePositionFromArray}) => {
                     >
                         Edit
                     </MyButton>
-                    <MyButton style={{color: 'red', marginLeft: 5}} onClick={() => {
+                    <MyButton style={{color: 'red', marginTop: 5, marginLeft: "auto", display: "flex"}} onClick={() => {
                         deletePosition(pos.id);
                         removePositionFromArray(pos)
                     }}>Delete</MyButton>
@@ -98,7 +99,7 @@ const PositionsTable = ({positions, removePositionFromArray}) => {
                 <th width="30%">Name</th>
                 <th width="20%">Salary</th>
                 <th width="20%">Worktype</th>
-                <th width="15%">Actions</th>
+                <th width="30%">Actions</th>
             </tr>
             </thead>
             <tbody>
