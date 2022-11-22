@@ -79,7 +79,7 @@ const PositionForm = ({setModal, addToArray}) => {
                     className={classes.myDropdown}>{position.worktype || 'Select worktype'}</Dropdown.Toggle>
                 <Dropdown.Menu className={classes.myDropdownMenu}>
                     {worktypes.map(worktype =>
-                        <p key="dropdownPTagAdd" style={{margin: "15px 0"}}>
+                        <p key={"dropdownPTagAdd" + worktype.id} style={{margin: "15px 0"}}>
                             <Dropdown.Item
                                 className={classes.myDropdown}
                                 key={worktype.id}

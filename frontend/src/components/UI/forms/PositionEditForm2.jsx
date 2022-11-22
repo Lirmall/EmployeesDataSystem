@@ -81,7 +81,7 @@ const PositionEditForm2 = ({id}) => {
                     key="positionSalaryInput"
                     type="number"
                     defaultValue={position.salary}
-                    onChange={e => setPosition({...position, salary: e.target.value})}
+                    onChange={e => setPosition({...position, salary: Number(e.target.value)})}
                 />
                 <Dropdown key="worktypesDropdown" className="mt-2 mb-2">
                     <Dropdown.Toggle
