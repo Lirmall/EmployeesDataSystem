@@ -94,7 +94,7 @@ const PositionEditForm2 = ({id}) => {
                                     className={classes.myDropdown}
                                     key={worktype.id}
                                     defaultValue={position.worktype?.name}
-                                    onClick={() => setPosition({...position, worktype: worktype.name})}
+                                    onClick={() => setPosition({...position, worktype: worktype})}
                                 >
                                     {worktype.name}
                                 </Dropdown.Item>
