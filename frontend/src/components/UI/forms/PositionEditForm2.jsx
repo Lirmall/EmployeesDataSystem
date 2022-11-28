@@ -7,10 +7,12 @@ import WorktypeService from "../../../API/WorktypeService";
 import {Dropdown} from "react-bootstrap";
 import classes from "../dropdown/MyDropdown.module.css"
 import PositionService from "../../../API/PositionService";
+import {useHistory} from "react-router-dom";
 
 const PositionEditForm2 = ({id}) => {
     console.log("id in PositionEditForm2")
     console.log(id);
+    const router = useHistory();
 
     const [position, setPosition] = useState({
         id: 0,
@@ -57,7 +59,7 @@ const PositionEditForm2 = ({id}) => {
 
         console.log("Click")
         console.log(editedPosition)
-        sendEditedData(testUrl + position.id, editedPosition)
+        sendEditedData(testUrl + position.id, editedPosition).then(router.goBack())
     }
 
     const sendEditedData = async (url, data) => {
