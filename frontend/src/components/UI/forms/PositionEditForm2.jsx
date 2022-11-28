@@ -105,6 +105,7 @@ const PositionEditForm2 = ({id}) => {
                     </Dropdown.Menu>
                 </Dropdown>
                 <MyButton style={{marginTop: "4px"}} type="button" onClick={editPosition}>Save changes</MyButton>
+                <MyButton style={{marginTop: "4px", marginLeft: "5px", color: "red"}} type="button" onClick={router.goBack}>Back</MyButton>
             </form>
             : <h1>Downloading edit form, please, wait...</h1>
         }
