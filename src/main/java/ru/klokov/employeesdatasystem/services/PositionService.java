@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.klokov.employeesdatasystem.dto.PositionsSearchSpecificationsDTO;
 import ru.klokov.employeesdatasystem.dto.WorktypeDTO;
 import ru.klokov.employeesdatasystem.entities.EmployeePositionRangeEntity;
 import ru.klokov.employeesdatasystem.entities.PositionEntity;
@@ -16,8 +17,7 @@ import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseExcepti
 import ru.klokov.employeesdatasystem.exceptions.NullOrEmptyArgumentexception;
 import ru.klokov.employeesdatasystem.exceptions.PositionHasEmployeesException;
 import ru.klokov.employeesdatasystem.repositories.PositionRepository;
-import ru.klokov.employeesdatasystem.specifications.positionsSpecification.PositionSearchModel;
-import ru.klokov.employeesdatasystem.specifications.positionsSpecification.PositionSpecification;
+import ru.klokov.employeesdatasystem.specifications.positionsSpecification.*;
 import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
 
 import java.util.Collections;
@@ -84,6 +84,24 @@ public class PositionService {
             return Page.empty();
         } else {
             return positionRepository.findAll(new PositionSpecification(request), pageable);
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public Page<PositionEntity> findByFilterWithNewCriteriaAndSpecification(PositionsSearchSpecificationsDTO request) {
+        Sort sort = sortColumnChecker.sortColumnCheck(request.getPageSettings().getSortColumn());
+
+        int page = request.getPageSettings().getPages() != null ? request.getPageSettings().getPages() : 0;
+        int size = (request.getPageSettings().getLimit() != null && request.getPageSettings().getLimit() != 0) ? request.getPageSettings().getLimit() : 5;
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        if (request.getSpecifications().isEmpty()) {
+            return Page.empty();
+        } else {
+            PositionSpecificationBuilder builder = new PositionSpecificationBuilder();
+            builder.getCriteriaList().addAll(request.getSpecifications());
+            return positionRepository.findAll(builder.build(), pageable);
         }
     }
 

@@ -5,13 +5,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import ru.klokov.employeesdatasystem.dto.AddPositionDTO;
 import ru.klokov.employeesdatasystem.dto.PositionDTO;
+import ru.klokov.employeesdatasystem.dto.PositionsSearchSpecificationsDTO;
 import ru.klokov.employeesdatasystem.entities.PositionEntity;
 import ru.klokov.employeesdatasystem.entities.WorktypeEntity;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.mappers.PositionEntityDTOMapper;
 import ru.klokov.employeesdatasystem.services.PositionService;
 import ru.klokov.employeesdatasystem.specifications.Response;
-import ru.klokov.employeesdatasystem.specifications.positionsSpecification.PositionSearchModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,16 +50,29 @@ public class PositionController {
 
         return positionEntityDTOMapper.convertFromEntity(positionEntity);
     }
+//
+//    @PostMapping("/filter")
+//    public Response<PositionDTO> getPositions(@RequestBody PositionSearchModel request) {
+//        Long countOfTotalElements = positionService.getCountOfTotalItems();
+//        Page<PositionEntity> genders = positionService.findByFilter(request);
+//
+//        if (genders.isEmpty()) {
+//            return new Response<>(Collections.emptyList(), countOfTotalElements, 0L);
+//        } else {
+//            Page<PositionDTO> positionDTOS = genders.map(positionEntityDTOMapper::convertFromEntity);
+//            return new Response<>(positionDTOS.toList(), countOfTotalElements, positionDTOS.getTotalElements());
+//        }
+//    }
 
     @PostMapping("/filter")
-    public Response<PositionDTO> getPositions(@RequestBody PositionSearchModel request) {
+    public Response<PositionDTO> getPositionsByFilter(@RequestBody PositionsSearchSpecificationsDTO request) {
         Long countOfTotalElements = positionService.getCountOfTotalItems();
-        Page<PositionEntity> genders = positionService.findByFilter(request);
+        Page<PositionEntity> entities = positionService.findByFilterWithNewCriteriaAndSpecification(request);
 
-        if (genders.isEmpty()) {
+        if (entities.isEmpty()) {
             return new Response<>(Collections.emptyList(), countOfTotalElements, 0L);
         } else {
-            Page<PositionDTO> positionDTOS = genders.map(positionEntityDTOMapper::convertFromEntity);
+            Page<PositionDTO> positionDTOS = entities.map(positionEntityDTOMapper::convertFromEntity);
             return new Response<>(positionDTOS.toList(), countOfTotalElements, positionDTOS.getTotalElements());
         }
     }
@@ -140,33 +153,10 @@ public class PositionController {
 //        }
 //    }
 
-//    @PatchMapping("/{id}")
-//    public PositionDTO patchUpdateById(@RequestBody PositionDTO positionDTO) {
-//        String name = positionDTO.getName();
-//        Long id = positionDTO.getId();
-//
-//        PositionEntity positionToUpdate;
-//
-//        if (name != null) {
-//            positionToUpdate = positionService.findById(id);
-//        } else {
-//            throw new NoMatchingEntryInDatabaseException("Unable to find position with empty or null id");
-//        }
-//
-//        PositionEntity updatePositionData = positionEntityDTOMapper.convertFromDTO(positionDTO);
-//
-//        if (positionToUpdate != null) {
-//            PositionEntity updatedPosition = positionService.patchUpdate(positionService.findById(id), updatePositionData);
-//            return positionEntityDTOMapper.convertFromEntity(updatedPosition);
-//        } else {
-//            throw new NoMatchingEntryInDatabaseException("Position with id \"" + id + "\" not found");
-//        }
-//    }
-
     @PatchMapping("/{id}")
-    public PositionDTO patchUpdateById(@RequestBody AddPositionDTO addPositionDTO) {
-        String name = addPositionDTO.getName();
-        Long id = addPositionDTO.getId();
+    public PositionDTO patchUpdateById(@RequestBody PositionDTO positionDTO) {
+        String name = positionDTO.getName();
+        Long id = positionDTO.getId();
 
         PositionEntity positionToUpdate;
 
@@ -176,12 +166,7 @@ public class PositionController {
             throw new NoMatchingEntryInDatabaseException("Unable to find position with empty or null id");
         }
 
-        WorktypeEntity worktype = positionService.worktypeCheck(addPositionDTO.getWorktype());
-
-        PositionEntity updatePositionData = new PositionEntity();
-        updatePositionData.setName(addPositionDTO.getName());
-        updatePositionData.setSalary(addPositionDTO.getSalary());
-        updatePositionData.setWorktype(worktype);
+        PositionEntity updatePositionData = positionEntityDTOMapper.convertFromDTO(positionDTO);
 
         if (positionToUpdate != null) {
             PositionEntity updatedPosition = positionService.patchUpdate(positionService.findById(id), updatePositionData);
@@ -190,6 +175,34 @@ public class PositionController {
             throw new NoMatchingEntryInDatabaseException("Position with id \"" + id + "\" not found");
         }
     }
+
+//    @PatchMapping("/{id}")
+//    public PositionDTO patchUpdateById(@RequestBody AddPositionDTO addPositionDTO) {
+//        String name = addPositionDTO.getName();
+//        Long id = addPositionDTO.getId();
+//
+//        PositionEntity positionToUpdate;
+//
+//        if (name != null) {
+//            positionToUpdate = positionService.findById(id);
+//        } else {
+//            throw new NoMatchingEntryInDatabaseException("Unable to find position with empty or null id");
+//        }
+//
+//        WorktypeEntity worktype = positionService.worktypeCheck(addPositionDTO.getWorktype());
+//
+//        PositionEntity updatePositionData = new PositionEntity();
+//        updatePositionData.setName(addPositionDTO.getName());
+//        updatePositionData.setSalary(addPositionDTO.getSalary());
+//        updatePositionData.setWorktype(worktype);
+//
+//        if (positionToUpdate != null) {
+//            PositionEntity updatedPosition = positionService.patchUpdate(positionService.findById(id), updatePositionData);
+//            return positionEntityDTOMapper.convertFromEntity(updatedPosition);
+//        } else {
+//            throw new NoMatchingEntryInDatabaseException("Position with id \"" + id + "\" not found");
+//        }
+//    }
 
     @DeleteMapping("/{id}")
     public void deletePositionById(@PathVariable("id") Long id) {
