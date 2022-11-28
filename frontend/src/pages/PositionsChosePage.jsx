@@ -8,15 +8,15 @@ import PositionsTable from "../components/UI/tables/PositionsTable";
 import App from "../App";
 import {useHistory} from "react-router-dom";
 import {ButtonGroup} from "reactstrap";
+import MyModal from "../components/UI/myModal/MyModal";
 
 function PositionsChosePage() {
     const router = useHistory();
-
     return (
         <div className="App">
             <ButtonGroup>
                 <MyButton style={{marginRight: 5}} type="button" onClick={() => router.push('/positions/all')}>Download all positions</MyButton>
-                <MyButton type="button">Download positions by server filter</MyButton>
+                <MyButton type="button" onClick={() => router.push('/positions/filter')}>Download positions by server filter (function is on develop)</MyButton>
             </ButtonGroup>
         </div>
     );

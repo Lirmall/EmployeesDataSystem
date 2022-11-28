@@ -7,6 +7,7 @@ import PositionEditPage from "../pages/PositionEditPage";
 import Home from "../pages/Home";
 import AllPositions from "../pages/AllPositions";
 import PositionsChosePage from "../pages/PositionsChosePage";
+import ServerFilterPositionsPage from "../pages/positionsPages/ServerFilterPositionsPage";
 
 const AppRouter = () => {
     return (
@@ -25,6 +26,9 @@ const AppRouter = () => {
             </Route>
             <Route exact path="/positions/all">
                 <AllPositions/>
+            </Route>
+            <Route exact path="/positions/filter">
+                <ServerFilterPositionsPage/>
             </Route>
             <Route exact path="/positions/:id">
                 <PositionEditPage/>

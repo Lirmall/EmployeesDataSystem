@@ -18,4 +18,13 @@ export default class PositionService {
             console.log(e.message)
         }
     }
+
+    static async getByFilter(id) {
+        try {
+            const response = await axios.get('/positions/' + id)
+            return response;
+        }catch (e) {
+            console.log(e.message)
+        }
+    }
 }
