@@ -127,7 +127,8 @@ function ServerFilterPositionsPage() {
                          placeholder="Salary"
                 />
             </div>
-            {/*<Dropdown key="worktypesDropdownFilter" className="mt-2 mb-2">*/}
+            <div>Filter by worktype is on develop</div>
+            {/*<Dropdown key="worktypesDropdownFilter" className="mt-2 mb-2" >*/}
             {/*    <Dropdown.Toggle*/}
             {/*        className={classes.myDropdown}>{positionWorktypeFilter?.fieldValue?.name || 'Select worktype'}</Dropdown.Toggle>*/}
             {/*    <Dropdown.Menu className={classes.myDropdownMenu}>*/}
