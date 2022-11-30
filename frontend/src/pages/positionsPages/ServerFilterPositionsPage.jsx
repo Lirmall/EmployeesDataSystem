@@ -48,10 +48,10 @@ function ServerFilterPositionsPage() {
 
     const positionSearchModel = useMemo(() => {
         return {
-            specifications: [positionNameFilter, positionSalaryFilter/*, positionWorktypeFilter*/].filter((v) => v.fieldValue),
+            specifications: [positionNameFilter, positionSalaryFilter, positionWorktypeFilter].filter((v) => v.fieldValue),
             pageSettings: {pageSettings}
         }
-    }, [positionNameFilter, positionSalaryFilter, /*positionWorktypeFilter,*/ pageSettings]);
+    }, [positionNameFilter, positionSalaryFilter, positionWorktypeFilter, pageSettings]);
 
     const [worktypes, setWorktypes] = useState([])
 
