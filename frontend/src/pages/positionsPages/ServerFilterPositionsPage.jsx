@@ -36,7 +36,7 @@ function ServerFilterPositionsPage() {
     const [positionWorktypeFilter, setPositionWorktypeFilter] = useState({
         fieldName: 'worktype',
         operation: ':',
-        fieldValue: {},
+        fieldValue: null,
         orPredicate: false
     })
 
