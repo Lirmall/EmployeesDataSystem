@@ -9,6 +9,7 @@ const Home = () => {
         <div>
             <ButtonGroup style={{marginTop: 5, display: "flex", textAlign: "right"}}>
                 <MyButton onClick={() => router.push('/positions')}>Positions</MyButton>
+                <MyButton onClick={() => router.push('/salary')}>Salary</MyButton>
             </ButtonGroup>
         </div>
     );

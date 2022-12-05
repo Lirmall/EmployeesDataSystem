@@ -20,8 +20,8 @@ public class SalarybyEmployeeOnPeriodDTO {
 
     @ApiModelProperty(value = "birthdayDate", example = "\"YYYY-MM-DD\"")
     private LocalDate birthdayDate;
-    @ApiModelProperty(value = "birthdayDate", example = "\"YYYY-MM-DD\"")
+    @ApiModelProperty(value = "periodStart", example = "\"YYYY-MM-DD\"")
     private LocalDate periodStart;
-    @ApiModelProperty(value = "birthdayDate", example = "\"YYYY-MM-DD\"")
+    @ApiModelProperty(value = "periodEnd", example = "\"YYYY-MM-DD\"")
     private LocalDate periodEnd;
 }

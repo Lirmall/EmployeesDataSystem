@@ -8,6 +8,7 @@ import Home from "../pages/Home";
 import AllPositions from "../pages/AllPositions";
 import PositionsChosePage from "../pages/PositionsChosePage";
 import ServerFilterPositionsPage from "../pages/positionsPages/ServerFilterPositionsPage";
+import SalaryPage from "../pages/salaryPage/SalaryPage";
 
 const AppRouter = () => {
     return (
@@ -32,6 +33,9 @@ const AppRouter = () => {
             </Route>
             <Route exact path="/positions/:id">
                 <PositionEditPage/>
+            </Route>
+            <Route exact path="/salary">
+                <SalaryPage/>
             </Route>
             <Route path="/error">
                 <Error/>
