@@ -117,7 +117,7 @@ const SalaryPage = () => {
                 ?<div>
                 <span>Salary of {salary.nameOfSalary} is {salary.salary}</span>
                 </div>
-                : <h1>Wait for choice</h1>
+                : <h1>Waiting for choice</h1>
             }
         </div>
     );
