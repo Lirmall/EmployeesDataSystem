@@ -8,6 +8,7 @@ const Navbar = () => {
                 <Link style={{marginRight: 5}} to="/">Home</Link>
                 <Link style={{marginRight: 5}} to="/about">About</Link>
                 <Link style={{marginRight: 5}} to="/positions">Positions</Link>
+                <Link style={{marginRight: 5}} to="/salary">Salaries</Link>
             </div>
         </div>
     );
