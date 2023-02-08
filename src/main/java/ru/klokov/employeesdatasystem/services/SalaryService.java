@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.klokov.employeesdatasystem.dto.SalarybyEmployeeOnPeriodDTO;
 import ru.klokov.employeesdatasystem.entities.*;
-import ru.klokov.employeesdatasystem.exceptions.AlreadyCreatedException;
 import ru.klokov.employeesdatasystem.exceptions.MoreThatOneResultException;
 
 import java.time.LocalDate;
@@ -111,128 +110,6 @@ public class SalaryService {
         salaryEntity.setSalary(allSalary);
 
         return salaryEntity;
-    }
-
-    private List<SalaryEntity> returnSalariesOnPeriod(LocalDate periodStart,
-                                                      List<EmployeePositionRangeEntity> eprList,
-                                                      LocalDate periodEnd, EmployeePositionRangeEntity startEpr) {
-
-        List<SalaryPeriodEntity> periodsWithPosition = new ArrayList<>();
-
-        List<SalaryEntity> salaries = new ArrayList<>();
-
-        List<EmployeePositionRangeEntity> listEPRAfterPerStart = returnListEPRAfterPerStart(periodStart, eprList);
-
-        EmployeePositionRangeEntity eprAtStart = startEpr;
-
-        if (startEpr == null) {
-            eprAtStart = getEmpPosRangeAtPeriodStart(eprList.get(0).getEmployeeId(), periodStart);
-        }
-
-        if (eprList.size() == 1) {
-            periodsWithPosition = salaryPeriodService.returnMonthPeriods(periodStart, periodEnd);
-            EmployeePositionRangeEntity epr = eprList.get(0);
-            salaries.addAll(returnSalaries(periodsWithPosition, epr));
-
-            for (SalaryPeriodEntity e : periodsWithPosition) {
-                System.out.println(e.getPeriodStart() + " - " + e.getPeriodEnd() + " " + e.getMultiplier());
-            }
-            System.out.println("--------->");
-
-            for (SalaryEntity s : salaries) {
-                System.out.println(s.getNameOfSalary() + " - " + s.getSalary());
-            }
-            System.out.println("--------->");
-
-            return salaries;
-        }
-
-
-
-        if (listEPRAfterPerStart.size() == 1) {
-            LocalDate positionChangeDate = listEPRAfterPerStart.get(0).getPositionChangeDate();
-            List<SalaryPeriodEntity> startPeriod;
-            List<SalaryPeriodEntity> endPeriod;
-
-            if(positionChangeDate.isBefore(periodStart)) {
-                startPeriod = salaryPeriodService.returnMonthPeriods(periodStart, periodEnd);
-                salaries.addAll(returnSalaries(startPeriod, eprAtStart));
-
-                for (SalaryEntity s : salaries) {
-                    System.out.println(s.getNameOfSalary() + " - " + s.getSalary());
-                }
-                System.out.println("--------->");
-
-                return salaries;
-            }
-
-            if(periodStart.isBefore(positionChangeDate) && positionChangeDate.isBefore(periodEnd)) {
-                EmployeePositionRangeEntity eprAtEnd = listEPRAfterPerStart.get(0);
-                startPeriod = salaryPeriodService.returnMonthPeriods(periodStart, listEPRAfterPerStart.get(0).getPositionChangeDate());
-                endPeriod = salaryPeriodService.returnMonthPeriods(listEPRAfterPerStart.get(0).getPositionChangeDate(), periodEnd);
-                salaries.addAll(returnSalaries(startPeriod, eprAtStart));
-                salaries.addAll(returnSalaries(endPeriod, eprAtEnd));
-
-                for (SalaryEntity s : salaries) {
-                    System.out.println(s.getNameOfSalary() + " - " + s.getSalary());
-                }
-                System.out.println("--------->");
-
-                return salaries;
-
-            }
-        }
-
-
-        List<EmployeePositionRangeEntity> eprListWithoutEPRAfterPeriodEnd = deleteEPRAfterPeriodEnd(eprList, periodEnd);
-        List<EmployeePositionRangeEntity> actualEPRList = deleteEPREarlierStartEPR(eprListWithoutEPRAfterPeriodEnd, periodStart);
-        eprList.sort(Comparator.comparing(EmployeePositionRangeEntity::getPositionChangeDate));
-
-
-        if(eprListWithoutEPRAfterPeriodEnd.isEmpty()) {
-            periodsWithPosition.addAll(salaryPeriodService.returnMonthPeriods(periodStart, periodEnd));
-            salaries.addAll(returnSalaries(periodsWithPosition, eprAtStart));
-        } else {
-            for (int i = 0; i < actualEPRList.size() - 1; i++) {
-                EmployeePositionRangeEntity epr = actualEPRList.get(0);
-                if (i == 0) {
-                    if(epr.getPositionChangeDate().isAfter(periodEnd)) {
-                        periodsWithPosition.addAll(salaryPeriodService.returnMonthPeriods(periodStart, periodEnd));
-                        salaries.addAll(returnSalaries(periodsWithPosition, eprAtStart));
-                    } else {
-                        periodsWithPosition.addAll(salaryPeriodService.returnMonthPeriods(periodStart, actualEPRList.get(0).getPositionChangeDate()));
-                        salaries.addAll(returnSalaries(periodsWithPosition, eprAtStart));
-                    }
-                } else if (i == eprList.size() - 1) {
-                    epr = actualEPRList.get(i - 1);
-                    if(epr.getPositionChangeDate().isAfter(periodEnd)) {
-                        periodsWithPosition.addAll(salaryPeriodService.returnMonthPeriods(periodStart, periodEnd));
-                        salaries.addAll(returnSalaries(periodsWithPosition, epr));
-                    } else {
-                        periodsWithPosition.addAll(salaryPeriodService.returnMonthPeriods(actualEPRList.get(i - 1).getPositionChangeDate(), periodEnd));
-                        salaries.addAll(returnSalaries(periodsWithPosition, epr));
-                    }
-                } else {
-                    epr = actualEPRList.get(i - 1);
-                    if(epr.getPositionChangeDate().isAfter(periodEnd)) {
-                        periodsWithPosition.addAll(salaryPeriodService.returnMonthPeriods(periodStart, periodEnd));
-                        salaries.addAll(returnSalaries(periodsWithPosition, epr));
-                    } else {
-                        periodsWithPosition.addAll(salaryPeriodService.returnMonthPeriods(actualEPRList.get(i - 1).getPositionChangeDate(),
-                                actualEPRList.get(i).getPositionChangeDate()));
-                        salaries.addAll(returnSalaries(periodsWithPosition, actualEPRList.get(i - 1)));
-                    }
-                }
-            }
-        }
-
-        for (SalaryPeriodEntity e : periodsWithPosition) {
-            System.out.println("*********** " + e.getPeriodStart() + " - " + e.getPeriodEnd() + " " + e.getMultiplier());
-        }
-        System.out.println("--------->");
-
-
-        return salaries;
     }
 
     private List<SalaryEntity> returnSalariesOnPeriodV2(LocalDate periodStart,
