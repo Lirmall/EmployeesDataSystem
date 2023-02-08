@@ -13,7 +13,7 @@ public class CreateEmployeeEntityTestData {
         entity.setRange(RangeEntityTestData.returnNoRangeEntity());
         entity.setBirthdayDate(LocalDate.of(2020, 5, 15));
         entity.setGender(GenderEntityTestData.returnMaleGenderEntity());
-        entity.setWorkstartDate(LocalDate.now());
+        entity.setWorkstartDate(LocalDate.of(2022, 9, 28));
 
         return entity;
     }
