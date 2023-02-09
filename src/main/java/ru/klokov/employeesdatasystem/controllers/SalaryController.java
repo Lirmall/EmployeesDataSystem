@@ -44,7 +44,7 @@ public class SalaryController {
 
     @PostMapping("/salaryOnPeriodByEmployee")
     public SalaryDTO salaryOnPeriodByEmployee(@RequestBody SalarybyEmployeeOnPeriodDTO dto) {
-        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         return salaryEntityDTOMapper.convertFromEntity(salaryEntity);
     }

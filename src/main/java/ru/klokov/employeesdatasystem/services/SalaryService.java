@@ -62,7 +62,7 @@ public class SalaryService {
     }
 
     @Transactional(readOnly = true)
-    public SalaryEntity getSalaryOnPeriodByEmployee1(SalarybyEmployeeOnPeriodDTO dto) {
+    public SalaryEntity getSalaryOnPeriodByEmployee(SalarybyEmployeeOnPeriodDTO dto) {
         SalaryEntity salaryEntity = new SalaryEntity();
         EmployeeEntity employee;
         List<EmployeeEntity> employeeEntities = findEmployee(dto);
@@ -91,7 +91,7 @@ public class SalaryService {
 
         List<SalaryEntity> salaryEntities;
 
-        salaryEntities = returnSalariesOnPeriodV2(periodStart, allEPRList, periodEnd, null);
+        salaryEntities = returnSalariesOnPeriod(periodStart, allEPRList, periodEnd, null);
 
         double allSalary = 0.0;
 
@@ -105,7 +105,7 @@ public class SalaryService {
         return salaryEntity;
     }
 
-    private List<SalaryEntity> returnSalariesOnPeriodV2(LocalDate periodStart,
+    private List<SalaryEntity> returnSalariesOnPeriod(LocalDate periodStart,
                                                       List<EmployeePositionRangeEntity> eprList,
                                                       LocalDate periodEnd, EmployeePositionRangeEntity startEpr) {
         List<SalaryEntity> salaries = new ArrayList<>();
@@ -266,6 +266,13 @@ public class SalaryService {
         return " " + employee.getSecondName() + " " + employee.getFirstName() + " " + employee.getThirdName();
     }
 
+    private List<EmployeePositionRangeEntity> actualizeEPRList(LocalDate periodStart, LocalDate periodEnd, List<EmployeePositionRangeEntity> eprList) {
+        List<EmployeePositionRangeEntity> startList = new ArrayList<>(eprList);
+        List<EmployeePositionRangeEntity> firstEdit = deleteEPREarlierStartEPR(startList, periodStart);
+
+        return deleteEPRAfterPeriodEnd(firstEdit, periodEnd);
+    }
+
     private List<EmployeePositionRangeEntity> deleteEPRAfterPeriodEnd(List<EmployeePositionRangeEntity> eprList, LocalDate periodEnd) {
         List<EmployeePositionRangeEntity> editedList = new ArrayList<>(eprList);
         editedList.removeIf(employeePositionRangeEntity -> employeePositionRangeEntity.getPositionChangeDate().isAfter(periodEnd));
@@ -277,12 +284,5 @@ public class SalaryService {
         List<EmployeePositionRangeEntity> editedList = new ArrayList<>(eprList);
         editedList.removeIf(employeePositionRangeEntity -> employeePositionRangeEntity.getPositionChangeDate().isBefore(epr.getPositionChangeDate()));
         return editedList;
-    }
-
-    private List<EmployeePositionRangeEntity> actualizeEPRList(LocalDate periodStart, LocalDate periodEnd, List<EmployeePositionRangeEntity> eprList) {
-        List<EmployeePositionRangeEntity> startList = new ArrayList<>(eprList);
-        List<EmployeePositionRangeEntity> firstEdit = deleteEPREarlierStartEPR(startList, periodStart);
-
-        return deleteEPRAfterPeriodEnd(firstEdit, periodEnd);
     }
 }

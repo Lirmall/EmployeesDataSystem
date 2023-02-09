@@ -62,7 +62,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
 
-        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#1
         assertEquals("Salary of an employee  Minaeva Elena Anatolyevna on period 2022-06-01 - 2022-08-31",
@@ -72,7 +72,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#2
         assertEquals("Salary of an employee  Minaeva Elena Anatolyevna on period 2022-06-12 - 2022-08-31",
@@ -82,7 +82,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 16));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#3
         assertEquals("Salary of an employee  Minaeva Elena Anatolyevna on period 2022-06-01 - 2022-08-16",
@@ -92,7 +92,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 16));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#4
         assertEquals("Salary of an employee  Minaeva Elena Anatolyevna on period 2022-06-12 - 2022-08-16",
@@ -112,7 +112,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
 
-        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#1
         assertEquals("Salary of an employee  Ivanov Ivan Ivanovich on period 2022-06-01 - 2022-08-31",
@@ -122,7 +122,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#2
         assertEquals("Salary of an employee  Ivanov Ivan Ivanovich on period 2022-06-12 - 2022-08-31",
@@ -132,7 +132,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 16));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#3
         assertEquals("Salary of an employee  Ivanov Ivan Ivanovich on period 2022-06-01 - 2022-08-16",
@@ -142,7 +142,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 3, 20));
         dto.setPeriodEnd(LocalDate.of(2022, 4, 20));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#4
         assertEquals("Salary of an employee  Ivanov Ivan Ivanovich on period 2022-03-20 - 2022-04-20",
@@ -162,7 +162,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
 
-        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#1
         assertEquals("Salary of an employee  Sazhin Alexander Vladimirovich on period 2022-06-01 - 2022-08-31",
@@ -172,7 +172,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#2
         assertEquals("Salary of an employee  Sazhin Alexander Vladimirovich on period 2022-06-12 - 2022-08-31",
@@ -182,7 +182,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 16));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#3
         assertEquals("Salary of an employee  Sazhin Alexander Vladimirovich on period 2022-06-01 - 2022-08-16",
@@ -192,7 +192,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 16));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#4
         assertEquals("Salary of an employee  Sazhin Alexander Vladimirovich on period 2022-06-12 - 2022-08-16",
@@ -202,7 +202,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 2, 20));
         dto.setPeriodEnd(LocalDate.of(2022, 3, 20));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#5
         assertEquals("Salary of an employee  Sazhin Alexander Vladimirovich on period 2022-02-20 - 2022-03-20",
@@ -222,7 +222,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2020, 11, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 9, 30));
 
-        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#1
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-01 - 2022-09-30",
@@ -232,7 +232,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#2
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2022-06-12 - 2022-08-31",
@@ -242,7 +242,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2020, 11, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 9, 16));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#3
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-01 - 2022-09-16",
@@ -252,7 +252,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2020, 11, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 9, 16));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#4
         //Results are same because the employee was hired after period start. Maybe need change period start
@@ -275,7 +275,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2020, 11, 20));
         dto.setPeriodEnd(LocalDate.of(2021, 1, 31));
 
-        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#1
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-20 - 2021-01-31",
@@ -295,7 +295,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2020, 11, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 9, 30));
 
-        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#1
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-01 - 2022-09-30",
@@ -305,7 +305,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2020, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#2
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-06-12 - 2022-08-31",
@@ -315,7 +315,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2020, 11, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 9, 16));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#3
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-01 - 2022-09-16",
@@ -325,7 +325,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2020, 11, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 9, 16));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#4
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-12 - 2022-09-16",
@@ -345,7 +345,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
 
-        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#1
         assertEquals("Salary of an employee  Popov Sergey Gennadievch on period 2022-06-01 - 2022-08-31",
@@ -355,7 +355,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#2
         assertEquals("Salary of an employee  Popov Sergey Gennadievch on period 2022-06-12 - 2022-08-31",
@@ -365,7 +365,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 16));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#3
         assertEquals("Salary of an employee  Popov Sergey Gennadievch on period 2022-06-01 - 2022-08-16",
@@ -375,7 +375,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 16));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#4
         assertEquals("Salary of an employee  Popov Sergey Gennadievch on period 2022-06-12 - 2022-08-16",
@@ -385,7 +385,7 @@ class SalaryServiceTest {
         dto.setPeriodStart(LocalDate.of(2022, 2, 20));
         dto.setPeriodEnd(LocalDate.of(2022, 3, 20));
 
-        salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+        salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 
         //#5
         assertEquals("Salary of an employee  Popov Sergey Gennadievch on period 2022-02-20 - 2022-03-20",
