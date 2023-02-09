@@ -81,7 +81,7 @@ public class SalaryService {
 
         List<SalaryEntity> salaryEntities;
 
-        salaryEntities = returnSalariesOnPeriod(periodStart, allEPRList, periodEnd, null);
+        salaryEntities = returnSalariesOnPeriod(periodStart, allEPRList, periodEnd);
 
         double allSalary = 0.0;
 
@@ -97,36 +97,30 @@ public class SalaryService {
 
     private List<SalaryEntity> returnSalariesOnPeriod(LocalDate periodStart,
                                                       List<EmployeePositionRangeEntity> eprList,
-                                                      LocalDate periodEnd, EmployeePositionRangeEntity startEpr) {
+                                                      LocalDate periodEnd) {
         List<SalaryEntity> salaries = new ArrayList<>();
-
-        EmployeePositionRangeEntity eprAtStart = startEpr;
-        if(startEpr == null) {
-            eprAtStart = getEmpPosRangeAtPeriodStart(eprList.get(0).getEmployeeId(), periodStart);
-        }
 
         List<EmployeePositionRangeEntity> actualEPRs = actualizeEPRList(periodStart, periodEnd, eprList);
         actualEPRs.sort(Comparator.comparing(EmployeePositionRangeEntity::getPositionChangeDate));
 
+        EmployeePositionRangeEntity startEPR = actualEPRs.get(0);
+
         switch (actualEPRs.size()) {
             case 1:
-                salaries = returnSalaries(salaryPeriodService.returnMonthPeriods(periodStart, periodEnd), actualEPRs.get(0));
+                salaries = returnSalaries(salaryPeriodService.returnMonthPeriods(periodStart, periodEnd), startEPR);
                 break;
             case 2:
-                salaries.addAll(returnSalaries(salaryPeriodService.returnMonthPeriods(periodStart, actualEPRs.get(1).getPositionChangeDate()), actualEPRs.get(0)));
+                salaries.addAll(returnSalaries(salaryPeriodService.returnMonthPeriods(periodStart, actualEPRs.get(1).getPositionChangeDate()), startEPR));
                 salaries.addAll(returnSalaries(salaryPeriodService.returnMonthPeriods(actualEPRs.get(1).getPositionChangeDate(), periodEnd), actualEPRs.get(1)));
                 break;
             default:
                 for (int i = 0; i < actualEPRs.size() - 1; i++) {
-                    EmployeePositionRangeEntity epr = actualEPRs.get(0);
                     if (i == 0) {
-                        salaries = returnSalaries(salaryPeriodService.returnMonthPeriods(periodStart, actualEPRs.get(1).getPositionChangeDate()), actualEPRs.get(0));
-                    }
-                    else if (i == actualEPRs.size() - 1) {
+                        salaries = returnSalaries(salaryPeriodService.returnMonthPeriods(periodStart, actualEPRs.get(1).getPositionChangeDate()), startEPR);
+                    } else if (i == actualEPRs.size() - 1) {
                         salaries.addAll(returnSalaries(salaryPeriodService.returnMonthPeriods(actualEPRs.get(i).getPositionChangeDate(), periodEnd), actualEPRs.get(i)));
-                    }
-                    else {
-                        salaries.addAll(returnSalaries(salaryPeriodService.returnMonthPeriods(actualEPRs.get(i-1).getPositionChangeDate(), actualEPRs.get(i).getPositionChangeDate()), actualEPRs.get(i-1)));
+                    } else {
+                        salaries.addAll(returnSalaries(salaryPeriodService.returnMonthPeriods(actualEPRs.get(i - 1).getPositionChangeDate(), actualEPRs.get(i).getPositionChangeDate()), actualEPRs.get(i - 1)));
                     }
                 }
                 break;
@@ -201,14 +195,14 @@ public class SalaryService {
 
         boolean salaryWorktype = epr.getPosition().getWorktypeId().equals(1L);
 
-        if(salaryWorktype) {
+        if (salaryWorktype) {
             rangeBonus = 1.0;
         } else {
             rangeBonus = epr.getRange().getBonus();
         }
 
         for (SalaryPeriodEntity salaryPeriodEntity : periodsWithPosition) {
-            if(!salaryWorktype) {
+            if (!salaryWorktype) {
                 workedHours = ChronoUnit.DAYS.between(salaryPeriodEntity.getPeriodStart(), salaryPeriodEntity.getPeriodEnd()) * 12.0;
             }
 
@@ -221,8 +215,8 @@ public class SalaryService {
         return salaries;
     }
 
-    private String returnPeriodicity (Long id) {
-        if(id == 1L) {
+    private String returnPeriodicity(Long id) {
+        if (id == 1L) {
             return "per month";
         } else if (id == 2L) {
             return "per working day";
@@ -244,8 +238,8 @@ public class SalaryService {
         return salaryEntity;
     }
 
-    private List<EmployeePositionRangeEntity> returnListEPRBeforePerStart (LocalDate periodStart, List<EmployeePositionRangeEntity> eprList) {
-    List<EmployeePositionRangeEntity> listEPRBeforePerStart = new ArrayList<>(eprList);
+    private List<EmployeePositionRangeEntity> returnListEPRBeforePerStart(LocalDate periodStart, List<EmployeePositionRangeEntity> eprList) {
+        List<EmployeePositionRangeEntity> listEPRBeforePerStart = new ArrayList<>(eprList);
         listEPRBeforePerStart.removeIf(employeePositionRangeEntity -> employeePositionRangeEntity.getPositionChangeDate().isAfter(periodStart));
         listEPRBeforePerStart.sort(Comparator.comparing(EmployeePositionRangeEntity::getPositionChangeDate));
 
@@ -257,8 +251,8 @@ public class SalaryService {
         listEPRAfterPerStart.removeIf(employeePositionRangeEntity -> employeePositionRangeEntity.getPositionChangeDate().isBefore(periodStart));
         listEPRAfterPerStart.sort(Comparator.comparing(EmployeePositionRangeEntity::getPositionChangeDate));
 
-        if(listEPRAfterPerStart.isEmpty()) {
-            EmployeePositionRangeEntity e = eprList.get(eprList.size()-1);
+        if (listEPRAfterPerStart.isEmpty()) {
+            EmployeePositionRangeEntity e = eprList.get(eprList.size() - 1);
             listEPRAfterPerStart.add(e);
         }
 
