@@ -195,6 +195,8 @@ class EmployeeServiceTest {
     void updateEmployeeTest() {
         EmployeeEntity employee = employeeService.findById(1L);
 
+        assertEquals(2L, employee.getWorktypeId());
+
         assertEquals(120.0, employee.getSalary());
 
         PositionEntity position = positionService.findPositionByName("Engineer");
@@ -218,5 +220,7 @@ class EmployeeServiceTest {
         EmployeeEntity updatedEmployee = employeeService.findById(1L);
 
         assertEquals(20000.0, updatedEmployee.getSalary());
+
+        assertEquals(1L, updatedEmployee.getWorktypeId());
     }
 }
