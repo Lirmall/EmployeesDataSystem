@@ -264,6 +264,26 @@ class SalaryServiceTest {
     }
 
     @Test
+    void getSalaryOnPeriodWherePeriodStartBeforeWorkstartDate() {
+        EmployeeEntity employee = employeeService.findById(7L);
+
+        SalarybyEmployeeOnPeriodDTO dto = new SalarybyEmployeeOnPeriodDTO();
+        dto.setSecondName(employee.getSecondName());
+        dto.setFirstName(employee.getFirstName());
+        dto.setThirdName(employee.getThirdName());
+        dto.setBirthdayDate(employee.getBirthday());
+        dto.setPeriodStart(LocalDate.of(2020, 11, 20));
+        dto.setPeriodEnd(LocalDate.of(2021, 1, 31));
+
+        SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee1(dto);
+
+        //#1
+        assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-20 - 2021-01-31",
+                salaryEntity.getNameOfSalary(), "Trouble with name of salary at #1");
+        assertEquals(46666.666666666664, salaryEntity.getSalary(), "Trouble with salary at #1");
+    }
+
+    @Test
     void getSalaryOnPeriodByEmployee1withMoreOnePositionChangesSalaryServiceVer2() {
         EmployeeEntity employee = employeeService.findById(7L);
 
