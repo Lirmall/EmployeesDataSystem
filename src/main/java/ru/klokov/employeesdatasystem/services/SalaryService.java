@@ -29,36 +29,26 @@ public class SalaryService {
     public SalaryEntity getAverageSalaryByWorktypeId(WorktypeEntity worktypeEntity) {
         String query = "SELECT avg(salary) FROM EMPLOYEES where dismissed=false and worktype_id=:id";
 
-        String salaryName = "Salary by \"" + worktypeEntity.getName() + "\" worktype";
-        SalaryEntity salaryEntity = new SalaryEntity();
+        String periodicity = returnPeriodicity(worktypeEntity.getId());
+
+        String salaryName = "Salary by \"" + worktypeEntity.getName() + "\" worktype " + periodicity;
+
         Long id = worktypeEntity.getId();
 
-        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("id", id);
-
-        Double salary = namedParameterJdbcTemplate.queryForObject(query, sqlParameterSource, Double.class);
-
-        salaryEntity.setNameOfSalary(salaryName);
-        salaryEntity.setSalary(salary);
-
-        return salaryEntity;
+        return calculationSalaryEntityFromDatabaseById(id, query, salaryName);
     }
 
     @Transactional(readOnly = true)
     public SalaryEntity getMonthSalaryByEmployeeId(EmployeeEntity employee) {
         String query = "SELECT salary FROM EMPLOYEES where dismissed=false and id=:id";
 
-        String salaryName = "Month salary of an employee " + returnEmployeeFullName(employee);
-        SalaryEntity salaryEntity = new SalaryEntity();
+        String periodicity = returnPeriodicity(employee.getWorktypeId());
+
+        String salaryName = "Month salary of an employee " + returnEmployeeFullName(employee) + " " + periodicity;
+
         Long id = employee.getId();
 
-        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("id", id);
-
-        Double salary = namedParameterJdbcTemplate.queryForObject(query, sqlParameterSource, Double.class);
-
-        salaryEntity.setNameOfSalary(salaryName);
-        salaryEntity.setSalary(salary);
-
-        return salaryEntity;
+        return calculationSalaryEntityFromDatabaseById(id, query, salaryName);
     }
 
     @Transactional(readOnly = true)
@@ -229,6 +219,29 @@ public class SalaryService {
         }
 
         return salaries;
+    }
+
+    private String returnPeriodicity (Long id) {
+        if(id == 1L) {
+            return "per month";
+        } else if (id == 2L) {
+            return "per working day";
+        } else {
+            return "once";
+        }
+    }
+
+    private SalaryEntity calculationSalaryEntityFromDatabaseById(Long id, String query, String salaryName) {
+        SalaryEntity salaryEntity = new SalaryEntity();
+
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource("id", id);
+
+        Double salary = namedParameterJdbcTemplate.queryForObject(query, sqlParameterSource, Double.class);
+
+        salaryEntity.setNameOfSalary(salaryName);
+        salaryEntity.setSalary(salary);
+
+        return salaryEntity;
     }
 
     private List<EmployeePositionRangeEntity> returnListEPRBeforePerStart (LocalDate periodStart, List<EmployeePositionRangeEntity> eprList) {

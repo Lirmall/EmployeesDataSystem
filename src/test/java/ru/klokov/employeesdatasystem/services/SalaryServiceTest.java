@@ -36,7 +36,7 @@ class SalaryServiceTest {
 
         SalaryEntity salaryEntity = salaryService.getAverageSalaryByWorktypeId(worktype);
 
-        assertEquals("Salary by \"Hourly\" worktype", salaryEntity.getNameOfSalary());
+        assertEquals("Salary by \"Hourly\" worktype per working day", salaryEntity.getNameOfSalary());
         assertEquals(120.0, salaryEntity.getSalary());
     }
 
@@ -46,7 +46,7 @@ class SalaryServiceTest {
 
         SalaryEntity salaryEntity = salaryService.getMonthSalaryByEmployeeId(employee);
 
-        assertEquals("Month salary of an employee  Minaeva Elena Anatolyevna", salaryEntity.getNameOfSalary());
+        assertEquals("Month salary of an employee  Minaeva Elena Anatolyevna per month", salaryEntity.getNameOfSalary());
         assertEquals(20000.0, salaryEntity.getSalary());
     }
 
