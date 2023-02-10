@@ -1,4 +1,4 @@
-package ru.klokov.employeesdatasystem.specifications.employeeSpecification.worktypesSpecification;
+package ru.klokov.employeesdatasystem.specifications.employeeSpecification;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;

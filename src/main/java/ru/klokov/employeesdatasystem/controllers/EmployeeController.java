@@ -18,9 +18,8 @@ import ru.klokov.employeesdatasystem.mappers.EmployeeEntityDTOMapper;
 import ru.klokov.employeesdatasystem.mappers.UpdateEmployeeEntityDTOMapper;
 import ru.klokov.employeesdatasystem.services.EmployeeService;
 import ru.klokov.employeesdatasystem.specifications.Response;
-import ru.klokov.employeesdatasystem.specifications.employeeSpecification.worktypesSpecification.EmployeeSearchModel;
+import ru.klokov.employeesdatasystem.specifications.employeeSpecification.EmployeeSearchModel;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

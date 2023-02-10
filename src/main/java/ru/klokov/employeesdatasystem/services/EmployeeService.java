@@ -13,8 +13,8 @@ import ru.klokov.employeesdatasystem.entities.*;
 import ru.klokov.employeesdatasystem.exceptions.AlreadyCreatedException;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.repositories.EmployeeRepository;
-import ru.klokov.employeesdatasystem.specifications.employeeSpecification.worktypesSpecification.EmployeeSearchModel;
-import ru.klokov.employeesdatasystem.specifications.employeeSpecification.worktypesSpecification.EmployeeSpecification;
+import ru.klokov.employeesdatasystem.specifications.employeeSpecification.EmployeeSearchModel;
+import ru.klokov.employeesdatasystem.specifications.employeeSpecification.EmployeeSpecification;
 import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
 
 import java.time.LocalDate;

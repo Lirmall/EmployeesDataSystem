@@ -11,7 +11,7 @@ import ru.klokov.employeesdatasystem.dto.GenderDTO;
 import ru.klokov.employeesdatasystem.dto.WorktypeDTO;
 import ru.klokov.employeesdatasystem.entities.*;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
-import ru.klokov.employeesdatasystem.specifications.employeeSpecification.worktypesSpecification.EmployeeSearchModel;
+import ru.klokov.employeesdatasystem.specifications.employeeSpecification.EmployeeSearchModel;
 
 import java.time.LocalDate;
 import java.util.Arrays;
