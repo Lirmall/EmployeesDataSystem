@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import ru.klokov.employeesdatasystem.specifications.AbstractDictionarySearchModel;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -25,19 +24,19 @@ public class EmployeeSearchModel extends AbstractDictionarySearchModel {
 
     List<Long> genderIds;
 
-    @ApiModelProperty(value = "birthdayDates", example = "[\"YYY-MM-DD\"]")
+    @ApiModelProperty(value = "birthdayDates", example = "[\"YYYY-MM-DD\"]")
     List<String> birthdayDates;
 
     List<Long> worktypeIds;
 
     List<Double> salaries;
 
-    @ApiModelProperty(value = "workstartDates", example = "[\"YYY-MM-DD\"]")
+    @ApiModelProperty(value = "workstartDates", example = "[\"YYYY-MM-DD\"]")
     List<String> workstartDates;
 
     List<Boolean> dismissed;
 
-    @ApiModelProperty(value = "dismissedDates", example = "[\"YYY-MM-DD\"]")
+    @ApiModelProperty(value = "dismissedDates", example = "[\"YYYY-MM-DD\"]")
     List<String> dismissedDates;
 
     Integer pages = 0;
