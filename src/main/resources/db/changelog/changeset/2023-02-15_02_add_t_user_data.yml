@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Andrey
+      changes:
+        - insert:
+            tableName: t_user
+            columns:
+              - column:
+                  name: id
+                  valueSequenceNext: user_sequence
+              - column:
+                  name: username
+                  value: Admin
+              - column:
+                  name: password
+                  value: admin_pass
+  - changeSet:
+      id: 2
+      author: Andrey
+      changes:
+        - insert:
+            tableName: t_user
+            columns:
+              - column:
+                  name: id
+                  valueSequenceNext: user_sequence
+              - column:
+                  name: username
+                  value: User
+              - column:
+                  name: password
+                  value: user_pass

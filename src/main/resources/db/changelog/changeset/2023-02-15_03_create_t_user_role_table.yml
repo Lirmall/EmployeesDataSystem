@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+        id: 1
+        author: Andrey
+        changes:
+          - createSequence:
+              sequenceName: t_user_role_sequence
+              increment by: 1
+  - changeSet:
+      id: 2
+      author: Andrey
+      changes:
+        - createTable:
+            tableName: t_user_role
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: user_id
+                    references: t_user(id)
+              - column:
+                  name: role_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: role_id
+                    references: t_role(id)
