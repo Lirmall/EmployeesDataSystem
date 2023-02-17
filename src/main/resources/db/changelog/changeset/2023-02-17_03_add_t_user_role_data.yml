@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Andrey
+      changes:
+        - insert:
+            tableName: t_user_role
+            columns:
+              - column:
+                  name: id
+                  valueSequenceNext: t_user_role_sequence
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: role_id
+                  value: 1
+  - changeSet:
+      id: 2
+      author: Andrey
+      changes:
+        - insert:
+            tableName: t_user_role
+            columns:
+              - column:
+                  name: id
+                  valueSequenceNext: t_user_role_sequence
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: role_id
+                  value: 2
