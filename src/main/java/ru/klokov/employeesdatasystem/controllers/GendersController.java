@@ -2,6 +2,7 @@ package ru.klokov.employeesdatasystem.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.klokov.employeesdatasystem.dto.GenderDTO;
 import ru.klokov.employeesdatasystem.entities.GenderEntity;
@@ -25,6 +26,7 @@ public class GendersController {
     private final GenderService genderService;
 
     @GetMapping
+    @PreAuthorize("hasPermission('genders', 'read')")
     public List<GenderDTO> findAll() {
         List<GenderEntity> allGenders = genderService.findAll();
         List<GenderDTO> result = new ArrayList<>();
