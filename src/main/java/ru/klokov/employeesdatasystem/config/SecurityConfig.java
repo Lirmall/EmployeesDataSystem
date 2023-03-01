@@ -29,6 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/swagger-ui/**").permitAll()
+                .antMatchers("/swagger-ui.html", "/v2/api-docs", "/webjars/springfox-swagger-ui/**",
+                        "/swagger-resources/**", "/swagger-resources").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
