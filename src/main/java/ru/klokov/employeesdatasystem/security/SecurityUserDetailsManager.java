@@ -1,8 +1,10 @@
 package ru.klokov.employeesdatasystem.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +14,14 @@ import java.util.Set;
 
 @Component
 public class SecurityUserDetailsManager implements UserDetailsManager {
+
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    public SecurityUserDetailsManager(BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
+
     @Override
     public void createUser(UserDetails user) {
 
@@ -47,12 +57,12 @@ public class SecurityUserDetailsManager implements UserDetailsManager {
         }
 
         Set<SecurityPermission> permissions = new HashSet<>();
-        permissions.add(new SecurityPermission("genders.read"));
+        permissions.add(new SecurityPermission(Permissions.GENDERS_READ));
 
-        return User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("123")
-                .authorities(permissions)
-                .build();
+        SecurityRole role = new SecurityRole("USER", permissions);
+
+        String encodedPassword = bCryptPasswordEncoder.encode("123");
+
+        return new SecurityUser("user", encodedPassword, role);
     }
 }
