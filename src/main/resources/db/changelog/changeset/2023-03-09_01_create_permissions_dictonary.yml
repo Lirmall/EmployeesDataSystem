@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Andrey
+      changes:
+        - createSequence:
+            sequenceName: security_permissions_sequence
+            increment by: 1
+  - changeSet:
+      id: 2
+      author: Andrey
+      changes:
+        - createTable:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(225)
+                  constraints:
+                    nullable: false

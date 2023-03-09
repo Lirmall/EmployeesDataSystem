@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import ru.klokov.employeesdatasystem.jwt.JWTAuthenticationFilter;
 import ru.klokov.employeesdatasystem.jwt.JWTLoginFilter;
@@ -18,10 +19,12 @@ import ru.klokov.employeesdatasystem.security.SecurityUserDetailsManager;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final SecurityUserDetailsManager userDetailsManager;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public SecurityConfig(SecurityUserDetailsManager userDetailsManager) {
+    public SecurityConfig(SecurityUserDetailsManager userDetailsManager, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userDetailsManager = userDetailsManager;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -42,6 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsManager);
+        auth.userDetailsService(userDetailsManager).passwordEncoder(bCryptPasswordEncoder);
     }
 }

@@ -27,15 +27,15 @@ databaseChangeLog:
       file: db/changelog/changeset/2022-09-15_01_add_empl_pos_range_data.yml
   - include:
       file: db/changelog/changeset/2022-09-22_01_add_worktime_data.yml
-  - include:
-      file: db/changelog/changeset/2022-10-07_01_create_t_user_table.yml
-  - include:
-      file: db/changelog/changeset/2022-10-07_02_create_t_role_table.yml
-  - include:
-      file: db/changelog/changeset/2023-02-15_01_add_t_role_data.yml
-  - include:
-      file: db/changelog/changeset/2023-02-15_02_add_t_user_data.yml
-  - include:
-      file: db/changelog/changeset/2023-02-15_03_create_t_user_role_table.yml
-  - include:
-      file: db/changelog/changeset/2023-02-17_03_add_t_user_role_data.yml
+#  - include:
+#      file: db/changelog/changeset/2022-10-07_01_create_t_user_table.yml
+#  - include:
+#      file: db/changelog/changeset/2022-10-07_02_create_t_role_table.yml
+#  - include:
+#      file: db/changelog/changeset/2023-02-15_01_add_t_role_data.yml
+#  - include:
+#      file: db/changelog/changeset/2023-02-15_02_add_t_user_data.yml
+#  - include:
+#      file: db/changelog/changeset/2023-02-15_03_create_t_user_role_table.yml
+#  - include:
+#      file: db/changelog/changeset/2023-02-17_03_add_t_user_role_data.yml

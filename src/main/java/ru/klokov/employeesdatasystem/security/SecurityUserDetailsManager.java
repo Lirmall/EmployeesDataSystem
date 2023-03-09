@@ -47,6 +47,25 @@ public class SecurityUserDetailsManager implements UserDetailsManager {
         return false;
     }
 
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        //TODO реализовать логику вычитывания пользователя из БД
+//        //TODO реализовать логику шифрования паролей
+//
+//        if(!username.equals("user")) {
+//            return null;
+//        }
+//
+//        Set<SecurityPermission> permissions = new HashSet<>();
+//        permissions.add(new SecurityPermission(Permissions.GENDERS_READ));
+//
+//        SecurityRole role = new SecurityRole("USER", permissions);
+//
+//        String encodedPassword = bCryptPasswordEncoder.encode("123");
+//
+//        return new SecurityUser("user", encodedPassword, role);
+//    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //TODO реализовать логику вычитывания пользователя из БД
@@ -58,11 +77,20 @@ public class SecurityUserDetailsManager implements UserDetailsManager {
 
         Set<SecurityPermission> permissions = new HashSet<>();
         permissions.add(new SecurityPermission(Permissions.GENDERS_READ));
+        permissions.add(new SecurityPermission(Permissions.WORKTYPES_READ));
 
         SecurityRole role = new SecurityRole("USER", permissions);
 
-        String encodedPassword = bCryptPasswordEncoder.encode("123");
+        Set<SecurityRole> securityRoles = new HashSet<>();
+        securityRoles.add(role);
 
-        return new SecurityUser("user", encodedPassword, role);
+        SecurityUser2 user = new SecurityUser2();
+
+        String encodedPassword = bCryptPasswordEncoder.encode("123");
+        user.setUsername("user");
+        user.setPassword(encodedPassword);
+        user.setRoles(securityRoles);
+
+        return user;
     }
 }
