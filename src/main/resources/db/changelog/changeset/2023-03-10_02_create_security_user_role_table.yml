@@ -4,19 +4,19 @@ databaseChangeLog:
       author: Andrey
       changes:
         - createTable:
-            tableName: security_roles_permissions
+            tableName: security_users_roles
             columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: security_user
+                    references: security_users(id)
               - column:
                   name: role_id
                   type: BIGINT
                   constraints:
                     nullable: false
-                    foreignKeyName: security_roles
-                    references: security_role(id)
-              - column:
-                  name: permission_id
-                  type: BIGINT
-                  constraints:
-                    nullable: false
-                    foreignKeyName: security_permissions
-                    references: security_permissions(id)
+                    foreignKeyName: security_role
+                    references: security_roles(id)

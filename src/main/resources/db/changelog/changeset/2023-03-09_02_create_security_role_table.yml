@@ -11,7 +11,7 @@ databaseChangeLog:
       author: Andrey
       changes:
         - createTable:
-            tableName: security_role
+            tableName: security_roles
             columns:
               - column:
                   name: id
