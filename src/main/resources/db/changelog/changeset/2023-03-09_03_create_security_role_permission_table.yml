@@ -12,7 +12,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     foreignKeyName: security_roles
-                    references: security_role(id)
+                    references: security_roles(id)
               - column:
                   name: permission_id
                   type: BIGINT

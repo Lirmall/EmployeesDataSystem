@@ -45,7 +45,7 @@ public class SecurityPermission implements GrantedAuthority {
     }
 
     public SecurityPermission(String name) {
-        new SecurityPermission(null, name);
+        this(null, name);
     }
 
     @Override

@@ -11,7 +11,8 @@ import java.io.Serializable;
 public class DefaultPermissionEvaluator implements PermissionEvaluator {
     @Override
     public boolean hasPermission(Authentication authentication, Object resource, Object action) {
-        User user = (User) authentication.getPrincipal();
+//        User user = (User) authentication.getPrincipal();
+        SecurityUser2 user = (SecurityUser2) authentication.getPrincipal();
         SecurityPermission permission = new SecurityPermission(resource + "." + action);
         return user.getAuthorities().contains(permission);
     }

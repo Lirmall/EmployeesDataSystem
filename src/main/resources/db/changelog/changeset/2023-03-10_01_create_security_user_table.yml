@@ -40,5 +40,5 @@ databaseChangeLog:
                   type: BIGINT
                   constraints:
                     nullable: false
-                    foreignKeyName: security_roles
-                    references: security_role(id)
+                    foreignKeyName: security_role_id
+                    references: security_roles(id)
