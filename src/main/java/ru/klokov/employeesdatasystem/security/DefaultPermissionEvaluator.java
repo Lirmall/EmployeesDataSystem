@@ -2,7 +2,6 @@ package ru.klokov.employeesdatasystem.security;
 
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -11,8 +10,7 @@ import java.io.Serializable;
 public class DefaultPermissionEvaluator implements PermissionEvaluator {
     @Override
     public boolean hasPermission(Authentication authentication, Object resource, Object action) {
-//        User user = (User) authentication.getPrincipal();
-        SecurityUser2 user = (SecurityUser2) authentication.getPrincipal();
+        SecurityUser user = (SecurityUser) authentication.getPrincipal();
         SecurityPermission permission = new SecurityPermission(resource + "." + action);
         return user.getAuthorities().contains(permission);
     }
