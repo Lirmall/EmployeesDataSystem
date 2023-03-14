@@ -19,7 +19,7 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
               - column:
-                  name: login
+                  name: username
                   type: varchar(225)
                   constraints:
                     nullable: false
@@ -28,17 +28,10 @@ databaseChangeLog:
                   type: varchar(225)
                   constraints:
                     nullable: false
-              - column:
-                  name: employee_id
-                  type: BIGINT
-                  constraints:
-                    nullable: false
-                    foreignKeyName: employee_secur_id
-                    references: employees(id)
-              - column:
-                  name: role_id
-                  type: BIGINT
-                  constraints:
-                    nullable: false
-                    foreignKeyName: security_role_id
-                    references: security_roles(id)
+#              - column:
+#                  name: employee_id
+#                  type: BIGINT
+#                  constraints:
+#                    nullable: false
+#                    foreignKeyName: employee_secur_id
+#                    references: employees(id)

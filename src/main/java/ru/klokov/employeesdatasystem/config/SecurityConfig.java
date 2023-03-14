@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/swagger-ui.html", "/v2/api-docs", "/webjars/springfox-swagger-ui/**",
                         "/swagger-resources/**", "/swagger-resources").permitAll()
@@ -40,7 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
                         UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JWTAuthenticationFilter(),
-                        UsernamePasswordAuthenticationFilter.class);
+                        UsernamePasswordAuthenticationFilter.class)
+                .csrf().ignoringAntMatchers("/h2-console/**")
+                .and().headers().frameOptions().sameOrigin();
     }
 
     @Override
