@@ -37,6 +37,12 @@ public class SecurityRole {
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<SecurityPermission> authorities;
 
+    @ManyToMany
+    @JoinTable(name = "security_users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<SecurityUser> users;
+
     public SecurityRole(String name, Set<SecurityPermission> authorities) {
         this.name = name;
         this.authorities = authorities;

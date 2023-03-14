@@ -1,27 +1,44 @@
 package ru.klokov.employeesdatasystem.security;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.klokov.employeesdatasystem.entities.EmployeeEntity;
 
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-//@Entity
+@Entity
+@Table(name = "security_users")
+@Getter
+@Setter
 @NoArgsConstructor
 public class SecurityUser implements UserDetails {
 
+    //TODO Прикинуть возможность использования employee_id в качестве primary key
+
     @Id
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "username")
     private String username;
 
+    @Column(name = "password")
     private String password;
 
+    @ManyToMany
+    @JoinTable(name = "security_users_roles",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<SecurityRole> roles;
+//
+//    @Column(name = "employee_id", insertable = false, updatable = false)
+//    private Long employeeId;
 
-    private Set<EmployeeEntity> entities;
+//    private EmployeeEntity employeeEntity;
 
     @Override
     public Set<SecurityPermission> getAuthorities() {
