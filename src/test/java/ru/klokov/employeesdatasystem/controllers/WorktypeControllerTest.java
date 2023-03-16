@@ -1,5 +1,6 @@
 package ru.klokov.employeesdatasystem.controllers;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -9,14 +10,10 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import ru.klokov.employeesdatasystem.specifications.worktypesSpecification.WorktypeSearchModel;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -34,15 +31,34 @@ class WorktypeControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    private String token;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        String body = "{\n" +
+                "    \"username\": \"user\",\n" +
+                "    \"password\": \"123\"\n" +
+                "}";
+        token = mockMvc.perform(post("/login").with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andReturn()
+                .getResponse().getHeader("Authorization");
+    }
+
     @Test
     void findAllTest() throws Exception {
-        mockMvc.perform(get(URL_TEMPLATE))
+
+        mockMvc.perform(get(URL_TEMPLATE).header("Authorization", token))
+                .andDo(print())
                 .andExpect(status().isOk());
     }
 
     @Test
     void getByIdTest() throws Exception {
-        mockMvc.perform(get(URL_TEMPLATE + "/1").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get(URL_TEMPLATE + "/1")
+                        .header("Authorization", token)
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()).andDo(print())
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.name").value("Salary"));
@@ -73,7 +89,11 @@ class WorktypeControllerTest {
                         "\"filteredCount\":2" +
                         "}";
 
-        MockHttpServletResponse response = mockMvc.perform(post(URL_TEMPLATE + "/filter").contentType(MediaType.APPLICATION_JSON)
+        //TODO Возвращает 403 - найти причину
+
+        MockHttpServletResponse response = mockMvc.perform(post(URL_TEMPLATE + "/filter")
+                        .header("Authorization", token)
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content(searchModel))
                 .andExpect(status().isOk())
                 .andDo(print())
