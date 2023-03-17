@@ -89,8 +89,6 @@ class WorktypeControllerTest {
                         "\"filteredCount\":2" +
                         "}";
 
-        //TODO Возвращает 403 - найти причину
-
         MockHttpServletResponse response = mockMvc.perform(post(URL_TEMPLATE + "/filter")
                         .header("Authorization", token)
                         .contentType(MediaType.APPLICATION_JSON)
