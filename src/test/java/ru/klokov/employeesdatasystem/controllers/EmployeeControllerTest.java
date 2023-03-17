@@ -1,5 +1,6 @@
 package ru.klokov.employeesdatasystem.controllers;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -12,6 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -26,6 +28,22 @@ class EmployeeControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    private String token;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        String body = "{\n" +
+                "    \"username\": \"user\",\n" +
+                "    \"password\": \"123\"\n" +
+                "}";
+        token = mockMvc.perform(post("/login").with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andReturn()
+                .getResponse().getHeader("Authorization");
+    }
+
     @Test
     void add() {
     }
@@ -53,7 +71,9 @@ class EmployeeControllerTest {
                 "  \"dismissDate\": \"2022-08-30\"\n" +
                 "}";
 
-        mockMvc.perform(post(URL_TEMPLATE + "/dismiss").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post(URL_TEMPLATE + "/dismiss")
+                        .header("Authorization", token)
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content(dismissEmployee))
                 .andExpect(status().isOk())
                 .andDo(print());
@@ -83,7 +103,9 @@ class EmployeeControllerTest {
                 "  \"updateDate\": \"2022-08-15\"\n" +
                 "}";
 
-        mockMvc.perform(post(URL_TEMPLATE + "/update").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post(URL_TEMPLATE + "/update")
+                        .header("Authorization", token)
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content(dismissEmployee))
                 .andExpect(status().isOk())
                 .andDo(print());
