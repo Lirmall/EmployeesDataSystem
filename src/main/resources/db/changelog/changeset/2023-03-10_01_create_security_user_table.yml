@@ -1,13 +1,13 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
+      id: "1"
       author: Andrey
       changes:
         - createSequence:
             sequenceName: security_user_sequence
             increment by: 1
   - changeSet:
-      id: 2
+      id: "2"
       author: Andrey
       changes:
         - createTable:
@@ -28,10 +28,30 @@ databaseChangeLog:
                   type: varchar(225)
                   constraints:
                     nullable: false
+              - column:
+                  name: nonExpired
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nonLocked
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: credentialsNonExpired
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: enabled
+                  type: boolean
+                  constraints:
+                    nullable: false
 #              - column:
 #                  name: employee_id
 #                  type: BIGINT
 #                  constraints:
 #                    nullable: false
-#                    foreignKeyName: employee_secur_id
+#                    foreignKeyName: security_employee_id
 #                    references: employees(id)

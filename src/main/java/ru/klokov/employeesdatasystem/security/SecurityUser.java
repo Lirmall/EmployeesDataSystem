@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import ru.klokov.employeesdatasystem.entities.EmployeeEntity;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +30,18 @@ public class SecurityUser implements UserDetails {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "nonExpired")
+    private Boolean nonExpired;
+
+    @Column(name = "nonLocked")
+    private Boolean nonLocked;
+
+    @Column(name = "credentialsNonExpired")
+    private Boolean credentialsNonExpired;
+
+    @Column(name = "enabled")
+    private Boolean enabled;
+
     @ManyToMany
     @JoinTable(name = "security_users_roles",
             joinColumns = @JoinColumn(name = "role_id"),
@@ -39,6 +52,21 @@ public class SecurityUser implements UserDetails {
 //    private Long employeeId;
 
 //    private EmployeeEntity employeeEntity;
+
+    public SecurityUser(String username, String password, Set<SecurityRole> roles) {
+        this(username, password, true, true, true, true, roles);
+    }
+
+    public SecurityUser(String username, String password, Boolean nonExpired, Boolean nonLocked,
+                        Boolean credentialsNonExpired, Boolean enabled, Set<SecurityRole> roles) {
+        this.username = username;
+        this.password = password;
+        this.nonExpired = nonExpired;
+        this.nonLocked = nonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.enabled = enabled;
+        this.roles = roles;
+    }
 
     @Override
     public Set<SecurityPermission> getAuthorities() {
