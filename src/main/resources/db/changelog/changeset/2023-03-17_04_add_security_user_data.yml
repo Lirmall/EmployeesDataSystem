@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_user_sequence
+              - column:
+                  name: username
+                  value: "user"
+              - column:
+                  name: password
+                  value: "$2a$10$jEBPUqNpNRhWRLGkzerW7eat3ZsXU21.L.KQCZlGbRSptvKuevqkq"
+              - column:
+                  name: non_expired
+                  value: true
+              - column:
+                  name: non_locked
+                  value: true
+              - column:
+                  name: credentials_non_expired
+                  value: true
+              - column:
+                  name: enabled
+                  value: true

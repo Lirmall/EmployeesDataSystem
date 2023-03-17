@@ -1,53 +1,46 @@
 package ru.klokov.employeesdatasystem.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import ru.klokov.employeesdatasystem.security.repositories.SecurityUserRepository;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Component
-public class SecurityUserDetailsManager implements UserDetailsManager {
+@Service
+@RequiredArgsConstructor
+public class SecurityUserDetailsManager implements UserDetailsService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final SecurityUserRepository securityUserRepository;
 
-    @Autowired
-    public SecurityUserDetailsManager(BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
-
-    @Override
     public void createUser(UserDetails user) {
 
     }
 
-    @Override
     public void updateUser(UserDetails user) {
 
     }
 
-    @Override
     public void deleteUser(String username) {
 
     }
 
-    @Override
     public void changePassword(String oldPassword, String newPassword) {
 
     }
 
-    @Override
     public boolean userExists(String username) {
         return false;
     }
 
 //    @Override
 //    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        //TODO реализовать логику вычитывания пользователя из БД
 //        //TODO реализовать логику шифрования паролей
 //
 //        if(!username.equals("user")) {
@@ -56,38 +49,30 @@ public class SecurityUserDetailsManager implements UserDetailsManager {
 //
 //        Set<SecurityPermission> permissions = new HashSet<>();
 //        permissions.add(new SecurityPermission(Permissions.GENDERS_READ));
+//        permissions.add(new SecurityPermission(Permissions.WORKTYPES_READ));
 //
 //        SecurityRole role = new SecurityRole("USER", permissions);
 //
-//        String encodedPassword = bCryptPasswordEncoder.encode("123");
+//        Set<SecurityRole> securityRoles = new HashSet<>();
+//        securityRoles.add(role);
 //
-//        return new SecurityUser("user", encodedPassword, role);
+//        SecurityUser user = new SecurityUser();
+//
+//        String encodedPassword = bCryptPasswordEncoder.encode("123");
+//        user.setUsername("user");
+//        user.setPassword(encodedPassword);
+//        user.setRoles(securityRoles);
+//
+//        return user;
 //    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //TODO реализовать логику вычитывания пользователя из БД
-        //TODO реализовать логику шифрования паролей
+        SecurityUser user = securityUserRepository.findByUsername(username);
 
-        if(!username.equals("user")) {
-            return null;
+        if(user == null) {
+            throw new UsernameNotFoundException("User with name \"" + username + "\" not found");
         }
-
-        Set<SecurityPermission> permissions = new HashSet<>();
-        permissions.add(new SecurityPermission(Permissions.GENDERS_READ));
-        permissions.add(new SecurityPermission(Permissions.WORKTYPES_READ));
-
-        SecurityRole role = new SecurityRole("USER", permissions);
-
-        Set<SecurityRole> securityRoles = new HashSet<>();
-        securityRoles.add(role);
-
-        SecurityUser user = new SecurityUser();
-
-        String encodedPassword = bCryptPasswordEncoder.encode("123");
-        user.setUsername("user");
-        user.setPassword(encodedPassword);
-        user.setRoles(securityRoles);
 
         return user;
     }

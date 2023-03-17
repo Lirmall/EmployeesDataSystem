@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: permission_id
+                  value: 1

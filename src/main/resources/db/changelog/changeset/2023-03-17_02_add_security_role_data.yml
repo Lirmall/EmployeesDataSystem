@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_role_sequence
+              - column:
+                  name: name
+                  value: 'ROLE_EMPLOYEE'

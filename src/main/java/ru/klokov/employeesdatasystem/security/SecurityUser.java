@@ -18,8 +18,6 @@ import java.util.Set;
 @NoArgsConstructor
 public class SecurityUser implements UserDetails {
 
-    //TODO Прикинуть возможность использования employee_id в качестве primary key
-
     @Id
     @Column(name = "id")
     private Long id;
@@ -30,28 +28,23 @@ public class SecurityUser implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "nonExpired")
+    @Column(name = "non_expired")
     private Boolean nonExpired;
 
-    @Column(name = "nonLocked")
+    @Column(name = "non_locked")
     private Boolean nonLocked;
 
-    @Column(name = "credentialsNonExpired")
+    @Column(name = "credentials_non_expired")
     private Boolean credentialsNonExpired;
 
     @Column(name = "enabled")
     private Boolean enabled;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "security_users_roles",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<SecurityRole> roles;
-//
-//    @Column(name = "employee_id", insertable = false, updatable = false)
-//    private Long employeeId;
-
-//    private EmployeeEntity employeeEntity;
 
     public SecurityUser(String username, String password, Set<SecurityRole> roles) {
         this(username, password, true, true, true, true, roles);

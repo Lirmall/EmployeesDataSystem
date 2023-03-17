@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "security_role")
+@Table(name = "security_roles")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -32,7 +32,7 @@ public class SecurityRole {
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "security_role_permissions",
+    @JoinTable(name = "security_roles_permissions",
     joinColumns = @JoinColumn(name = "permission_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<SecurityPermission> authorities;

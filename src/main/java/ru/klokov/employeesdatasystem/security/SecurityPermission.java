@@ -34,7 +34,7 @@ public class SecurityPermission implements GrantedAuthority {
     private String name;
 
     @ManyToMany
-    @JoinTable(name = "security_role_permissions",
+    @JoinTable(name = "security_roles_permissions",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "permission_id"))
     private Set<SecurityRole> securityRoleSet;

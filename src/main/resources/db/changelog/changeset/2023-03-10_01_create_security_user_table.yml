@@ -29,17 +29,17 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: nonExpired
+                  name: non_expired
                   type: boolean
                   constraints:
                     nullable: false
               - column:
-                  name: nonLocked
+                  name: non_locked
                   type: boolean
                   constraints:
                     nullable: false
               - column:
-                  name: credentialsNonExpired
+                  name: credentials_non_expired
                   type: boolean
                   constraints:
                     nullable: false
