@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import ru.klokov.employeesdatasystem.jwt.JWTAuthenticationFilter;
 import ru.klokov.employeesdatasystem.jwt.JWTLoginFilter;
-import ru.klokov.employeesdatasystem.security.SecurityUserDetailsManager;
+import ru.klokov.employeesdatasystem.security.services.SecurityUserDetailsManager;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)

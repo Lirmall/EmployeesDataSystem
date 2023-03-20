@@ -48,10 +48,3 @@ databaseChangeLog:
                   type: boolean
                   constraints:
                     nullable: false
-#              - column:
-#                  name: employee_id
-#                  type: BIGINT
-#                  constraints:
-#                    nullable: false
-#                    foreignKeyName: security_employee_id
-#                    references: employees(id)

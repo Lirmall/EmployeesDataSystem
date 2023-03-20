@@ -3,6 +3,7 @@ package ru.klokov.employeesdatasystem.security;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.klokov.employeesdatasystem.entities.EmployeeEntity;
 
@@ -19,6 +20,15 @@ import java.util.Set;
 public class SecurityUser implements UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "security_user_sequence")
+    @GenericGenerator(
+            name="security_user_sequence",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1"),
+                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "security_user_sequence")
+            }
+    )
     @Column(name = "id")
     private Long id;
 
