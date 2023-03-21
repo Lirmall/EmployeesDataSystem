@@ -11,6 +11,7 @@ import ru.klokov.employeesdatasystem.dto.GenderDTO;
 import ru.klokov.employeesdatasystem.dto.WorktypeDTO;
 import ru.klokov.employeesdatasystem.entities.*;
 import ru.klokov.employeesdatasystem.exceptions.AlreadyCreatedException;
+import ru.klokov.employeesdatasystem.exceptions.MoreThatOneResultException;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.repositories.EmployeeRepository;
 import ru.klokov.employeesdatasystem.specifications.employeeSpecification.EmployeeSearchModel;
@@ -174,7 +175,7 @@ public class EmployeeService {
         if(employeeEntityList.size() == 1) {
             employee = employeeEntityList.get(0);
         } else {
-            throw new AlreadyCreatedException("Employees was founded: " + employeeEntityList.size());
+            throw new MoreThatOneResultException("Employees was founded: " + employeeEntityList.size());
         }
 
         PositionEntity position = positionEmployeeService.findPositionByName(updateEmployee.getPosition().getName());
@@ -198,7 +199,7 @@ public class EmployeeService {
         if(employeeEntities.size() == 1) {
             return employeeEntities.get(0);
         } else {
-            throw new AlreadyCreatedException("Employees was founded: " + employeeEntityList.size());
+            throw new MoreThatOneResultException("Employees was founded: " + employeeEntityList.size());
         }
     }
 

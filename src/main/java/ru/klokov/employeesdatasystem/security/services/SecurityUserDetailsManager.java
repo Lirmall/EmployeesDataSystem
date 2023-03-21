@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import ru.klokov.employeesdatasystem.exceptions.AlreadyCreatedException;
 import ru.klokov.employeesdatasystem.exceptions.CannotCreateUserException;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
+import ru.klokov.employeesdatasystem.exceptions.OldPasswordNotMatchesException;
 import ru.klokov.employeesdatasystem.security.SecurityUser;
 import ru.klokov.employeesdatasystem.security.entities.CreateSecurityUserEntity;
 import ru.klokov.employeesdatasystem.security.repositories.SecurityRoleRepository;
@@ -50,12 +51,26 @@ public class SecurityUserDetailsManager implements UserDetailsService {
         }
     }
 
-    public void updateUser(SecurityUser user) {
+    public SecurityUser updateUser(SecurityUser user) {
+        SecurityUser userFromDB = findById(user.getId());
 
+        if(userFromDB == null) {
+            throw new NoMatchingEntryInDatabaseException("User not found");
+        }
+
+        userFromDB.setPassword(encoder.encode(user.getPassword()));
+        userFromDB.setNonExpired(user.getNonExpired());
+        userFromDB.setNonLocked(user.getNonLocked());
+        userFromDB.setCredentialsNonExpired(user.getCredentialsNonExpired());
+        userFromDB.setEnabled(user.getEnabled());
+        userFromDB.setRoles(user.getRoles());
+
+        return securityUserRepository.save(userFromDB);
     }
 
     public void deleteUserByUsername(String username) {
-
+        SecurityUser userToDelete = loadUserByUsername(username);
+        deleteUserByID(userToDelete.getId());
     }
 
     public boolean deleteUserByID(Long id) {
@@ -68,8 +83,16 @@ public class SecurityUserDetailsManager implements UserDetailsService {
         return securityUserRepository.findById(id).isPresent();
     }
 
-    public void changePassword(String oldPassword, String newPassword) {
+    public void changePassword(String username, String oldPassword, String newPassword) {
+        SecurityUser userFromDB = loadUserByUsername(username);
 
+        if(!encoder.matches(oldPassword, userFromDB.getPassword())) {
+            throw new OldPasswordNotMatchesException("Wrong old password");
+        }
+
+        userFromDB.setPassword(encoder.encode(newPassword));
+
+        securityUserRepository.save(userFromDB);
     }
 
     public SecurityUser findById(Long id) {
