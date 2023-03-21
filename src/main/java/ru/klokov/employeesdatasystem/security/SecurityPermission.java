@@ -33,10 +33,10 @@ public class SecurityPermission implements GrantedAuthority {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "security_roles_permissions",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "permission_id"))
+            joinColumns = @JoinColumn(name = "permission_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<SecurityRole> securityRoleSet;
 
     public SecurityPermission(Long id, String name) {

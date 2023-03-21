@@ -1,13 +1,13 @@
 package ru.klokov.employeesdatasystem.security.services;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.klokov.employeesdatasystem.exceptions.AlreadyCreatedException;
+import ru.klokov.employeesdatasystem.exceptions.CannotCreateUserException;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
-import ru.klokov.employeesdatasystem.security.SecurityRole;
 import ru.klokov.employeesdatasystem.security.SecurityUser;
 import ru.klokov.employeesdatasystem.security.entities.CreateSecurityUserEntity;
 import ru.klokov.employeesdatasystem.security.repositories.SecurityRoleRepository;
@@ -17,7 +17,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -29,8 +28,12 @@ public class SecurityUserDetailsManager implements UserDetailsService {
     @PersistenceContext
     private final EntityManager entityManager;
 
-    public boolean createUser(CreateSecurityUserEntity user) {
-        //TODO Исправить ошибку сохранения в БД
+    public SecurityUser createUser(CreateSecurityUserEntity user) {
+        SecurityUser userFromDB = securityUserRepository.findByUsername(user.getUsername());
+
+        if(userFromDB != null) {
+            throw new AlreadyCreatedException("User with name \"" + user.getUsername() + "\" already created");
+        }
 
         String encodedPassword = encoder.encode(user.getPassword());
 
@@ -38,7 +41,13 @@ public class SecurityUserDetailsManager implements UserDetailsService {
 
         SecurityUser savedUser = securityUserRepository.save(securityUser);
 
-        return securityUserRepository.findById(savedUser.getId()).isPresent();
+        Optional<SecurityUser> result = securityUserRepository.findById(savedUser.getId());
+
+        if(result.isPresent()) {
+            return result.get();
+        } else {
+            throw new CannotCreateUserException("Cannot create user");
+        }
     }
 
     public void updateUser(SecurityUser user) {

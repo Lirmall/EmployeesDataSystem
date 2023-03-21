@@ -50,10 +50,10 @@ public class SecurityUser implements UserDetails {
     @Column(name = "enabled")
     private Boolean enabled;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = SecurityRole.class)
     @JoinTable(name = "security_users_roles",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<SecurityRole> roles;
 
     public SecurityUser(String username, String password, Set<SecurityRole> roles) {

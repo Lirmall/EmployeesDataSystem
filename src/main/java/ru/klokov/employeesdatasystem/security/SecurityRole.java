@@ -33,14 +33,14 @@ public class SecurityRole {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "security_roles_permissions",
-    joinColumns = @JoinColumn(name = "permission_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    joinColumns = @JoinColumn(name = "role_id"),
+    inverseJoinColumns = @JoinColumn(name = "permission_id"))
     private Set<SecurityPermission> authorities;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = SecurityUser.class)
     @JoinTable(name = "security_users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+            joinColumns = {@JoinColumn(name = "role_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")})
     private Set<SecurityUser> users;
 
     public SecurityRole(String name, Set<SecurityPermission> authorities) {

@@ -49,7 +49,14 @@ class SecurityUserDetailsManagerTest {
         createSecurityUserEntity.setPassword("123");
         createSecurityUserEntity.setRoles(roleSet);
 
-        assertTrue(securityUserDetailsManager.createUser(createSecurityUserEntity));
+        SecurityUser result = securityUserDetailsManager.createUser(createSecurityUserEntity);
+
+        assertEquals("testUser", result.getUsername());
+        assertTrue(encoder.matches("123", result.getPassword()));
+        assertTrue(result.getNonExpired());
+        assertTrue(result.getNonLocked());
+        assertTrue(result.getCredentialsNonExpired());
+        assertTrue(result.getEnabled());
     }
 
     @Test
