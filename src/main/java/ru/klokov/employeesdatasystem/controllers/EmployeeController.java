@@ -64,7 +64,7 @@ public class EmployeeController {
             employeeEntity = employeeService.findById(id);
         } catch (NoSuchElementException e) {
             e.printStackTrace();
-            throw new NoMatchingEntryInDatabaseException("Unable to find range with id = " + id);
+            throw new NoMatchingEntryInDatabaseException("Unable to find employee with id = " + id);
         }
 
         return employeeEntityDTOMapper.convertFromEntity(employeeEntity);

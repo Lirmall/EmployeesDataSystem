@@ -1,5 +1,7 @@
 package ru.klokov.employeesdatasystem.security;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,12 +37,14 @@ public class SecurityRole {
     @JoinTable(name = "security_roles_permissions",
     joinColumns = @JoinColumn(name = "role_id"),
     inverseJoinColumns = @JoinColumn(name = "permission_id"))
+    @JsonManagedReference
     private Set<SecurityPermission> authorities;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = SecurityUser.class)
+    @ManyToMany(targetEntity = SecurityUser.class)
     @JoinTable(name = "security_users_roles",
             joinColumns = {@JoinColumn(name = "role_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    @JsonBackReference
     private Set<SecurityUser> users;
 
     public SecurityRole(String name, Set<SecurityPermission> authorities) {

@@ -1,5 +1,6 @@
 package ru.klokov.employeesdatasystem.security;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -54,6 +55,7 @@ public class SecurityUser implements UserDetails {
     @JoinTable(name = "security_users_roles",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    @JsonManagedReference
     private Set<SecurityRole> roles;
 
     public SecurityUser(String username, String password, Set<SecurityRole> roles) {
