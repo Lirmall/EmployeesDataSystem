@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.klokov.employeesdatasystem.security.SecurityRole;
 
 import java.util.Set;
 
@@ -15,5 +14,5 @@ import java.util.Set;
 public class CreateSecurityUserDTO {
     private String username;
     private String password;
-    private Set<SecurityRole> roles;
+    private Set<SecurityRoleDTO> roles;
 }
