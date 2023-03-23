@@ -64,8 +64,7 @@ class SecurityUserControllerTest {
 
     @Test
     void createUserTest() throws Exception {
-        //TODO Разобраться со взаимными ссылками в Many-to-many,
-        //TODO Слишком сложное дто на вход получается(пример в сваггере)
+        //TODO Упростить запрос
 
         String createUser = "{\n" +
                 "\"username\":\"testUser\",\n" +
