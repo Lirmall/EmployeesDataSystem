@@ -7,16 +7,15 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -46,27 +45,144 @@ class EmployeeControllerTest {
     }
 
     @Test
-    void add() {
+    void addTest() throws Exception {
+        String body = "{\n" +
+                "  \"birthdayDate\": \"2000-03-15\",\n" +
+                "  \"firstName\": \"Test\",\n" +
+                "  \"genderDTO\": {\n" +
+                "    \"id\": 1,\n" +
+                "    \"name\": \"Male\"\n" +
+                "  },\n" +
+                "  \"positionDTO\": {\n" +
+                "    \"id\": 3,\n" +
+                "    \"name\": \"Engineer\",\n" +
+                "    \"salary\": 20000.00,\n" +
+                "    \"worktype\": {\n" +
+                "      \"id\": 1,\n" +
+                "      \"name\": \"Salary\"\n" +
+                "    }\n" +
+                "  },\n" +
+                "  \"rangeDTO\": {\n" +
+                "    \"bonus\": 1.0,\n" +
+                "    \"id\": 4,\n" +
+                "    \"name\": \"Non-range\"\n" +
+                "  },\n" +
+                "  \"secondName\": \"Testov\",\n" +
+                "  \"thirdName\": \"Testovich\",\n" +
+                "  \"workstartDate\": \"2020-05-15\"\n" +
+                "}";
+
+        mockMvc.perform(post(URL_TEMPLATE)
+                        .header("Authorization", token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.id").value(10))
+                .andExpect(jsonPath("$.secondName").value("Testov"))
+                .andExpect(jsonPath("$.firstName").value("Test"))
+                .andExpect(jsonPath("$.thirdName").value("Testovich"))
+                .andExpect(jsonPath("$.gender.id").value(1))
+                .andExpect(jsonPath("$.gender.name").value("Male"))
+                .andExpect(jsonPath("$.birthday").value("2000-03-15"))
+                .andExpect(jsonPath("$.worktype.id").value(1))
+                .andExpect(jsonPath("$.worktype.name").value("Salary"))
+                .andExpect(jsonPath("$.salary").value(20000.0))
+                .andExpect(jsonPath("$.workstartDate").value("2020-05-15"))
+                .andExpect(jsonPath("$.dismissed").value(false));
     }
 
     @Test
-    void findAll() {
-    }
-
-    @Test
-    void getById() throws Exception {
-        mockMvc.perform(get(URL_TEMPLATE + "/1")
+    void findAllTest() throws Exception {
+        mockMvc.perform(get(URL_TEMPLATE)
                         .header("Authorization", token)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()).andDo(print());
     }
 
     @Test
-    void getEmployeesByFilter() {
+    void getByIdTest() throws Exception {
+        mockMvc.perform(get(URL_TEMPLATE + "/1")
+                        .header("Authorization", token)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk()).andDo(print())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.secondName").value("Ivanov"))
+                .andExpect(jsonPath("$.firstName").value("Ivan"))
+                .andExpect(jsonPath("$.thirdName").value("Ivanovich"))
+                .andExpect(jsonPath("$.gender.id").value(1))
+                .andExpect(jsonPath("$.gender.name").value("Male"))
+                .andExpect(jsonPath("$.birthday").value("1980-01-15"))
+                .andExpect(jsonPath("$.worktype.id").value(2))
+                .andExpect(jsonPath("$.worktype.name").value("Hourly"))
+                .andExpect(jsonPath("$.salary").value(120.0))
+                .andExpect(jsonPath("$.workstartDate").value("2000-05-14"))
+                .andExpect(jsonPath("$.dismissed").value(false));
     }
 
     @Test
-    void dismissEmployee() throws Exception {
+    void getEmployeesByFilterTest() throws Exception {
+        String body = "{\n" +
+                "  \"birthdayDates\": [\n" +
+                "    " +
+                "  ],\n" +
+                "  \"dismissed\": [\n" +
+                "    " +
+                "  ],\n" +
+                "  \"dismissedDates\": [\n" +
+                "    " +
+                "  ],\n" +
+                "  \"firstNames\": [\n" +
+                "    " +
+                "  ],\n" +
+                "  \"genderIds\": [\n" +
+                "    " +
+                "  ],\n" +
+                "  \"ids\": [\n" +
+                "    " +
+                "  ],\n" +
+                "  \"limit\": 5,\n" +
+                "  \"pages\": 0,\n" +
+                "  \"salaries\": [\n" +
+                "    " +
+                "  ],\n" +
+                "  \"secondNames\": [\n" +
+                "    \"Ivanov\"" +
+                "  ],\n" +
+                "  \"sortColumn\": \"id\",\n" +
+                "  \"thirdNames\": [\n" +
+                "    " +
+                "  ],\n" +
+                "  \"workstartDates\": [\n" +
+                "    " +
+                "  ],\n" +
+                "  \"worktypeIds\": [\n" +
+                "    " +
+                "  ]\n" +
+                "}";
+
+        mockMvc.perform(post(URL_TEMPLATE + "/filter")
+                        .header("Authorization", token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.items.[0].id").value(1))
+                .andExpect(jsonPath("$.items.[0].secondName").value("Ivanov"))
+                .andExpect(jsonPath("$.items.[0].firstName").value("Ivan"))
+                .andExpect(jsonPath("$.items.[0].thirdName").value("Ivanovich"))
+                .andExpect(jsonPath("$.items.[0].gender.id").value(1))
+                .andExpect(jsonPath("$.items.[0].gender.name").value("Male"))
+                .andExpect(jsonPath("$.items.[0].birthday").value("1980-01-15"))
+                .andExpect(jsonPath("$.items.[0].worktype.id").value(2))
+                .andExpect(jsonPath("$.items.[0].worktype.name").value("Hourly"))
+                .andExpect(jsonPath("$.items.[0].salary").value(120.0))
+                .andExpect(jsonPath("$.items.[0].workstartDate").value("2000-05-14"))
+                .andExpect(jsonPath("$.items.[0].dismissed").value(false));
+    }
+
+    @Test
+    void dismissEmployeeTest() throws Exception {
         String dismissEmployee = "{\n" +
                 "  \"birthdayDate\": \"1980-01-15\",\n" +
                 "  \"secondName\": \"Ivanov\",\n" +
@@ -85,7 +201,7 @@ class EmployeeControllerTest {
     }
 
     @Test
-    void updateEmployee() throws Exception {
+    void updateEmployeeTest() throws Exception {
         String updateEmployee = "{\n" +
                 "  \"birthdayDate\": \"1980-01-15\",\n" +
                 "  \"firstName\": \"Ivan\",\n" +
@@ -113,6 +229,18 @@ class EmployeeControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(updateEmployee))
                 .andExpect(status().isOk())
-                .andDo(print());
+                .andDo(print())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.secondName").value("Ivanov"))
+                .andExpect(jsonPath("$.firstName").value("Ivan"))
+                .andExpect(jsonPath("$.thirdName").value("Ivanovich"))
+                .andExpect(jsonPath("$.gender.id").value(1))
+                .andExpect(jsonPath("$.gender.name").value("Male"))
+                .andExpect(jsonPath("$.birthday").value("1980-01-15"))
+                .andExpect(jsonPath("$.worktype.id").value(1))
+                .andExpect(jsonPath("$.worktype.name").value("Salary"))
+                .andExpect(jsonPath("$.salary").value(20000.0))
+                .andExpect(jsonPath("$.workstartDate").value("2000-05-14"))
+                .andExpect(jsonPath("$.dismissed").value(false));
     }
 }
