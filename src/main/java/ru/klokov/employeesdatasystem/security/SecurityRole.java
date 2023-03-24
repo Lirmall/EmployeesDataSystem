@@ -37,7 +37,6 @@ public class SecurityRole {
     @JoinTable(name = "security_roles_permissions",
     joinColumns = @JoinColumn(name = "role_id"),
     inverseJoinColumns = @JoinColumn(name = "permission_id"))
-    @JsonManagedReference
     private Set<SecurityPermission> authorities;
 
     @ManyToMany(targetEntity = SecurityUser.class, fetch = FetchType.LAZY)
