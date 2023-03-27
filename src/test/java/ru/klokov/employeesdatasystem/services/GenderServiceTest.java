@@ -3,14 +3,21 @@ package ru.klokov.employeesdatasystem.services;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.Page;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
+import ru.klokov.employeesdatasystem.StaticSqlSchemaClasspathes;
+import ru.klokov.employeesdatasystem.config.SecurityConfig;
 import ru.klokov.employeesdatasystem.entities.GenderEntity;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.exceptions.NullOrEmptyArgumentexception;
+import ru.klokov.employeesdatasystem.repositories.GenderRepository;
+import ru.klokov.employeesdatasystem.security.DefaultPermissionEvaluator;
 import ru.klokov.employeesdatasystem.specifications.gendersSpecification.GendersSearchModel;
+import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,16 +25,20 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@SpringBootTest
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
-@ActiveProfiles("test")
+@DataJpaTest
+@PropertySource("classpath:application-dataJpaTest.properties")
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ComponentScan(basePackageClasses = {SortColumnChecker.class, GenderRepository.class, GenderService.class,
+        SecurityConfig.class, DefaultPermissionEvaluator.class})
+@ActiveProfiles("dataJpaTest")
 class GenderServiceTest {
 
     @Autowired
     private GenderService genderService;
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA,
+            StaticSqlSchemaClasspathes.GENDERS_DATA})
     void findAllTest() {
         int gendersCount = 2;
         List<GenderEntity> genderEntities = genderService.findAll();
@@ -42,6 +53,8 @@ class GenderServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA,
+            StaticSqlSchemaClasspathes.GENDERS_DATA})
     void findByIdTest() {
         Long id = 1L;
 
@@ -56,6 +69,8 @@ class GenderServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA,
+            StaticSqlSchemaClasspathes.GENDERS_DATA})
     void findGenderByNameTest() {
         String name = "Male";
 
@@ -70,6 +85,8 @@ class GenderServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA,
+            StaticSqlSchemaClasspathes.GENDERS_DATA})
     void findByFilterTest() {
         GendersSearchModel gendersSearchModel = new GendersSearchModel();
         gendersSearchModel.setIds(Arrays.asList(1L, 2L));
