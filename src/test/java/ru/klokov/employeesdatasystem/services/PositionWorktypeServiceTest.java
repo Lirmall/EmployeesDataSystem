@@ -3,29 +3,41 @@ package ru.klokov.employeesdatasystem.services;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
+import ru.klokov.employeesdatasystem.StaticSqlSchemaClasspathes;
+import ru.klokov.employeesdatasystem.config.SecurityConfig;
 import ru.klokov.employeesdatasystem.dto.WorktypeDTO;
 import ru.klokov.employeesdatasystem.entities.PositionEntity;
 import ru.klokov.employeesdatasystem.entities.WorktypeEntity;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.exceptions.NullOrEmptyArgumentexception;
+import ru.klokov.employeesdatasystem.repositories.PositionRepository;
+import ru.klokov.employeesdatasystem.repositories.WorktypeRepository;
+import ru.klokov.employeesdatasystem.security.DefaultPermissionEvaluator;
+import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
-@PropertySource("classpath:application-springBootTest.properties")
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
-@ActiveProfiles("springBootTest")
+@DataJpaTest
+@PropertySource("classpath:application-dataJpaTest.properties")
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ComponentScan(basePackageClasses = {SortColumnChecker.class, PositionRepository.class, WorktypeRepository.class, PositionWorktypeService.class,
+        SecurityConfig.class, DefaultPermissionEvaluator.class})
+@ActiveProfiles("dataJpaTest")
 class PositionWorktypeServiceTest {
 
     @Autowired
     private PositionWorktypeService positionWorktypeService;
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void findWorktypeByNameTest() {
         String name = "Hourly";
         WorktypeEntity worktype = positionWorktypeService.findWorktypeByName(name);
@@ -38,6 +50,8 @@ class PositionWorktypeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void findWorktypeByIdTest() {
         WorktypeEntity worktypeEntity = positionWorktypeService.findWorktypeById(1L);
 
@@ -49,6 +63,10 @@ class PositionWorktypeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA,
+            StaticSqlSchemaClasspathes.POSITIONS_DATA})
     void findPositionByNameTest() {
         PositionEntity position = positionWorktypeService.findPositionByName("Engineer");
 
@@ -59,6 +77,8 @@ class PositionWorktypeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void worktypeCheckTest() {
         WorktypeDTO worktypeDTO = new WorktypeDTO(1L, "Salary");
 
