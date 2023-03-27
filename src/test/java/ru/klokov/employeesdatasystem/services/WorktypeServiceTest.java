@@ -3,31 +3,40 @@ package ru.klokov.employeesdatasystem.services;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.Page;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
+import ru.klokov.employeesdatasystem.StaticSqlSchemaClasspathes;
+import ru.klokov.employeesdatasystem.config.SecurityConfig;
 import ru.klokov.employeesdatasystem.entities.WorktypeEntity;
+import ru.klokov.employeesdatasystem.repositories.WorktypeRepository;
+import ru.klokov.employeesdatasystem.security.DefaultPermissionEvaluator;
 import ru.klokov.employeesdatasystem.specifications.worktypesSpecification.WorktypeSearchModel;
+import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
-@PropertySource("classpath:application-springBootTest.properties")
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
-@ActiveProfiles("springBootTest")
+@DataJpaTest
+@PropertySource("classpath:application-dataJpaTest.properties")
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ComponentScan(basePackageClasses = {SortColumnChecker.class, WorktypeRepository.class, WorktypeService.class,
+        SecurityConfig.class, DefaultPermissionEvaluator.class})
+@ActiveProfiles("dataJpaTest")
 class WorktypeServiceTest {
 
     @Autowired
     private WorktypeService worktypeService;
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void findAllTest() {
 
         List<WorktypeEntity> entities = worktypeService.findAll();
@@ -45,6 +54,8 @@ class WorktypeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void findByIdTest() {
         WorktypeEntity worktypeEntity = worktypeService.findById(1L);
 
@@ -53,6 +64,8 @@ class WorktypeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void findByFilterTest() {
         WorktypeSearchModel worktypeSearchModel = new WorktypeSearchModel();
 
@@ -74,6 +87,8 @@ class WorktypeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void getCountOfTotalItemsTest() {
         assertEquals(2L, worktypeService.getCountOfTotalItems());
     }
