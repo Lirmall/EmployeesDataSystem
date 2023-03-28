@@ -1,3 +1,4 @@
+-- 1
 insert into employees
 (id,
  second_name,
@@ -21,7 +22,7 @@ values (next value for employees_sequence,
              '2000-05-14',
              false,
              null);
-
+-- 2
 insert into employees
 (id,
  second_name,
@@ -45,7 +46,7 @@ values (next value for employees_sequence,
              '1999-03-12',
              false,
              null);
-
+-- 3
 insert into employees
 (id,
  second_name,
@@ -69,7 +70,7 @@ values (next value for employees_sequence,
              '2001-04-16',
              false,
              null);
-
+-- 4
 insert into employees
 (id,
  second_name,
@@ -88,12 +89,12 @@ values (next value for employees_sequence,
              'Ivanovna',
              2,
              '1981-02-17',
-             2,
+             1,
              20000.00,
              '2000-04-16',
              false,
              null);
-
+-- 5
 insert into employees
 (id,
  second_name,
@@ -117,7 +118,7 @@ values (next value for employees_sequence,
              '2010-06-18',
              false,
              null);
-
+-- 6
 insert into employees
 (id,
  second_name,
@@ -141,7 +142,7 @@ values (next value for employees_sequence,
              '1997-10-17',
              false,
              null);
-
+-- 7
 insert into employees
 (id,
  second_name,
@@ -165,7 +166,7 @@ values (next value for employees_sequence,
              '2020-11-20',
              false,
              null);
-
+-- 8
 insert into employees
 (id,
  second_name,
@@ -189,7 +190,7 @@ values (next value for employees_sequence,
              '1980-06-08',
              false,
              null);
-
+-- 9
 insert into employees
 (id,
  second_name,
