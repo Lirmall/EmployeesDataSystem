@@ -11,7 +11,7 @@ create table employees
     third_name   varchar(255),
     gender_id   bigint, constraint gender foreign key (gender_id) references genders(id),
     birthday   date,
-    worktype_id   bigint,
+    worktype_id   bigint, constraint worktype_id foreign key (worktype_id) references worktypes(id),
     salary   double,
     workstart_date   date,
     dismissed   boolean,

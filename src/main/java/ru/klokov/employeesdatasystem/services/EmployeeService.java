@@ -188,6 +188,7 @@ public class EmployeeService {
         }
 
         employee.setWorktype(position.getWorktype());
+        employee.setWorktypeId(position.getWorktypeId());
         employee.setSalary(position.getSalary() * range.getBonus());
 
         employeeRepository.save(employee);

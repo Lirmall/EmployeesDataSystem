@@ -50,7 +50,8 @@ class PositionServiceTest {
     private WorktypeService worktypeService;
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
             StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA})
     void createTest() {
         PositionEntity positionEntity = PositionEntityTestData.returnPosition();
@@ -64,7 +65,8 @@ class PositionServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
             StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA})
     void findAllTest() {
         List<PositionEntity> positionEntityList = positionService.findAll();
@@ -73,7 +75,8 @@ class PositionServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
             StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA})
     void findByIdTest() {
         PositionEntity result = positionService.findById(1L);
@@ -85,7 +88,8 @@ class PositionServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
             StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA})
     void findPositionByNameTest() {
         PositionEntity result = positionService.findPositionByName("Mechanic");
@@ -97,7 +101,8 @@ class PositionServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
             StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA})
     void findByFilterTest() {
         List<Long> ids = new ArrayList<>();
@@ -202,7 +207,8 @@ class PositionServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
             StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA})
     void patchUpdateTest() {
         PositionEntity positionToUpdate = positionService.findPositionByName("Engineer");
@@ -223,7 +229,8 @@ class PositionServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
             StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA})
     void worktypeCheckByWorktypeNameTest() {
         WorktypeEntity result = positionService.worktypeCheck("Salary");
@@ -231,7 +238,8 @@ class PositionServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
             StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
             StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
             StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
@@ -255,7 +263,8 @@ class PositionServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
             StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA})
     void getCountOfTotalItemsTest() {
         assertEquals(5, positionService.getCountOfTotalItems());

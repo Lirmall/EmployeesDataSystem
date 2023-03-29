@@ -36,7 +36,8 @@ class WorktypeServiceTest {
     private WorktypeService worktypeService;
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
             StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void findAllTest() {
 
@@ -55,7 +56,8 @@ class WorktypeServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
             StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void findByIdTest() {
         WorktypeEntity worktypeEntity = worktypeService.findById(1L);
@@ -65,7 +67,8 @@ class WorktypeServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
             StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void findByFilterTest() {
         WorktypeSearchModel worktypeSearchModel = new WorktypeSearchModel();
@@ -88,7 +91,8 @@ class WorktypeServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
             StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void getCountOfTotalItemsTest() {
         assertEquals(2L, worktypeService.getCountOfTotalItems());

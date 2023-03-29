@@ -36,7 +36,8 @@ class PositionWorktypeServiceTest {
     private PositionWorktypeService positionWorktypeService;
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
             StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void findWorktypeByNameTest() {
         String name = "Hourly";
@@ -50,7 +51,8 @@ class PositionWorktypeServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
             StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void findWorktypeByIdTest() {
         WorktypeEntity worktypeEntity = positionWorktypeService.findWorktypeById(1L);
@@ -63,7 +65,8 @@ class PositionWorktypeServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
             StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
             StaticSqlSchemaClasspathes.POSITIONS_SCHEMA,
             StaticSqlSchemaClasspathes.POSITIONS_DATA})
@@ -77,7 +80,8 @@ class PositionWorktypeServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA,
             StaticSqlSchemaClasspathes.WORKTYPESS_DATA})
     void worktypeCheckTest() {
         WorktypeDTO worktypeDTO = new WorktypeDTO(1L, "Salary");

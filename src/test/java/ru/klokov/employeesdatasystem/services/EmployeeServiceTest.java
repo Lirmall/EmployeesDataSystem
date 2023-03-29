@@ -3,16 +3,26 @@ package ru.klokov.employeesdatasystem.services;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.Page;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
+import ru.klokov.employeesdatasystem.StaticSqlSchemaClasspathes;
+import ru.klokov.employeesdatasystem.config.SecurityConfig;
 import ru.klokov.employeesdatasystem.dto.GenderDTO;
 import ru.klokov.employeesdatasystem.dto.WorktypeDTO;
 import ru.klokov.employeesdatasystem.entities.*;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
+import ru.klokov.employeesdatasystem.repositories.EmployeeRepository;
+import ru.klokov.employeesdatasystem.repositories.PositionRepository;
+import ru.klokov.employeesdatasystem.repositories.RangeRepository;
+import ru.klokov.employeesdatasystem.security.DefaultPermissionEvaluator;
 import ru.klokov.employeesdatasystem.specifications.employeeSpecification.EmployeeSearchModel;
+import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -21,11 +31,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@SpringBootTest
-@PropertySource("classpath:application-springBootTest.properties")
+@DataJpaTest
+@PropertySource("classpath:application-dataJpaTest.properties")
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
-@ActiveProfiles("springBootTest")
+@ComponentScan(basePackageClasses = {SortColumnChecker.class, EmployeeRepository.class,
+        RangeRepository.class, PositionRepository.class,
+        EmployeeRangeService.class, PositionEmployeeService.class, EmployeeGenderService.class,
+        WorktypeEmployeeService.class, EmplPosRangeService.class,
+        SecurityConfig.class, DefaultPermissionEvaluator.class})
+@ActiveProfiles("dataJpaTest")
 class EmployeeServiceTest {
 
     @Autowired
@@ -38,6 +53,12 @@ class EmployeeServiceTest {
     private RangeService rangeService;
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
+            StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
+            StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA})
     void createTest() {
         long count = employeeService.getCountOfTotalItems();
 
@@ -58,6 +79,12 @@ class EmployeeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
+            StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
+            StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA})
     void findAllTest() {
         List<EmployeeEntity> entities = employeeService.findAll();
 
@@ -65,6 +92,12 @@ class EmployeeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
+            StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
+            StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA})
     void findByIdTest() {
         EmployeeEntity employee = employeeService.findById(3L);
 
@@ -83,6 +116,12 @@ class EmployeeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
+            StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
+            StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA})
     void findEmployeeBySecondNameTest() {
         List<EmployeeEntity> entities = employeeService.findEmployeeBySecondName("Ivanov");
 
@@ -90,6 +129,12 @@ class EmployeeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
+            StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
+            StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA})
     void findEmployeeByFirstNameTest() {
         List<EmployeeEntity> entities = employeeService.findEmployeeByFirstName("Alexander");
 
@@ -97,6 +142,12 @@ class EmployeeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
+            StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
+            StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA})
     void findEmployeeByThirdNameTest() {
         List<EmployeeEntity> entities = employeeService.findEmployeeByThirdName("Ivanovich");
 
@@ -104,6 +155,12 @@ class EmployeeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
+            StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
+            StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA})
     void findEmployeeByGenderTest() {
         GenderDTO genderDTO = new GenderDTO(1L, "Male");
 
@@ -113,6 +170,12 @@ class EmployeeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
+            StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
+            StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA})
     void findEmployeeEntityByWorktypeTest() {
         WorktypeDTO worktypeDTO = new WorktypeDTO(2L, "Hourly");
 
@@ -122,6 +185,12 @@ class EmployeeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
+            StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
+            StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA})
     void findEmployeeEntityByBirthdayTest() {
         LocalDate birthdayDate = LocalDate.of(1980, 1, 15);
 
@@ -144,6 +213,12 @@ class EmployeeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
+            StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
+            StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA})
     void findByFilterTest() {
         EmployeeSearchModel employeeSearchModel = new EmployeeSearchModel();
         employeeSearchModel.setIds(Arrays.asList(1L, 2L, 8L, 4L, 5L, 6L, 7L, 3L));
@@ -166,11 +241,23 @@ class EmployeeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
+            StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
+            StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA})
     void getCountOfTotalItemsTest() {
         assertEquals(9, employeeService.getCountOfTotalItems());
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
+            StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
+            StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA})
     void dismissEmployeeTest() {
         EmployeeEntity employee = employeeService.findById(1L);
 
@@ -194,6 +281,12 @@ class EmployeeServiceTest {
     }
 
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA, StaticSqlSchemaClasspathes.GENDERS_DATA,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
+            StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA,
+            StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA})
     void updateEmployeeTest() {
         EmployeeEntity employee = employeeService.findById(1L);
 
@@ -220,6 +313,10 @@ class EmployeeServiceTest {
         employeeService.updateEmployee(updateEmployee);
 
         EmployeeEntity updatedEmployee = employeeService.findById(1L);
+
+        System.out.println("id - " + updatedEmployee.getId());
+        System.out.println("salary - " + updatedEmployee.getSalary());
+        System.out.println("worktype id - " + updatedEmployee.getWorktypeId());
 
         assertEquals(20000.0, updatedEmployee.getSalary());
 
