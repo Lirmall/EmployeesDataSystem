@@ -1,25 +1,21 @@
 package ru.klokov.employeesdatasystem.services;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import ru.klokov.employeesdatasystem.StaticSqlSchemaClasspathes;
 import ru.klokov.employeesdatasystem.config.SecurityConfig;
 import ru.klokov.employeesdatasystem.entities.RangeEntity;
 import ru.klokov.employeesdatasystem.repositories.RangeRepository;
-import ru.klokov.employeesdatasystem.repositories.WorktypeRepository;
 import ru.klokov.employeesdatasystem.security.DefaultPermissionEvaluator;
 import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @DataJpaTest
 @PropertySource("classpath:application-dataJpaTest.properties")
