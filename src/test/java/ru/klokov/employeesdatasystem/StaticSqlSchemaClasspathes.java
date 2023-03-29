@@ -13,4 +13,5 @@ public class StaticSqlSchemaClasspathes {
     public static final String EMPLOYEES_DATA = "classpath:schemes/employees/employees-data.sql";
     public static final String EMPL_POS_RANGE_SCHEMA = "classpath:schemes/empl-pos-range/empl-pos-range-schema.sql";
     public static final String EMPL_POS_RANGE_DATA = "classpath:schemes/empl-pos-range/empl-pos-range-data.sql";
+    public static final String CLEAN_DB = "classpath:schemes/cleanDB/clean-DB.sql";
 }

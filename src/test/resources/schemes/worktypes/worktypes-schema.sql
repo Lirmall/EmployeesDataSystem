@@ -5,6 +5,6 @@ create sequence worktypes_sequence start with 1 increment by 1;
 
 create table worktypes
 (
-    id      bigint,
+    id      bigint primary key,
     name   varchar(255)
 );

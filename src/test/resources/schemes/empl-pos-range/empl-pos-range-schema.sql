@@ -5,7 +5,7 @@ create sequence employee_position_range_sequence start with 1 increment by 1;
 
 create table employee_position_range
 (
-    id      bigint,
+    id      bigint primary key,
     employee_id   bigint,
     position_id bigint,
     position_range bigint,

@@ -5,7 +5,7 @@ create sequence position_sequence start with 1 increment by 1;
 
 create table positions
 (
-    id      bigint,
+    id      bigint primary key,
     name   varchar(255),
     worktype_id bigint,
     salary double

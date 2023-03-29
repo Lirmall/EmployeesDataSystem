@@ -5,6 +5,6 @@ create sequence genders_sequence start with 1 increment by 1;
 
 create table genders
 (
-    id      bigint,
+    id      bigint primary key,
     name   varchar(255)
 );

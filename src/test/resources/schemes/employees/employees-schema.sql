@@ -5,11 +5,11 @@ create sequence employees_sequence start with 1 increment by 1;
 
 create table employees
 (
-    id      bigint,
+    id      bigint primary key,
     second_name   varchar(255),
     first_name   varchar(255),
     third_name   varchar(255),
-    gender_id   bigint,
+    gender_id   bigint, constraint gender foreign key (gender_id) references genders(id),
     birthday   date,
     worktype_id   bigint,
     salary   double,

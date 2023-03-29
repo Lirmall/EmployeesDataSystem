@@ -1,5 +1,7 @@
 package ru.klokov.employeesdatasystem.services;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -37,7 +39,8 @@ class GenderServiceTest {
     private GenderService genderService;
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.GENDERS_SCHEMA,
             StaticSqlSchemaClasspathes.GENDERS_DATA})
     void findAllTest() {
         int gendersCount = 2;
@@ -53,7 +56,8 @@ class GenderServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.GENDERS_SCHEMA,
             StaticSqlSchemaClasspathes.GENDERS_DATA})
     void findByIdTest() {
         Long id = 1L;
@@ -69,7 +73,8 @@ class GenderServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.GENDERS_SCHEMA,
             StaticSqlSchemaClasspathes.GENDERS_DATA})
     void findGenderByNameTest() {
         String name = "Male";
@@ -85,7 +90,8 @@ class GenderServiceTest {
     }
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.GENDERS_SCHEMA,
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.GENDERS_SCHEMA,
             StaticSqlSchemaClasspathes.GENDERS_DATA})
     void findByFilterTest() {
         GendersSearchModel gendersSearchModel = new GendersSearchModel();
