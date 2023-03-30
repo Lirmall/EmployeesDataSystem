@@ -164,7 +164,7 @@ insert into employee_position_range
 values (next value for employee_position_range_sequence,
              6,
              1,
-             2,
+             1,
              '2001-11-07');
 -- 15
 insert into employee_position_range

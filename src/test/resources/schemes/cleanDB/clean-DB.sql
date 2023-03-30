@@ -1,7 +1,7 @@
-DROP SEQUENCE IF EXISTS employees_sequence;
-DROP TABLE IF EXISTS employees;
 DROP SEQUENCE IF EXISTS employee_position_range_sequence;
 DROP TABLE IF EXISTS employee_position_range;
+DROP SEQUENCE IF EXISTS employees_sequence;
+DROP TABLE IF EXISTS employees;
 DROP SEQUENCE IF EXISTS ranges_sequence;
 DROP TABLE IF EXISTS ranges;
 DROP SEQUENCE IF EXISTS position_sequence;
