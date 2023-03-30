@@ -7,6 +7,6 @@ create table positions
 (
     id      bigint primary key,
     name   varchar(255),
-    worktype_id bigint,
+    worktype_id bigint, constraint worktype foreign key (worktype_id) references worktypes(id),
     salary double
 );

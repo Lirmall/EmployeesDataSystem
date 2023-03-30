@@ -29,7 +29,8 @@ class EmployeeRangeServiceTest {
     private EmployeeRangeService employeeRangeService;
 
     @Test
-    @Sql(scripts = {StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA})
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.RANGES_SCHEMA, StaticSqlSchemaClasspathes.RANGES_DATA})
     void rangeCheckTest() {
         RangeEntity rangeToCheck = new RangeEntity();
         rangeToCheck.setName("3 range");
