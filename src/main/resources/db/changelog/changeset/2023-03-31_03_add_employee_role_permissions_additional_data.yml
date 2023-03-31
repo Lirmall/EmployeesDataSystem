@@ -1,0 +1,157 @@
+databaseChangeLog:
+  - changeSet:
+      id: "employee-2"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: permission_id
+                  value: 2
+  - changeSet:
+      id: "employee-3"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: permission_id
+                  value: 3
+  - changeSet:
+      id: "employee-4"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: permission_id
+                  value: 4
+  - changeSet:
+      id: "employee-5"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: permission_id
+                  value: 5
+  - changeSet:
+      id: "employee-6"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: permission_id
+                  value: 6
+  - changeSet:
+      id: "employee-7"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: permission_id
+                  value: 7
+  - changeSet:
+      id: "employee-8"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: permission_id
+                  value: 8
+  - changeSet:
+      id: "employee-9"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: permission_id
+                  value: 9
+  - changeSet:
+      id: "employee-10"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: permission_id
+                  value: 10
+  - changeSet:
+      id: "employee-11"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: permission_id
+                  value: 11
+  - changeSet:
+      id: "employee-12"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: permission_id
+                  value: 12
+  - changeSet:
+      id: "employee-13"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: permission_id
+                  value: 22

@@ -166,7 +166,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "positions.readByFilter"
+                  value: "positions.create"
   - changeSet:
       id: "14"
       author: Andrey
@@ -180,7 +180,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "positions.create"
+                  value: "positions.update"
   - changeSet:
       id: "15"
       author: Andrey
@@ -194,7 +194,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "positions.update"
+                  value: "positions.deleteById"
   - changeSet:
       id: "16"
       author: Andrey
@@ -208,7 +208,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "positions.deleteById"
+                  value: "employee.read"
   - changeSet:
       id: "17"
       author: Andrey
@@ -222,7 +222,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "employee.read"
+                  value: "employee.readById"
   - changeSet:
       id: "18"
       author: Andrey
@@ -236,7 +236,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "employee.readById"
+                  value: "employee.readByFilter"
   - changeSet:
       id: "19"
       author: Andrey
@@ -250,7 +250,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "employee.readByFilter"
+                  value: "employee.create"
   - changeSet:
       id: "20"
       author: Andrey
@@ -264,7 +264,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "employee.create"
+                  value: "employee.update"
   - changeSet:
       id: "21"
       author: Andrey
@@ -278,7 +278,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "employee.update"
+                  value: "employee.dismiss"
   - changeSet:
       id: "22"
       author: Andrey
@@ -292,7 +292,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "employee.dismiss"
+                  value: "salary.getAverageByWorktype"
   - changeSet:
       id: "23"
       author: Andrey
@@ -306,7 +306,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "salary.getAverageByWorktype"
+                  value: "salary.getMonthByEmployee"
   - changeSet:
       id: "24"
       author: Andrey
@@ -320,7 +320,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "salary.getMonthByEmployee"
+                  value: "salary.getOnPeriodByEmployee"
   - changeSet:
       id: "25"
       author: Andrey
@@ -334,7 +334,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "salary.getOnPeriodByEmployee"
+                  value: "user.read"
   - changeSet:
       id: "26"
       author: Andrey
@@ -348,7 +348,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "user.read"
+                  value: "user.readById"
   - changeSet:
       id: "27"
       author: Andrey
@@ -362,7 +362,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "user.readById"
+                  value: "user.create"
   - changeSet:
       id: "28"
       author: Andrey
@@ -376,7 +376,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "user.create"
+                  value: "user.update"
   - changeSet:
       id: "29"
       author: Andrey
@@ -390,7 +390,7 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "user.update"
+                  value: "user.deleteByUsername"
   - changeSet:
       id: "30"
       author: Andrey
@@ -404,23 +404,9 @@ databaseChangeLog:
                   valueSequenceNext: security_permissions_sequence
               - column:
                   name: name
-                  value: "user.deleteByUsername"
-  - changeSet:
-      id: "31"
-      author: Andrey
-      changes:
-        - insert:
-            tableName: security_permissions
-            columns:
-              - column:
-                  name: id
-                  value:
-                  valueSequenceNext: security_permissions_sequence
-              - column:
-                  name: name
                   value: "user.deleteById"
   - changeSet:
-      id: "32"
+      id: "31"
       author: Andrey
       changes:
         - insert:

@@ -1,0 +1,127 @@
+databaseChangeLog:
+  - changeSet:
+      id: "2"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_role_sequence
+              - column:
+                  name: name
+                  value: 'ROLE_BUCHHALTER'
+  - changeSet:
+      id: "3"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_role_sequence
+              - column:
+                  name: name
+                  value: 'ROLE_HEAD_BUCHHALTER'
+  - changeSet:
+      id: "4"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_role_sequence
+              - column:
+                  name: name
+                  value: 'ROLE_PERS_DEPT_EMPL'
+  - changeSet:
+      id: "5"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_role_sequence
+              - column:
+                  name: name
+                  value: 'ROLE_HEAD_PERS_DEPT'
+  - changeSet:
+      id: "6"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_role_sequence
+              - column:
+                  name: name
+                  value: 'ROLE_ENGINEER'
+  - changeSet:
+      id: "7"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_role_sequence
+              - column:
+                  name: name
+                  value: 'ROLE_HEAD_ENGINEER'
+  - changeSet:
+      id: "8"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_role_sequence
+              - column:
+                  name: name
+                  value: 'ROLE_CHIEF_ENGINEER'
+  - changeSet:
+      id: "9"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_role_sequence
+              - column:
+                  name: name
+                  value: 'ROLE_TECH_DIRECTOR'
+  - changeSet:
+      id: "10"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_role_sequence
+              - column:
+                  name: name
+                  value: 'ROLE_ADMIN'
