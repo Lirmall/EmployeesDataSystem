@@ -1,0 +1,421 @@
+databaseChangeLog:
+  - changeSet:
+      id: "2"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "genders.readById"
+  - changeSet:
+      id: "3"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "genders.readByFilter"
+  - changeSet:
+      id: "4"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "worktypes.read"
+  - changeSet:
+      id: "5"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "worktypes.readById"
+  - changeSet:
+      id: "6"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "worktypes.readByFilter"
+  - changeSet:
+      id: "7"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "ranges.read"
+  - changeSet:
+      id: "8"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "ranges.readById"
+  - changeSet:
+      id: "9"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "ranges.readByFilter"
+  - changeSet:
+      id: "10"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "positions.read"
+  - changeSet:
+      id: "11"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "positions.readById"
+  - changeSet:
+      id: "12"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "positions.readByFilter"
+  - changeSet:
+      id: "13"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "positions.create"
+  - changeSet:
+      id: "14"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "positions.update"
+  - changeSet:
+      id: "15"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "positions.deleteById"
+  - changeSet:
+      id: "16"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "employee.read"
+  - changeSet:
+      id: "17"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "employee.readById"
+  - changeSet:
+      id: "18"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "employee.readByFilter"
+  - changeSet:
+      id: "19"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "employee.create"
+  - changeSet:
+      id: "20"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "employee.update"
+  - changeSet:
+      id: "21"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "employee.dismiss"
+  - changeSet:
+      id: "22"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "salary.getAverageByWorktype"
+  - changeSet:
+      id: "23"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "salary.getMonthByEmployee"
+  - changeSet:
+      id: "24"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "salary.getOnPeriodByEmployee"
+  - changeSet:
+      id: "25"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "user.read"
+  - changeSet:
+      id: "26"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "user.readById"
+  - changeSet:
+      id: "27"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "user.create"
+  - changeSet:
+      id: "28"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "user.update"
+  - changeSet:
+      id: "29"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "user.deleteByUsername"
+  - changeSet:
+      id: "30"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "user.deleteById"
+  - changeSet:
+      id: "31"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_permissions
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_permissions_sequence
+              - column:
+                  name: name
+                  value: "user.loadByUsername"

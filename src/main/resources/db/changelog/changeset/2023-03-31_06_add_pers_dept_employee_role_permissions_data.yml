@@ -1,0 +1,209 @@
+databaseChangeLog:
+  - changeSet:
+      id: "pers-dept-employee-1"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 2
+  - changeSet:
+      id: "pers-dept-employee-2"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 2
+  - changeSet:
+      id: "pers-dept-employee-3"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 3
+  - changeSet:
+      id: "pers-dept-employee-4"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 4
+  - changeSet:
+      id: "pers-dept-employee-5"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 5
+  - changeSet:
+      id: "pers-dept-employee-6"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 6
+  - changeSet:
+      id: "pers-dept-employee-7"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 7
+  - changeSet:
+      id: "pers-dept-employee-8"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 8
+  - changeSet:
+      id: "pers-dept-employee-9"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 9
+  - changeSet:
+      id: "pers-dept-employee-10"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 10
+  - changeSet:
+      id: "pers-dept-employee-11"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 11
+  - changeSet:
+      id: "pers-dept-employee-12"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 12
+  - changeSet:
+      id: "pers-dept-employee-13"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 14
+  - changeSet:
+      id: "pers-dept-employee-14"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 19
+  - changeSet:
+      id: "pers-dept-employee-15"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 20
+  - changeSet:
+      id: "pers-dept-employee-16"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 4
+              - column:
+                  name: permission_id
+                  value: 22
