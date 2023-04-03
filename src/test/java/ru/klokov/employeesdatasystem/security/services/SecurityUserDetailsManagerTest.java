@@ -38,6 +38,12 @@ class SecurityUserDetailsManagerTest {
     private SecurityRoleRepository roleRepository;
 
     @Test
+    void test() {
+        String s = "admin";
+        System.out.println("-----> " + encoder.encode(s) + " |");
+    }
+
+    @Test
     void createUserTest() {
         CreateSecurityUserEntity createSecurityUserEntity =
                 new CreateSecurityUserEntity();
