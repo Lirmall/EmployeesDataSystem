@@ -63,3 +63,23 @@ databaseChangeLog:
       file: db/changelog/changeset/2023-03-31_01_add_permissions_additional_data.yml
   - include:
       file: db/changelog/changeset/2023-03-31_02_add_security_additional_role_data.yml
+  - include:
+      file: db/changelog/changeset/2023-03-31_03_add_employee_role_permissions_additional_data.yml
+  - include:
+      file: db/changelog/changeset/2023-03-31_04_add_buhhalter_role_permissions_data.yml
+  - include:
+      file: db/changelog/changeset/2023-03-31_05_add_head_buh_role_permissions_data.yml
+  - include:
+      file: db/changelog/changeset/2023-03-31_06_add_pers_dept_employee_role_permissions_data.yml
+  - include:
+      file: db/changelog/changeset/2023-03-31_07_add_head_pers_dept_role_permissions_data.yml
+  - include:
+      file: db/changelog/changeset/2023-04-03_01_add_engineer_role_permissions_data.yml
+  - include:
+      file: db/changelog/changeset/2023-04-03_02_add_head-engineer_role_permissions_data.yml
+  - include:
+      file: db/changelog/changeset/2023-04-03_03_add_chief-engineer_role_permissions_data.yml
+  - include:
+      file: db/changelog/changeset/2023-04-03_04_add_tech_dir_role_permissions_data.yml
+  - include:
+      file: db/changelog/changeset/2023-04-03_05_add_admin_role_permissions_data.yml
