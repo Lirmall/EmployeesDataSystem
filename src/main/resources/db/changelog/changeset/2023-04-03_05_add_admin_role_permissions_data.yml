@@ -1,0 +1,404 @@
+databaseChangeLog:
+  - changeSet:
+      id: "admin-1"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 1
+  - changeSet:
+      id: "admin-2"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 2
+  - changeSet:
+      id: "admin-3"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 3
+  - changeSet:
+      id: "admin-4"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 4
+  - changeSet:
+      id: "admin-5"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 5
+  - changeSet:
+      id: "admin-6"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 6
+  - changeSet:
+      id: "admin-7"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 7
+  - changeSet:
+      id: "admin-8"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 8
+  - changeSet:
+      id: "admin-9"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 9
+  - changeSet:
+      id: "admin-10"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 10
+  - changeSet:
+      id: "admin-11"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 11
+  - changeSet:
+      id: "admin-12"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 12
+  - changeSet:
+      id: "admin-13"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 13
+  - changeSet:
+      id: "admin-14"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 14
+  - changeSet:
+      id: "admin-15"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 15
+  - changeSet:
+      id: "admin-16"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 16
+  - changeSet:
+      id: "admin-17"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 17
+  - changeSet:
+      id: "admin-18"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 18
+  - changeSet:
+      id: "admin-19"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 19
+  - changeSet:
+      id: "admin-20"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 20
+  - changeSet:
+      id: "admin-21"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 21
+  - changeSet:
+      id: "admin-22"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 22
+  - changeSet:
+      id: "admin-23"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 23
+  - changeSet:
+      id: "admin-24"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 24
+  - changeSet:
+      id: "admin-25"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 25
+  - changeSet:
+      id: "admin-26"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 26
+  - changeSet:
+      id: "admin-27"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 27
+  - changeSet:
+      id: "admin-28"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 28
+  - changeSet:
+      id: "admin-29"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 29
+  - changeSet:
+      id: "admin-30"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 30
+  - changeSet:
+      id: "admin-31"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 10
+              - column:
+                  name: permission_id
+                  value: 31
