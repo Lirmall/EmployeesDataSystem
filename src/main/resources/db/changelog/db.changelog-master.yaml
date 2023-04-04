@@ -85,3 +85,5 @@ databaseChangeLog:
       file: db/changelog/changeset/2023-04-03_05_add_admin_role_permissions_data.yml
   - include:
       file: db/changelog/changeset/2023-04-03_06_add_security_user_additional_data.yml
+  - include:
+      file: db/changelog/changeset/2023-04-04_01_add_additional_security_user_role_data.yml

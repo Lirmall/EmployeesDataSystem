@@ -1,0 +1,183 @@
+databaseChangeLog:
+  - changeSet:
+      id: "user-roles-1"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: role_id
+                  value: 1
+  - changeSet:
+      id: "user-roles-2"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: role_id
+                  value: 2
+  - changeSet:
+      id: "user-roles-3"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: role_id
+                  value: 2
+  - changeSet:
+      id: "user-roles-4"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: role_id
+                  value: 3
+  - changeSet:
+      id: "user-roles-5"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 4
+              - column:
+                  name: role_id
+                  value: 4
+  - changeSet:
+      id: "user-roles-6"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: role_id
+                  value: 4
+  - changeSet:
+      id: "user-roles-7"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: role_id
+                  value: 5
+  - changeSet:
+      id: "user-roles-8"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 6
+              - column:
+                  name: role_id
+                  value: 6
+  - changeSet:
+      id: "user-roles-9"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 7
+              - column:
+                  name: role_id
+                  value: 6
+  - changeSet:
+      id: "user-roles-10"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 7
+              - column:
+                  name: role_id
+                  value: 7
+  - changeSet:
+      id: "user-roles-11"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 8
+              - column:
+                  name: role_id
+                  value: 8
+  - changeSet:
+      id: "user-roles-12"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 9
+              - column:
+                  name: role_id
+                  value: 9
+  - changeSet:
+      id: "user-roles-13"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 10
+              - column:
+                  name: role_id
+                  value: 10
+  - changeSet:
+      id: "user-roles-14"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 11
+              - column:
+                  name: role_id
+                  value: 1
