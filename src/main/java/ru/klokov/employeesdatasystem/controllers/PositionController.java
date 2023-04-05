@@ -2,6 +2,7 @@ package ru.klokov.employeesdatasystem.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.klokov.employeesdatasystem.dto.AddPositionDTO;
 import ru.klokov.employeesdatasystem.dto.PositionDTO;
@@ -27,6 +28,7 @@ public class PositionController {
     private final PositionService positionService;
 
     @GetMapping
+    @PreAuthorize("hasPermission('positions', 'read')")
     public List<PositionDTO> findAll() {
         List<PositionEntity> allPositions = positionService.findAll();
         List<PositionDTO> result = new ArrayList<>();
@@ -38,6 +40,7 @@ public class PositionController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasPermission('positions', 'readById')")
     public PositionDTO getById(@PathVariable("id") Long id) {
         PositionEntity positionEntity;
 
@@ -54,17 +57,18 @@ public class PositionController {
 //    @PostMapping("/filter")
 //    public Response<PositionDTO> getPositions(@RequestBody PositionSearchModel request) {
 //        Long countOfTotalElements = positionService.getCountOfTotalItems();
-//        Page<PositionEntity> genders = positionService.findByFilter(request);
+//        Page<PositionEntity> positions = positionService.findByFilter(request);
 //
-//        if (genders.isEmpty()) {
+//        if (positions.isEmpty()) {
 //            return new Response<>(Collections.emptyList(), countOfTotalElements, 0L);
 //        } else {
-//            Page<PositionDTO> positionDTOS = genders.map(positionEntityDTOMapper::convertFromEntity);
+//            Page<PositionDTO> positionDTOS = positions.map(positionEntityDTOMapper::convertFromEntity);
 //            return new Response<>(positionDTOS.toList(), countOfTotalElements, positionDTOS.getTotalElements());
 //        }
 //    }
 
     @PostMapping("/filter")
+    @PreAuthorize("hasPermission('positions', 'readByFilter')")
     public Response<PositionDTO> getPositionsByFilter(@RequestBody PositionsSearchSpecificationsDTO request) {
         Long countOfTotalElements = positionService.getCountOfTotalItems();
         Page<PositionEntity> entities = positionService.findByFilterWithNewCriteriaAndSpecification(request);
@@ -93,6 +97,7 @@ public class PositionController {
 //    }
 
     @PostMapping("/new")
+    @PreAuthorize("hasPermission('positions', 'create')")
     public PositionDTO add(@RequestBody AddPositionDTO addPositionDTO) {
 
         PositionEntity positionEntity = new PositionEntity();
@@ -154,6 +159,7 @@ public class PositionController {
 //    }
 
     @PatchMapping("/{id}")
+    @PreAuthorize("hasPermission('positions', 'update')")
     public PositionDTO patchUpdateById(@RequestBody PositionDTO positionDTO) {
         String name = positionDTO.getName();
         Long id = positionDTO.getId();
@@ -205,6 +211,7 @@ public class PositionController {
 //    }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasPermission('positions', 'deleteById')")
     public void deletePositionById(@PathVariable("id") Long id) {
         positionService.deleteById(id);
     }

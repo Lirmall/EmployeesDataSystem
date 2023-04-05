@@ -38,6 +38,7 @@ public class GendersController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasPermission('genders', 'readById')")
     public GenderDTO getById(@PathVariable("id") Long id) {
         GenderEntity genderEntity;
 
@@ -52,6 +53,7 @@ public class GendersController {
     }
 
     @PostMapping("/filter")
+    @PreAuthorize("hasPermission('genders', 'readByFilter')")
     public Response<GenderDTO> getGenders(@RequestBody GendersSearchModel request) {
         Long countOfTotalElements = genderService.getCountOfTotalItems();
         Page<GenderEntity> genders = genderService.findByFilter(request);

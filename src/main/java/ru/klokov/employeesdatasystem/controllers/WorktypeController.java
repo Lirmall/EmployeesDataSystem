@@ -2,6 +2,7 @@ package ru.klokov.employeesdatasystem.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.klokov.employeesdatasystem.dto.WorktypeDTO;
 import ru.klokov.employeesdatasystem.entities.WorktypeEntity;
@@ -25,6 +26,7 @@ public class WorktypeController {
     private final WorktypeService worktypeService;
 
     @GetMapping
+    @PreAuthorize("hasPermission('worktypes', 'read')")
     public List<WorktypeDTO> findAll() {
         List<WorktypeEntity> allGenders = worktypeService.findAll();
         List<WorktypeDTO> result = new ArrayList<>();
@@ -36,6 +38,7 @@ public class WorktypeController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasPermission('worktypes', 'readById')")
     public WorktypeDTO getById(@PathVariable("id") Long id) {
         WorktypeEntity genderEntity;
 
@@ -50,6 +53,7 @@ public class WorktypeController {
     }
 
     @PostMapping("/filter")
+    @PreAuthorize("hasPermission('worktypes', 'readByFilter')")
     public Response<WorktypeDTO> getWorktypesByFilter(@RequestBody WorktypeSearchModel request) {
         Long countOfTotalElements = worktypeService.getCountOfTotalItems();
         Page<WorktypeEntity> genders = worktypeService.findByFilter(request);

@@ -172,7 +172,7 @@ class SecurityUserDetailsManagerTest {
 
     @Test
     void findByIdTest() {
-        SecurityUser user = securityUserDetailsManager.findById(1L);
+        SecurityUser user = securityUserDetailsManager.findById(11L);
 
         assertTrue(encoder.matches("123", user.getPassword()));
         assertTrue(user.getNonExpired());

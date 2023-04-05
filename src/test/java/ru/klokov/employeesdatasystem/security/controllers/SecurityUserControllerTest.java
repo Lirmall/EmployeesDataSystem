@@ -36,8 +36,8 @@ class SecurityUserControllerTest {
     @BeforeEach
     void setUp() throws Exception {
         String body = "{\n" +
-                "    \"username\": \"user\",\n" +
-                "    \"password\": \"123\"\n" +
+                "    \"username\": \"admin\",\n" +
+                "    \"password\": \"admin\"\n" +
                 "}";
         token = mockMvc.perform(post("/login").with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)

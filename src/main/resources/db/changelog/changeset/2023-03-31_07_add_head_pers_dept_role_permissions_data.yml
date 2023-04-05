@@ -167,7 +167,7 @@ databaseChangeLog:
                   value: 5
               - column:
                   name: permission_id
-                  value: 14
+                  value: 13
   - changeSet:
       id: "head-pers-dept-14"
       author: Andrey
@@ -180,7 +180,7 @@ databaseChangeLog:
                   value: 5
               - column:
                   name: permission_id
-                  value: 19
+                  value: 14
   - changeSet:
       id: "head-pers-dept-15"
       author: Andrey
@@ -193,9 +193,87 @@ databaseChangeLog:
                   value: 5
               - column:
                   name: permission_id
-                  value: 20
+                  value: 15
   - changeSet:
       id: "head-pers-dept-16"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 5
+              - column:
+                  name: permission_id
+                  value: 16
+  - changeSet:
+      id: "head-pers-dept-17"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 5
+              - column:
+                  name: permission_id
+                  value: 17
+  - changeSet:
+      id: "head-pers-dept-18"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 5
+              - column:
+                  name: permission_id
+                  value: 18
+  - changeSet:
+      id: "head-pers-dept-19"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 5
+              - column:
+                  name: permission_id
+                  value: 19
+  - changeSet:
+      id: "head-pers-dept-20"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 5
+              - column:
+                  name: permission_id
+                  value: 20
+  - changeSet:
+      id: "head-pers-dept-21"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  value: 5
+              - column:
+                  name: permission_id
+                  value: 21
+  - changeSet:
+      id: "head-pers-dept-22"
       author: Andrey
       changes:
         - insert:

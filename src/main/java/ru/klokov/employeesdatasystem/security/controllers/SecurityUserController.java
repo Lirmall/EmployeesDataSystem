@@ -1,6 +1,7 @@
 package ru.klokov.employeesdatasystem.security.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.klokov.employeesdatasystem.exceptions.NoMatchingEntryInDatabaseException;
 import ru.klokov.employeesdatasystem.security.SecurityUser;
@@ -25,6 +26,7 @@ public class SecurityUserController {
     private final CreateSecurityUserEntityDTOMapper createSecurityUserEntityDTOMapper;
 
     @GetMapping
+    @PreAuthorize("hasPermission('user', 'read')")
     public List<SecurityUserDTO> findAll() {
         List<SecurityUser> allUsers = service.findAll();
         List<SecurityUserDTO> result = new ArrayList<>();
@@ -36,6 +38,7 @@ public class SecurityUserController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasPermission('user', 'readById')")
     public SecurityUserDTO getById(@PathVariable("id")Long id) {
         SecurityUser securityUser;
 
@@ -49,6 +52,7 @@ public class SecurityUserController {
     }
 
     @PostMapping
+    @PreAuthorize("hasPermission('user', 'create')")
     public SecurityUserDTO addNewUser(@RequestBody CreateSecurityUserDTO dto) {
         CreateSecurityUserEntity createSecurityUserEntity =
                 createSecurityUserEntityDTOMapper.convertFromDTO(dto);

@@ -100,22 +100,22 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return this.nonExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return this.nonLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return this.credentialsNonExpired;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.getEnabled();
     }
 
     public void setUsername(String username) {
