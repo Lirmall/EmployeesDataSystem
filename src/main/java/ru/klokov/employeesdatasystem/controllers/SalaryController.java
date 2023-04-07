@@ -1,6 +1,7 @@
 package ru.klokov.employeesdatasystem.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.klokov.employeesdatasystem.dto.EmployeeDTO;
 import ru.klokov.employeesdatasystem.dto.SalaryDTO;
@@ -25,6 +26,7 @@ public class SalaryController {
     private final SalaryService salaryService;
 
     @PostMapping("/averageSalaryByWorktype")
+    @PreAuthorize("hasPermission('salary', 'getAverageByWorktype')")
     public SalaryDTO getAverageSalaryByWorktype(@RequestBody WorktypeDTO worktypeDTO) {
         WorktypeEntity worktype = worktypeEntityDTOMapper.convertFromDTO(worktypeDTO);
 
@@ -34,6 +36,7 @@ public class SalaryController {
     }
 
     @PostMapping("/monthSalaryByEmployee")
+    @PreAuthorize("hasPermission('salary', 'getMonthByEmployee')")
     public SalaryDTO getMonthSalaryByEmployee(@RequestBody EmployeeDTO employeeDTO) {
         EmployeeEntity employee = employeeEntityDTOMapper.convertFromDTO(employeeDTO);
 
@@ -43,6 +46,7 @@ public class SalaryController {
     }
 
     @PostMapping("/salaryOnPeriodByEmployee")
+    @PreAuthorize("hasPermission('salary', 'getOnPeriodByEmployee')")
     public SalaryDTO salaryOnPeriodByEmployee(@RequestBody SalarybyEmployeeOnPeriodDTO dto) {
         SalaryEntity salaryEntity = salaryService.getSalaryOnPeriodByEmployee(dto);
 

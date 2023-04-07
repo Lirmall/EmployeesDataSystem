@@ -1,0 +1,320 @@
+databaseChangeLog:
+  - changeSet:
+      id: "users-1"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_user_sequence
+              - column:
+                  name: username
+                  value: "user-employee"
+              - column:
+                  name: password
+                  value: "$2a$10$PAFUwrQhenIL2upx1IlsxuyfI0qUzogSeM.hkOHOjTvZ4vxG11zTS"
+              - column:
+                  name: non_expired
+                  value: true
+              - column:
+                  name: non_locked
+                  value: true
+              - column:
+                  name: credentials_non_expired
+                  value: true
+              - column:
+                  name: enabled
+                  value: true
+  - changeSet:
+      id: "users-2"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_user_sequence
+              - column:
+                  name: username
+                  value: "user-buhhalter"
+              - column:
+                  name: password
+                  value: "$2a$10$gwx2WEwm5eyGlFiQo24WVupxtB6Gs60paNmusOgrMruvolTikYJki"
+              - column:
+                  name: non_expired
+                  value: true
+              - column:
+                  name: non_locked
+                  value: true
+              - column:
+                  name: credentials_non_expired
+                  value: true
+              - column:
+                  name: enabled
+                  value: true
+  - changeSet:
+      id: "users-3"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_user_sequence
+              - column:
+                  name: username
+                  value: "user-head-buhhalter"
+              - column:
+                  name: password
+                  value: "$2a$10$xb5bKxxXIDxfaICifFRJr.AwwjH1e9V9SaMBGwV17h/0cWhc6Pyke"
+              - column:
+                  name: non_expired
+                  value: true
+              - column:
+                  name: non_locked
+                  value: true
+              - column:
+                  name: credentials_non_expired
+                  value: true
+              - column:
+                  name: enabled
+                  value: true
+  - changeSet:
+      id: "users-4"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_user_sequence
+              - column:
+                  name: username
+                  value: "user-pers-dept-empl"
+              - column:
+                  name: password
+                  value: "$2a$10$ygUkaq0wy5BhTFlKDWCTmeMCKpOck8Jn.0lQhKOQ5.5C9y6xMRAYK"
+              - column:
+                  name: non_expired
+                  value: true
+              - column:
+                  name: non_locked
+                  value: true
+              - column:
+                  name: credentials_non_expired
+                  value: true
+              - column:
+                  name: enabled
+                  value: true
+  - changeSet:
+      id: "users-5"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_user_sequence
+              - column:
+                  name: username
+                  value: "user-head-pers-dept"
+              - column:
+                  name: password
+                  value: "$2a$10$rjDL8PF/AQ8Xn9W0VnDPyOV2wpN3MX8B1F9jIF5fLzYQkB/mlrIrK"
+              - column:
+                  name: non_expired
+                  value: true
+              - column:
+                  name: non_locked
+                  value: true
+              - column:
+                  name: credentials_non_expired
+                  value: true
+              - column:
+                  name: enabled
+                  value: true
+  - changeSet:
+      id: "users-6"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_user_sequence
+              - column:
+                  name: username
+                  value: "user-engineer"
+              - column:
+                  name: password
+                  value: "$2a$10$mRAOMVc4T/BnImfi1bldWu8ry60Mj9j4xzc.rvLkHUFmSrRBi5zyu"
+              - column:
+                  name: non_expired
+                  value: true
+              - column:
+                  name: non_locked
+                  value: true
+              - column:
+                  name: credentials_non_expired
+                  value: true
+              - column:
+                  name: enabled
+                  value: true
+  - changeSet:
+      id: "users-7"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_user_sequence
+              - column:
+                  name: username
+                  value: "user-head-engineer"
+              - column:
+                  name: password
+                  value: "$2a$10$Sxr9bzlH7ThnsEL0kP57UOunxf6lKEo32TwlKWPEb9NNnxCL2L0VG"
+              - column:
+                  name: non_expired
+                  value: true
+              - column:
+                  name: non_locked
+                  value: true
+              - column:
+                  name: credentials_non_expired
+                  value: true
+              - column:
+                  name: enabled
+                  value: true
+  - changeSet:
+      id: "users-8"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_user_sequence
+              - column:
+                  name: username
+                  value: "user-chief-engineer"
+              - column:
+                  name: password
+                  value: "$2a$10$Q8IsBZgUj4t/En/MSjsQPOxJBuPTGtCfElSR/m1Ysc0QGGPd1JG6a"
+              - column:
+                  name: non_expired
+                  value: true
+              - column:
+                  name: non_locked
+                  value: true
+              - column:
+                  name: credentials_non_expired
+                  value: true
+              - column:
+                  name: enabled
+                  value: true
+  - changeSet:
+      id: "users-9"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_user_sequence
+              - column:
+                  name: username
+                  value: "user-tech-dir"
+              - column:
+                  name: password
+                  value: "$2a$10$D8Kqi3oEhFbo.9lqd7rd6ubvhqHihQD0LdW6bahPg0U9ruayga7Hu"
+              - column:
+                  name: non_expired
+                  value: true
+              - column:
+                  name: non_locked
+                  value: true
+              - column:
+                  name: credentials_non_expired
+                  value: true
+              - column:
+                  name: enabled
+                  value: true
+  - changeSet:
+      id: "users-10"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_user_sequence
+              - column:
+                  name: username
+                  value: "admin"
+              - column:
+                  name: password
+                  value: "$2a$10$Hsr0v2u3bcn4HVSf3sMv3ulTTvnuFhmQtmJ4XJIlCKqwAymyzvYKW"
+              - column:
+                  name: non_expired
+                  value: true
+              - column:
+                  name: non_locked
+                  value: true
+              - column:
+                  name: credentials_non_expired
+                  value: true
+              - column:
+                  name: enabled
+                  value: true
+  - changeSet:
+      id: "users-11"
+      author: Andrey
+      changes:
+        - insert:
+            tableName: security_users
+            columns:
+              - column:
+                  name: id
+                  value:
+                  valueSequenceNext: security_user_sequence
+              - column:
+                  name: username
+                  value: "user"
+              - column:
+                  name: password
+                  value: "$2a$10$jEBPUqNpNRhWRLGkzerW7eat3ZsXU21.L.KQCZlGbRSptvKuevqkq"
+              - column:
+                  name: non_expired
+                  value: true
+              - column:
+                  name: non_locked
+                  value: true
+              - column:
+                  name: credentials_non_expired
+                  value: true
+              - column:
+                  name: enabled
+                  value: true

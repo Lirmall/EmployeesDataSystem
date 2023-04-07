@@ -2,6 +2,7 @@ package ru.klokov.employeesdatasystem.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.klokov.employeesdatasystem.dto.RangeDTO;
 import ru.klokov.employeesdatasystem.entities.RangeEntity;
@@ -25,6 +26,7 @@ public class RangeController {
     private final RangeService rangeService;
 
     @GetMapping
+    @PreAuthorize("hasPermission('ranges', 'read')")
     public List<RangeDTO> findAll() {
         List<RangeEntity> allGenders = rangeService.findAll();
         List<RangeDTO> result = new ArrayList<>();
@@ -36,6 +38,7 @@ public class RangeController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasPermission('ranges', 'readById')")
     public RangeDTO getById(@PathVariable("id") Long id) {
         RangeEntity rangeEntity;
 
@@ -50,7 +53,8 @@ public class RangeController {
     }
 
     @PostMapping("/filter")
-    public Response<RangeDTO> getRanges(@RequestBody RangeSearchModel request) {
+    @PreAuthorize("hasPermission('ranges', 'readByFilter')")
+    public Response<RangeDTO> getRangesByFilter(@RequestBody RangeSearchModel request) {
         Long countOfTotalElements = rangeService.getCountOfTotalItems();
         Page<RangeEntity> genders = rangeService.findByFilter(request);
 

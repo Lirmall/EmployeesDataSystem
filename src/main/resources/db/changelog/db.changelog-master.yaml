@@ -55,10 +55,10 @@ databaseChangeLog:
       file: db/changelog/changeset/2023-03-17_02_add_security_role_data.yml
   - include:
       file: db/changelog/changeset/2023-03-17_03_add_security_role_permissions_data.yml
-  - include:
-      file: db/changelog/changeset/2023-03-17_04_add_security_user_data.yml
-  - include:
-      file: db/changelog/changeset/2023-03-17_05_add_security_user_role_data.yml
+#  - include:
+#      file: db/changelog/changeset/2023-03-17_04_add_security_user_data.yml
+#  - include:
+#      file: db/changelog/changeset/2023-03-17_05_add_security_user_role_data.yml
   - include:
       file: db/changelog/changeset/2023-03-31_01_add_permissions_additional_data.yml
   - include:
@@ -83,3 +83,7 @@ databaseChangeLog:
       file: db/changelog/changeset/2023-04-03_04_add_tech_dir_role_permissions_data.yml
   - include:
       file: db/changelog/changeset/2023-04-03_05_add_admin_role_permissions_data.yml
+  - include:
+      file: db/changelog/changeset/2023-04-03_06_add_security_user_additional_data.yml
+  - include:
+      file: db/changelog/changeset/2023-04-04_01_add_additional_security_user_role_data.yml

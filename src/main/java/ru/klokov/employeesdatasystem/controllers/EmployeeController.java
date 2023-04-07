@@ -2,6 +2,7 @@ package ru.klokov.employeesdatasystem.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.klokov.employeesdatasystem.dto.CreateEmployeeDTO;
 import ru.klokov.employeesdatasystem.dto.DismissEmployeeDTO;
@@ -37,6 +38,7 @@ public class EmployeeController {
     private final UpdateEmployeeEntityDTOMapper updateEmployeeEntityDTOMapper;
 
     @PostMapping
+    @PreAuthorize("hasPermission('employee', 'create')")
     public EmployeeDTO add(@RequestBody CreateEmployeeDTO createEmployeeDTO) {
         CreateEmployeeEntity createEmployeeEntity = createEmployeeEntityDTOMapper.convertFromDTO(createEmployeeDTO);
 
@@ -46,6 +48,7 @@ public class EmployeeController {
     }
 
     @GetMapping
+    @PreAuthorize("hasPermission('employee', 'read')")
     public List<EmployeeDTO> findAll() {
         List<EmployeeEntity> allEmployees = employeeService.findAll();
         List<EmployeeDTO> result = new ArrayList<>();
@@ -57,6 +60,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasPermission('employee', 'readById')")
     public EmployeeDTO getById(@PathVariable("id") Long id) {
         EmployeeEntity employeeEntity;
 
@@ -71,6 +75,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/filter")
+    @PreAuthorize("hasPermission('employee', 'readByFilter')")
     public Response<EmployeeDTO> getEmployeesByFilter(@RequestBody EmployeeSearchModel request) {
         Long countOfTotalElements = employeeService.getCountOfTotalItems();
         Page<EmployeeEntity> genders = employeeService.findByFilter(request);
@@ -85,6 +90,7 @@ public class EmployeeController {
 
 
     @PostMapping("/dismiss")
+    @PreAuthorize("hasPermission('employee', 'dismiss')")
     public EmployeeDTO dismissEmployee(@RequestBody DismissEmployeeDTO dismissEmployeeDTO) {
         DismissEmployeeEntity dismissEmployeeEntity = dismissEmployeeEntityDTOMapper.convertFromDTO(dismissEmployeeDTO);
 
@@ -94,6 +100,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/update")
+    @PreAuthorize("hasPermission('employee', 'update')")
     public EmployeeDTO updateEmployee(@RequestBody UpdateEmployeeDTO updateEmployeeDTO) {
         UpdateEmployeeEntity updateEmployeeEntity = updateEmployeeEntityDTOMapper.convertFromDTO(updateEmployeeDTO);
 

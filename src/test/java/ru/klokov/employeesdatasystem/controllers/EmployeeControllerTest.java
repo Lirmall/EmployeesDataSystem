@@ -36,8 +36,8 @@ class EmployeeControllerTest {
     @BeforeEach
     void setUp() throws Exception {
         String body = "{\n" +
-                "    \"username\": \"user\",\n" +
-                "    \"password\": \"123\"\n" +
+                "    \"username\": \"user-head-pers-dept\",\n" +
+                "    \"password\": \"user-head-pers-dept\"\n" +
                 "}";
         token = mockMvc.perform(post("/login").with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)

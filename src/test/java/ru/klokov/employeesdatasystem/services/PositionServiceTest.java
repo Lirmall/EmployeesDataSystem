@@ -129,6 +129,9 @@ class PositionServiceTest {
 
     @Disabled
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA})
     void findByFilterWithNewCriteriaAndSpecificationTest() {
         PositionSearchCriteria criteria = new PositionSearchCriteria();
         criteria.setFieldName("salary");
@@ -139,10 +142,9 @@ class PositionServiceTest {
 
         Integer limit = 5;
 
-        String sortColumn = "id";
+        String sortColumn = "-id";
 
         PageSettings pageSettings = new PageSettings(pages, limit, sortColumn);
-
 
         PositionSpecificationWithCriteria specification = new PositionSpecificationWithCriteria(criteria);
 
@@ -167,25 +169,28 @@ class PositionServiceTest {
 
 //        Page<PositionEntity> result = positionService.findByFilterWithNewCriteriaAndSpecification(criteria);
 //
-//        assertNotNull(result);
-////        assertEquals(1, result.getTotalElements());
-//        System.out.println("elements ---------> " + result.getTotalElements());
-//        PositionEntity resultEntity0 = result.getContent().get(0);
-//        PositionEntity resultEntity1 = result.getContent().get(1);
-//        PositionEntity resultEntity2 = result.getContent().get(2);
+        assertNotNull(result);
+//        assertEquals(1, result.getTotalElements());
+        System.out.println("elements ---------> " + result.getTotalElements());
+        PositionEntity resultEntity0 = result.getContent().get(0);
+        PositionEntity resultEntity1 = result.getContent().get(1);
+        PositionEntity resultEntity2 = result.getContent().get(2);
 //        PositionEntity resultEntity3 = result.getContent().get(3);
-//
-//        System.out.println(resultEntity0.getId());
-//        System.out.println(resultEntity0.getName());
-//        System.out.println(resultEntity0.getSalary());
-//
-//        System.out.println(resultEntity1.getId());
-//        System.out.println(resultEntity1.getName());
-//        System.out.println(resultEntity1.getSalary());
-//
-//        System.out.println(resultEntity2.getId());
-//        System.out.println(resultEntity2.getName());
-//        System.out.println(resultEntity2.getSalary());
+
+        System.out.println(resultEntity0.getId());
+        System.out.println(resultEntity0.getName());
+        System.out.println(resultEntity0.getSalary());
+        System.out.println(resultEntity0.getWorktype().getName());
+
+        System.out.println(resultEntity1.getId());
+        System.out.println(resultEntity1.getName());
+        System.out.println(resultEntity1.getSalary());
+        System.out.println(resultEntity1.getWorktype().getName());
+
+        System.out.println(resultEntity2.getId());
+        System.out.println(resultEntity2.getName());
+        System.out.println(resultEntity2.getSalary());
+        System.out.println(resultEntity2.getWorktype().getName());
 //
 //        System.out.println(resultEntity3.getId());
 //        System.out.println(resultEntity3.getName());
