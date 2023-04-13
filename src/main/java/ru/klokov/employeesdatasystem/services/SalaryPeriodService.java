@@ -25,73 +25,81 @@ public class SalaryPeriodService {
         }
 
         if (monthBetweenDates == 0) {
-            boolean periodStartWith1stDay = periodStart.getDayOfMonth() == 1;
-            boolean periodEndWithLastDayOfMonth = periodEnd.getDayOfMonth() == returnIntCountDaysOfMonth(periodEnd);
-            boolean endMonthIsNextFromStartMonth = periodStart.getMonth() == periodEnd.getMonth().minus(1);
-
-            if (endMonthIsNextFromStartMonth) {
-                double workedInStartMonth = returnDoubleCountDaysOfMonth(periodStart) - periodStart.getDayOfMonth();
-                double workedInEndMonth = periodEnd.getDayOfMonth();
-                Double multiplierStart = workedInStartMonth / returnDoubleCountDaysOfMonth(periodStart);
-                Double multiplierEnd = workedInEndMonth / returnDoubleCountDaysOfMonth(periodEnd);
-                entityList.add(new SalaryPeriodEntity(periodStart, LocalDate.of(periodStart.getYear(), periodStart.getMonth(), returnIntCountDaysOfMonth(periodStart)), multiplierStart));
-                entityList.add(new SalaryPeriodEntity(LocalDate.of(periodEnd.getYear(), periodEnd.getMonth(), 1), periodEnd, multiplierEnd));
-                return entityList;
-            }
-
-            if (periodStartWith1stDay && periodEndWithLastDayOfMonth) {
-                entityList.add(new SalaryPeriodEntity(periodStart, periodEnd, 1.0));
-            } else {
-                Double multiplier = daysBetweenDates / returnDoubleCountDaysOfMonth(periodStart);
-                entityList.add(new SalaryPeriodEntity(periodStart, periodEnd, multiplier));
-            }
-            return entityList;
+            return getSalaryPeriodEntitiesWhenLessOneMonthsBetweenStartAndEnd(periodStart, periodEnd, entityList, daysBetweenDates);
         } else if (monthBetweenDates == 1 && periodStart.getMonth() != periodEnd.getMonth()) {
-            Month startMonth = periodStart.getMonth();
-            Month endMonth = periodEnd.getMonth();
-
-            boolean leapYearStart = periodStart.getYear() % 4 == 0;
-            boolean leapYearEnd = periodEnd.getYear() % 4 == 0;
-
-            double workedInStartMonth = returnDoubleCountDaysOfMonth(periodStart) - periodStart.getDayOfMonth();
-            double workedInEndMonth = periodEnd.getDayOfMonth();
-
-            Double multiplierStartMonth = workedInStartMonth / returnDoubleCountDaysOfMonth(periodStart);
-            Double multiplierEndMonth = workedInEndMonth / returnDoubleCountDaysOfMonth(periodEnd);
-
-            if (periodStart.getDayOfMonth() == 1) {
-                entityList.add(new SalaryPeriodEntity(periodStart, LocalDate.of(periodStart.getYear(), startMonth, startMonth.length(leapYearStart)), 1.0));
-            } else {
-                entityList.add(new SalaryPeriodEntity(periodStart, LocalDate.of(periodStart.getYear(), startMonth, startMonth.length(leapYearStart)), multiplierStartMonth));
-            }
-
-            long fullMonthBetween = countOfFullMonthBetween(periodStart, periodEnd);
-
-            System.out.println("fullMonthBetween " + fullMonthBetween);
-
-            int fullMonthInEntityList = 0;
-
-            for (SalaryPeriodEntity entity : entityList) {
-                if (entity.getMultiplier() == 1.0) {
-                    fullMonthInEntityList++;
-                }
-            }
-
-            if (fullMonthInEntityList < fullMonthBetween) {
-                LocalDate perSt = LocalDate.of(periodEnd.getYear(), periodEnd.minusMonths(1).getMonth(), 1);
-                LocalDate perEnd = LocalDate.of(periodEnd.getYear(), periodEnd.minusMonths(1).getMonth(), returnIntCountDaysOfMonth(perSt));
-                entityList.add(new SalaryPeriodEntity(perSt, perEnd, 1.0));
-            }
-
-            entityList.add(new SalaryPeriodEntity(LocalDate.of(periodEnd.getYear(), endMonth, 1), periodEnd, multiplierEndMonth));
-
-            return entityList;
+            return getSalaryPeriodEntitiesWhenStartAndEndInDifferentMonths(periodStart, periodEnd, entityList);
         } else if (periodStart.isAfter(periodEnd)) {
             throw new PeriodsException("Period start can't be after period end");
         } else {
             entityList = returnMonthPeriodsAtLargePeriod(periodStart, periodEnd);
             return entityList;
         }
+    }
+
+    private List<SalaryPeriodEntity> getSalaryPeriodEntitiesWhenStartAndEndInDifferentMonths(LocalDate periodStart, LocalDate periodEnd, List<SalaryPeriodEntity> entityList) {
+        Month startMonth = periodStart.getMonth();
+        Month endMonth = periodEnd.getMonth();
+
+        boolean leapYearStart = periodStart.getYear() % 4 == 0;
+        boolean leapYearEnd = periodEnd.getYear() % 4 == 0;
+
+        double workedInStartMonth = returnDoubleCountDaysOfMonth(periodStart) - periodStart.getDayOfMonth();
+        double workedInEndMonth = periodEnd.getDayOfMonth();
+
+        Double multiplierStartMonth = workedInStartMonth / returnDoubleCountDaysOfMonth(periodStart);
+        Double multiplierEndMonth = workedInEndMonth / returnDoubleCountDaysOfMonth(periodEnd);
+
+        if (periodStart.getDayOfMonth() == 1) {
+            entityList.add(new SalaryPeriodEntity(periodStart, LocalDate.of(periodStart.getYear(), startMonth, startMonth.length(leapYearStart)), 1.0));
+        } else {
+            entityList.add(new SalaryPeriodEntity(periodStart, LocalDate.of(periodStart.getYear(), startMonth, startMonth.length(leapYearStart)), multiplierStartMonth));
+        }
+
+        long fullMonthBetween = countOfFullMonthBetween(periodStart, periodEnd);
+
+        System.out.println("fullMonthBetween " + fullMonthBetween);
+
+        int fullMonthInEntityList = 0;
+
+        for (SalaryPeriodEntity entity : entityList) {
+            if (entity.getMultiplier() == 1.0) {
+                fullMonthInEntityList++;
+            }
+        }
+
+        if (fullMonthInEntityList < fullMonthBetween) {
+            LocalDate perSt = LocalDate.of(periodEnd.getYear(), periodEnd.minusMonths(1).getMonth(), 1);
+            LocalDate perEnd = LocalDate.of(periodEnd.getYear(), periodEnd.minusMonths(1).getMonth(), returnIntCountDaysOfMonth(perSt));
+            entityList.add(new SalaryPeriodEntity(perSt, perEnd, 1.0));
+        }
+
+        entityList.add(new SalaryPeriodEntity(LocalDate.of(periodEnd.getYear(), endMonth, 1), periodEnd, multiplierEndMonth));
+
+        return entityList;
+    }
+
+    private List<SalaryPeriodEntity> getSalaryPeriodEntitiesWhenLessOneMonthsBetweenStartAndEnd(LocalDate periodStart, LocalDate periodEnd, List<SalaryPeriodEntity> entityList, long daysBetweenDates) {
+        boolean periodStartWith1stDay = periodStart.getDayOfMonth() == 1;
+        boolean periodEndWithLastDayOfMonth = periodEnd.getDayOfMonth() == returnIntCountDaysOfMonth(periodEnd);
+        boolean endMonthIsNextFromStartMonth = periodStart.getMonth() == periodEnd.getMonth().minus(1);
+
+        if (endMonthIsNextFromStartMonth) {
+            double workedInStartMonth = returnDoubleCountDaysOfMonth(periodStart) - periodStart.getDayOfMonth();
+            double workedInEndMonth = periodEnd.getDayOfMonth();
+            Double multiplierStart = workedInStartMonth / returnDoubleCountDaysOfMonth(periodStart);
+            Double multiplierEnd = workedInEndMonth / returnDoubleCountDaysOfMonth(periodEnd);
+            entityList.add(new SalaryPeriodEntity(periodStart, LocalDate.of(periodStart.getYear(), periodStart.getMonth(), returnIntCountDaysOfMonth(periodStart)), multiplierStart));
+            entityList.add(new SalaryPeriodEntity(LocalDate.of(periodEnd.getYear(), periodEnd.getMonth(), 1), periodEnd, multiplierEnd));
+            return entityList;
+        }
+
+        if (periodStartWith1stDay && periodEndWithLastDayOfMonth) {
+            entityList.add(new SalaryPeriodEntity(periodStart, periodEnd, 1.0));
+        } else {
+            Double multiplier = daysBetweenDates / returnDoubleCountDaysOfMonth(periodStart);
+            entityList.add(new SalaryPeriodEntity(periodStart, periodEnd, multiplier));
+        }
+        return entityList;
     }
 
     private List<SalaryPeriodEntity> returnMonthPeriodsAtLargePeriod(LocalDate periodStart, LocalDate periodEnd) {
@@ -164,16 +172,12 @@ public class SalaryPeriodService {
     }
 
     private double returnDoubleCountDaysOfMonth(LocalDate date) {
-
         boolean leapYear = date.getYear() % 4 == 0;
-
         return date.getMonth().length(leapYear);
     }
 
     private int returnIntCountDaysOfMonth(LocalDate date) {
-
         boolean leapYear = date.getYear() % 4 == 0;
-
         return date.getMonth().length(leapYear);
     }
 
@@ -199,7 +203,7 @@ public class SalaryPeriodService {
         return fullMonthBetween;
     }
 
-    private int returnWorkdaysOnPeriod(SalaryPeriodEntity salaryPeriodEntity) {
+    private int returnIntWorkdaysOnPeriod(SalaryPeriodEntity salaryPeriodEntity) {
         int workdays = 0;
         LocalDate periodStart = salaryPeriodEntity.getPeriodStart();
         LocalDate periodEnd = salaryPeriodEntity.getPeriodEnd();
