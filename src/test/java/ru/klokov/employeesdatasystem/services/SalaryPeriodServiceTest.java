@@ -13,7 +13,7 @@ class SalaryPeriodServiceTest {
     private final SalaryPeriodService salaryPeriodService = new SalaryPeriodService();
 
     @Test
-    void returnMonthPeriodsTest1() {
+    void returnMonthPeriodsTest01() {
         LocalDate periodStart = LocalDate.of(2022, 6, 1);
         LocalDate periodEnd = LocalDate.of(2022, 8, 31);
 
@@ -33,7 +33,7 @@ class SalaryPeriodServiceTest {
     }
 
     @Test
-    void returnMonthPeriodsTest2() {
+    void returnMonthPeriodsTest02() {
         LocalDate periodStart = LocalDate.of(2022, 6, 11);
         LocalDate periodEnd = LocalDate.of(2022, 8, 31);
 
@@ -53,7 +53,7 @@ class SalaryPeriodServiceTest {
     }
 
     @Test
-    void returnMonthPeriodsTest3() {
+    void returnMonthPeriodsTest03() {
         LocalDate periodStart = LocalDate.of(2022, 6, 1);
         LocalDate periodEnd = LocalDate.of(2022, 8, 15);
 
@@ -73,7 +73,7 @@ class SalaryPeriodServiceTest {
     }
 
     @Test
-    void returnMonthPeriodsTest4() {
+    void returnMonthPeriodsTest04() {
         LocalDate periodStart = LocalDate.of(2022, 6, 12);
         LocalDate periodEnd = LocalDate.of(2022, 8, 3);
 
@@ -93,7 +93,7 @@ class SalaryPeriodServiceTest {
     }
 
     @Test
-    void returnMonthPeriodsTest5() {
+    void returnMonthPeriodsTest05() {
         LocalDate periodStart = LocalDate.of(2022, 6, 2);
         LocalDate periodEnd = LocalDate.of(2022, 6, 15);
 
@@ -107,7 +107,7 @@ class SalaryPeriodServiceTest {
     }
 
     @Test
-    void returnMonthPeriodsTest6() {
+    void returnMonthPeriodsTest06() {
         LocalDate periodStart = LocalDate.of(2022, 6, 1);
         LocalDate periodEnd = LocalDate.of(2022, 6, 15);
 
@@ -121,7 +121,7 @@ class SalaryPeriodServiceTest {
     }
 
     @Test
-    void returnMonthPeriodsTest7() {
+    void returnMonthPeriodsTest07() {
         LocalDate periodStart = LocalDate.of(2022, 6, 16);
         LocalDate periodEnd = LocalDate.of(2022, 7, 11);
 
@@ -131,11 +131,14 @@ class SalaryPeriodServiceTest {
         assertEquals(2, list.size());
 
         assertEquals(LocalDate.of(2022, 6, 16), list.get(0).getPeriodStart());
-        assertEquals(LocalDate.of(2022, 7, 11), list.get(0).getPeriodEnd());
+        assertEquals(LocalDate.of(2022, 6, 30), list.get(0).getPeriodEnd());
+
+        assertEquals(LocalDate.of(2022, 7, 1), list.get(1).getPeriodStart());
+        assertEquals(LocalDate.of(2022, 7, 11), list.get(1).getPeriodEnd());
     }
 
     @Test
-    void returnMonthPeriodsTest8() {
+    void returnMonthPeriodsTest08() {
         LocalDate periodStart = LocalDate.of(2022, 1, 1);
         LocalDate periodEnd = LocalDate.of(2022, 10, 31);
 
@@ -152,7 +155,7 @@ class SalaryPeriodServiceTest {
     }
 
     @Test
-    void returnMonthPeriodsTest9() {
+    void returnMonthPeriodsTest09() {
         LocalDate periodStart = LocalDate.of(2022, 1, 11);
         LocalDate periodEnd = LocalDate.of(2022, 10, 31);
 
