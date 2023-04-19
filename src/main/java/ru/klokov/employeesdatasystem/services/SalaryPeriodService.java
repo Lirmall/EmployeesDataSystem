@@ -20,7 +20,7 @@ public class SalaryPeriodService {
 
         List<SalaryPeriodEntity> entityList = new ArrayList<>();
 
-        long customFullMonthBetween = countOfFullMonthBetween(periodStart, periodEnd);
+        long customFullMonthBetween = FullMonthsCounter.countOfFullMonthBetween(periodStart, periodEnd);
 
         double workedInStartMonth = returnDoubleCountDaysOfMonth(periodStart) - periodStart.getDayOfMonth();
         double workedInEndMonth = periodEnd.getDayOfMonth();
