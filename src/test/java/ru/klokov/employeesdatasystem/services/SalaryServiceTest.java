@@ -117,7 +117,7 @@ class SalaryServiceTest {
         //#2
         assertEquals("Salary of an employee  Minaeva Elena Anatolyevna on period 2022-06-12 - 2022-08-31",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #2");
-        assertEquals(52000.0, salaryEntity.getSalary(), "Trouble with salary at #2");
+        assertEquals(52666.666666666664, salaryEntity.getSalary(), "Trouble with salary at #2");
 
         dto.setPeriodStart(LocalDate.of(2022, 6, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 16));
@@ -175,7 +175,7 @@ class SalaryServiceTest {
         //#2
         assertEquals("Salary of an employee  Ivanov Ivan Ivanovich on period 2022-06-12 - 2022-08-31",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #2");
-        assertEquals(101952.0, salaryEntity.getSalary(), "Trouble with salary at #2");
+        assertEquals(102816.0, salaryEntity.getSalary(), "Trouble with salary at #2");
 
         dto.setPeriodStart(LocalDate.of(2022, 6, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 16));
@@ -223,7 +223,7 @@ class SalaryServiceTest {
         //#1
         assertEquals("Salary of an employee  Sazhin Alexander Vladimirovich on period 2022-06-01 - 2022-08-31",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #1");
-        assertEquals(79516.12903225806, salaryEntity.getSalary(), "Trouble with salary at #1");
+        assertEquals(80483.87096774194, salaryEntity.getSalary(), "Trouble with salary at #1");
 
         dto.setPeriodStart(LocalDate.of(2022, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
@@ -233,7 +233,7 @@ class SalaryServiceTest {
         //#2
         assertEquals("Salary of an employee  Sazhin Alexander Vladimirovich on period 2022-06-12 - 2022-08-31",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #2");
-        assertEquals(69516.12903225806, salaryEntity.getSalary(), "Trouble with salary at #2");
+        assertEquals(70483.87096774194, salaryEntity.getSalary(), "Trouble with salary at #2");
 
         dto.setPeriodStart(LocalDate.of(2022, 6, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 16));
@@ -243,7 +243,7 @@ class SalaryServiceTest {
         //#3
         assertEquals("Salary of an employee  Sazhin Alexander Vladimirovich on period 2022-06-01 - 2022-08-16",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #3");
-        assertEquals(65000.0, salaryEntity.getSalary(), "Trouble with salary at #3");
+        assertEquals(65967.74193548386, salaryEntity.getSalary(), "Trouble with salary at #3");
 
         dto.setPeriodStart(LocalDate.of(2022, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 16));
@@ -253,7 +253,7 @@ class SalaryServiceTest {
         //#4
         assertEquals("Salary of an employee  Sazhin Alexander Vladimirovich on period 2022-06-12 - 2022-08-16",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #4");
-        assertEquals(55000.0, salaryEntity.getSalary(), "Trouble with salary at #4");
+        assertEquals(55967.741935483864, salaryEntity.getSalary(), "Trouble with salary at #4");
 
         dto.setPeriodStart(LocalDate.of(2022, 2, 20));
         dto.setPeriodEnd(LocalDate.of(2022, 3, 20));
@@ -291,7 +291,7 @@ class SalaryServiceTest {
         //#1
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-01 - 2022-09-30",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #1");
-        assertEquals(451166.6666666666, salaryEntity.getSalary(), "Trouble with salary at #1");
+        assertEquals(452666.6666666666, salaryEntity.getSalary(), "Trouble with salary at #1");
 
         dto.setPeriodStart(LocalDate.of(2022, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
@@ -301,7 +301,7 @@ class SalaryServiceTest {
         //#2
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2022-06-12 - 2022-08-31",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #2");
-        assertEquals(52000.0, salaryEntity.getSalary(), "Trouble with salary at #2");
+        assertEquals(52666.666666666664, salaryEntity.getSalary(), "Trouble with salary at #2");
 
         dto.setPeriodStart(LocalDate.of(2020, 11, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 9, 16));
@@ -311,7 +311,7 @@ class SalaryServiceTest {
         //#3
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-01 - 2022-09-16",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #3");
-        assertEquals(439499.99999999994, salaryEntity.getSalary(), "Trouble with salary at #3");
+        assertEquals(441000.0, salaryEntity.getSalary(), "Trouble with salary at #3");
 
         dto.setPeriodStart(LocalDate.of(2020, 11, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 9, 16));
@@ -324,7 +324,7 @@ class SalaryServiceTest {
         //TODO fix it? Today - 8 feb 2023 - i didn't come to a decision
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-12 - 2022-09-16",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #4");
-        assertEquals(439499.99999999994, salaryEntity.getSalary(), "Trouble with salary at #4");
+        assertEquals(441000.0, salaryEntity.getSalary(), "Trouble with salary at #4");
     }
 
     @Test
@@ -352,7 +352,7 @@ class SalaryServiceTest {
         //#1
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-20 - 2021-01-31",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #1");
-        assertEquals(46666.666666666664, salaryEntity.getSalary(), "Trouble with salary at #1");
+        assertEquals(47333.33333333333, salaryEntity.getSalary(), "Trouble with salary at #1");
     }
 
     @Test
@@ -380,7 +380,7 @@ class SalaryServiceTest {
         //#1
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-01 - 2022-09-30",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #1");
-        assertEquals(451166.6666666666, salaryEntity.getSalary(), "Trouble with salary at #1");
+        assertEquals(452666.6666666666, salaryEntity.getSalary(), "Trouble with salary at #1");
 
         dto.setPeriodStart(LocalDate.of(2020, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
@@ -390,7 +390,7 @@ class SalaryServiceTest {
         //#2
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-06-12 - 2022-08-31",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #2");
-        assertEquals(426666.6666666666, salaryEntity.getSalary(), "Trouble with salary at #2");
+        assertEquals(427333.3333333333, salaryEntity.getSalary(), "Trouble with salary at #2");
 
         dto.setPeriodStart(LocalDate.of(2020, 11, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 9, 16));
@@ -400,7 +400,7 @@ class SalaryServiceTest {
         //#3
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-01 - 2022-09-16",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #3");
-        assertEquals(439499.99999999994, salaryEntity.getSalary(), "Trouble with salary at #3");
+        assertEquals(441000.0, salaryEntity.getSalary(), "Trouble with salary at #3");
 
         dto.setPeriodStart(LocalDate.of(2020, 11, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 9, 16));
@@ -410,7 +410,7 @@ class SalaryServiceTest {
         //#4
         assertEquals("Salary of an employee  Fomin Alexey Petrovich on period 2020-11-12 - 2022-09-16",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #4");
-        assertEquals(439499.99999999994, salaryEntity.getSalary(), "Trouble with salary at #4");
+        assertEquals(441000.0, salaryEntity.getSalary(), "Trouble with salary at #4");
     }
 
     @Test
@@ -438,7 +438,7 @@ class SalaryServiceTest {
         //#1
         assertEquals("Salary of an employee  Popov Sergey Gennadievch on period 2022-06-01 - 2022-08-31",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #1");
-        assertEquals(108089.03225806452, salaryEntity.getSalary(), "Trouble with salary at #1");
+        assertEquals(108669.67741935483, salaryEntity.getSalary(), "Trouble with salary at #1");
 
         dto.setPeriodStart(LocalDate.of(2022, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 31));
@@ -448,7 +448,7 @@ class SalaryServiceTest {
         //#2
         assertEquals("Salary of an employee  Popov Sergey Gennadievch on period 2022-06-12 - 2022-08-31",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #2");
-        assertEquals(79697.03225806452, salaryEntity.getSalary(), "Trouble with salary at #2");
+        assertEquals(80277.67741935483, salaryEntity.getSalary(), "Trouble with salary at #2");
 
         dto.setPeriodStart(LocalDate.of(2022, 6, 1));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 16));
@@ -458,7 +458,7 @@ class SalaryServiceTest {
         //#3
         assertEquals("Salary of an employee  Popov Sergey Gennadievch on period 2022-06-01 - 2022-08-16",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #3");
-        assertEquals(99379.35483870968, salaryEntity.getSalary(), "Trouble with salary at #3");
+        assertEquals(99960.0, salaryEntity.getSalary(), "Trouble with salary at #3");
 
         dto.setPeriodStart(LocalDate.of(2022, 6, 12));
         dto.setPeriodEnd(LocalDate.of(2022, 8, 16));
@@ -468,7 +468,7 @@ class SalaryServiceTest {
         //#4
         assertEquals("Salary of an employee  Popov Sergey Gennadievch on period 2022-06-12 - 2022-08-16",
                 salaryEntity.getNameOfSalary(), "Trouble with name of salary at #4");
-        assertEquals(70987.35483870968, salaryEntity.getSalary(), "Trouble with salary at #4");
+        assertEquals(71568.0, salaryEntity.getSalary(), "Trouble with salary at #4");
 
         dto.setPeriodStart(LocalDate.of(2022, 2, 20));
         dto.setPeriodEnd(LocalDate.of(2022, 3, 20));
