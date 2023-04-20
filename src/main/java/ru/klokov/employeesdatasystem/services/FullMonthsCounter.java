@@ -16,10 +16,11 @@ public class FullMonthsCounter {
         boolean perEndWithLastDate = periodEnd.getDayOfMonth() == periodEnd.lengthOfMonth();
 
         if(periodStart.getYear() == periodEnd.getYear() && periodStart.getMonth() == periodEnd.getMonth()) {
-            if(periodStart.withDayOfMonth(periodStart.lengthOfMonth()).equals(periodEnd)) {
+            if(perStartWith1stDate && perEndWithLastDate) {
                 return 1L;
+            } else {
+                return 0L;
             }
-            return 0L;
         }
 
         if(perStartWith1stDate && perEndWithLastDate) {

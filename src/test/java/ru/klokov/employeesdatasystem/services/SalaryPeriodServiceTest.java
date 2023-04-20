@@ -447,4 +447,21 @@ class SalaryPeriodServiceTest {
         assertEquals(LocalDate.of(2021, 3, 1), list.get(0).getPeriodStart());
         assertEquals(LocalDate.of(2021, 3, 31), list.get(0).getPeriodEnd());
     }
+
+    @Test
+    void returnMonthPeriodsTest26() {
+        LocalDate periodStart = LocalDate.of(2022, 9, 3);
+        LocalDate periodEnd = LocalDate.of(2022, 9, 30);
+
+        List<SalaryPeriodEntity> list = salaryPeriodService.returnMonthPeriods(periodStart, periodEnd);
+        for (SalaryPeriodEntity e : list) {
+            System.out.println(e.getPeriodStart() + " - " + e.getPeriodEnd() + " " + e.getMultiplier());
+        }
+        assertEquals(1, list.size());
+        assertNotNull(list);
+        assertEquals(1, list.size());
+
+        assertEquals(LocalDate.of(2022, 9, 3), list.get(0).getPeriodStart());
+        assertEquals(LocalDate.of(2022, 9, 30), list.get(0).getPeriodEnd());
+    }
 }
