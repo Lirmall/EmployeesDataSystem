@@ -20,8 +20,8 @@ import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -69,7 +69,7 @@ public class EmployeeService {
 
         List<EmployeeEntity> employeeEntities = findEmployeeEntityByEmployee(employeeToCreate);
 
-        if(employeeEntities.size() == 1) {
+        if (employeeEntities.size() == 1) {
             return employeeEntities.get(0);
         } else {
             throw new AlreadyCreatedException("Employee wit this parameters was already created");
@@ -111,11 +111,11 @@ public class EmployeeService {
     public List<EmployeeEntity> findEmployeeByGender(GenderDTO genderDTO) {
         GenderEntity genderEntity = employeeGenderService.findById(genderDTO.getId());
 
-        if(genderEntity == null) {
+        if (genderEntity == null) {
             genderEntity = employeeGenderService.findGenderByName(genderDTO.getName());
         }
 
-        if(genderEntity == null) {
+        if (genderEntity == null) {
             throw new NoMatchingEntryInDatabaseException("Gender not found in database");
         }
 
@@ -126,11 +126,11 @@ public class EmployeeService {
     public List<EmployeeEntity> findEmployeeEntityByWorktype(WorktypeDTO worktypeDTO) {
         WorktypeEntity worktypeEntity = worktypeEmployeeService.findById(worktypeDTO.getId());
 
-        if(worktypeEntity == null) {
+        if (worktypeEntity == null) {
             worktypeEntity = worktypeEmployeeService.findByName(worktypeDTO.getName());
         }
 
-        if(worktypeEntity == null) {
+        if (worktypeEntity == null) {
             throw new NoMatchingEntryInDatabaseException("Gender not found in database");
         }
 
@@ -157,13 +157,14 @@ public class EmployeeService {
 
     private List<EmployeeEntity> findEmployeeEntityByEmployee(EmployeeEntity employeeEntity) {
         List<EmployeeEntity> findEntities = employeeRepository.findEmployeeEntityByBirthday(employeeEntity.getBirthday());
-        findEntities.removeIf(employee -> !Objects.equals(employee.getSecondName(), employeeEntity.getSecondName()));
-        findEntities.removeIf(employee -> !Objects.equals(employee.getFirstName(), employeeEntity.getFirstName()));
-        findEntities.removeIf(employee -> !Objects.equals(employee.getThirdName(), employeeEntity.getThirdName()));
-        findEntities.removeIf(employee -> !Objects.equals(employee.getBirthday(), employeeEntity.getBirthday()));
-        findEntities.removeIf(employee -> !Objects.equals(employee.getWorkstartDate(), employeeEntity.getWorkstartDate()));
 
-        return findEntities;
+        return findEntities.stream()
+                .filter(employee -> employee.getSecondName().equals(employeeEntity.getSecondName()))
+                .filter(employee -> employee.getFirstName().equals(employeeEntity.getFirstName()))
+                .filter(employee -> employee.getThirdName().equals(employeeEntity.getThirdName()))
+                .filter(employee -> employee.getBirthday().equals(employeeEntity.getBirthday()))
+                .filter(employee -> employee.getWorkstartDate().equals(employeeEntity.getWorkstartDate()))
+                .collect(Collectors.toList());
     }
 
     @Transactional
@@ -172,7 +173,7 @@ public class EmployeeService {
 
         EmployeeEntity employee;
 
-        if(employeeEntityList.size() == 1) {
+        if (employeeEntityList.size() == 1) {
             employee = employeeEntityList.get(0);
         } else {
             throw new MoreThatOneResultException("Employees was founded: " + employeeEntityList.size());
@@ -181,7 +182,7 @@ public class EmployeeService {
         PositionEntity position = positionEmployeeService.findPositionByName(updateEmployee.getPosition().getName());
         RangeEntity range;
 
-        if(position.getName().equals("Mechanic")) {
+        if (position.getName().equals("Mechanic")) {
             range = updateEmployee.getRange();
         } else {
             range = employeeRangeService.findRangeById(4L);
@@ -197,7 +198,7 @@ public class EmployeeService {
 
         List<EmployeeEntity> employeeEntities = findEmployeeEntityByEmployee(employee);
 
-        if(employeeEntities.size() == 1) {
+        if (employeeEntities.size() == 1) {
             return employeeEntities.get(0);
         } else {
             throw new MoreThatOneResultException("Employees was founded: " + employeeEntityList.size());
@@ -211,7 +212,7 @@ public class EmployeeService {
 
         EmployeeEntity employee;
 
-        if(employeeEntityList.size() == 1) {
+        if (employeeEntityList.size() == 1) {
             employee = employeeEntityList.get(0);
         } else {
             throw new AlreadyCreatedException("Employees was founded: " + employeeEntityList.size());
@@ -224,7 +225,7 @@ public class EmployeeService {
 
         List<EmployeeEntity> employeeEntities = findEmployeeEntityByEmployee(employee);
 
-        if(employeeEntities.size() == 1) {
+        if (employeeEntities.size() == 1) {
             return employeeEntities.get(0);
         } else {
             throw new AlreadyCreatedException("More than one employee was founded");
@@ -233,20 +234,22 @@ public class EmployeeService {
 
     private List<EmployeeEntity> findEmployeeEntityByDismissEmployee(DismissEmployeeEntity dismissEmployeeEntity) {
         List<EmployeeEntity> findEntities = employeeRepository.findEmployeeEntityByBirthday(dismissEmployeeEntity.getBirthdayDate());
-        findEntities.removeIf(employee -> !Objects.equals(employee.getSecondName(), dismissEmployeeEntity.getSecondName()));
-        findEntities.removeIf(employee -> !Objects.equals(employee.getFirstName(), dismissEmployeeEntity.getFirstName()));
-        findEntities.removeIf(employee -> !Objects.equals(employee.getThirdName(), dismissEmployeeEntity.getThirdName()));
-        findEntities.removeIf(employee -> !Objects.equals(employee.getWorkstartDate(), dismissEmployeeEntity.getWorkstartDate()));
-
-        return findEntities;
+        return findEntities.stream()
+                .filter(employee -> employee.getSecondName().equals(dismissEmployeeEntity.getSecondName()))
+                .filter(employee -> employee.getFirstName().equals(dismissEmployeeEntity.getFirstName()))
+                .filter(employee -> employee.getThirdName().equals(dismissEmployeeEntity.getThirdName()))
+                .filter(employee -> employee.getBirthday().equals(dismissEmployeeEntity.getBirthdayDate()))
+                .filter(employee -> employee.getWorkstartDate().equals(dismissEmployeeEntity.getWorkstartDate()))
+                .collect(Collectors.toList());
     }
 
     private List<EmployeeEntity> findEmployeeEntityByUpdateEmployee(UpdateEmployeeEntity updateEmployee) {
         List<EmployeeEntity> findEntities = employeeRepository.findEmployeeEntityByBirthday(updateEmployee.getBirthdayDate());
-        findEntities.removeIf(employee -> !Objects.equals(employee.getFirstName(), updateEmployee.getFirstName()));
-        findEntities.removeIf(employee -> !Objects.equals(employee.getSecondName(), updateEmployee.getSecondName()));
-        findEntities.removeIf(employee -> !Objects.equals(employee.getThirdName(), updateEmployee.getThirdName()));
-        return findEntities;
+        return findEntities.stream()
+                .filter(employee -> employee.getSecondName().equals(updateEmployee.getSecondName()))
+                .filter(employee -> employee.getFirstName().equals(updateEmployee.getFirstName()))
+                .filter(employee -> employee.getThirdName().equals(updateEmployee.getThirdName()))
+                .collect(Collectors.toList());
     }
 
     public long getCountOfTotalItems() {

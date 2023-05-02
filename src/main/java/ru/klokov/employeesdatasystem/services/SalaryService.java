@@ -13,6 +13,7 @@ import ru.klokov.employeesdatasystem.exceptions.MoreThatOneResultException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -222,9 +223,7 @@ public class SalaryService {
     }
 
     private List<EmployeePositionRangeEntity> deleteEPRAfterPeriodEnd(List<EmployeePositionRangeEntity> eprList, LocalDate periodEnd) {
-        List<EmployeePositionRangeEntity> editedList = new ArrayList<>(eprList);
-        editedList.removeIf(employeePositionRangeEntity -> employeePositionRangeEntity.getPositionChangeDate().isAfter(periodEnd));
-        return editedList;
+        return eprList.stream().filter(epr -> epr.getPositionChangeDate().isBefore(periodEnd)).collect(Collectors.toList());
     }
 
     private List<EmployeePositionRangeEntity> deleteEPREarlierStartEPR(List<EmployeePositionRangeEntity> eprList, LocalDate periodStart) {

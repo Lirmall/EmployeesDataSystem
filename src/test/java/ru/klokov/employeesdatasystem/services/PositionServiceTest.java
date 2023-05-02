@@ -1,6 +1,5 @@
 package ru.klokov.employeesdatasystem.services;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -13,6 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 import ru.klokov.employeesdatasystem.StaticSqlSchemaClasspathes;
 import ru.klokov.employeesdatasystem.config.SecurityConfig;
 import ru.klokov.employeesdatasystem.dto.PositionsSearchSpecificationsDTO;
+import ru.klokov.employeesdatasystem.dto.WorktypeDTO;
 import ru.klokov.employeesdatasystem.entities.PositionEntity;
 import ru.klokov.employeesdatasystem.entities.PositionEntityTestData;
 import ru.klokov.employeesdatasystem.entities.WorktypeEntity;
@@ -23,7 +23,6 @@ import ru.klokov.employeesdatasystem.security.DefaultPermissionEvaluator;
 import ru.klokov.employeesdatasystem.specifications.pageSettings.PageSettings;
 import ru.klokov.employeesdatasystem.specifications.positionsSpecification.PositionSearchCriteria;
 import ru.klokov.employeesdatasystem.specifications.positionsSpecification.PositionSearchModel;
-import ru.klokov.employeesdatasystem.specifications.positionsSpecification.PositionSpecificationWithCriteria;
 import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
 
 import java.util.ArrayList;
@@ -127,7 +126,6 @@ class PositionServiceTest {
         assertEquals(2L, result.getContent().get(2).getId());
     }
 
-    @Disabled
     @Test
     @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
             StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
@@ -139,14 +137,9 @@ class PositionServiceTest {
         criteria.setFieldValue(19000);
 
         Integer pages = 0;
-
         Integer limit = 5;
-
         String sortColumn = "-id";
-
         PageSettings pageSettings = new PageSettings(pages, limit, sortColumn);
-
-        PositionSpecificationWithCriteria specification = new PositionSpecificationWithCriteria(criteria);
 
         WorktypeEntity worktype = worktypeService.findById(1L);
 
@@ -165,47 +158,26 @@ class PositionServiceTest {
 
         Page<PositionEntity> result = positionService.findByFilterWithNewCriteriaAndSpecification(dto);
 
-        System.out.println("--------> " + result.getTotalElements());
-
-//        Page<PositionEntity> result = positionService.findByFilterWithNewCriteriaAndSpecification(criteria);
-//
         assertNotNull(result);
-//        assertEquals(1, result.getTotalElements());
-        System.out.println("elements ---------> " + result.getTotalElements());
-        PositionEntity resultEntity0 = result.getContent().get(0);
-        PositionEntity resultEntity1 = result.getContent().get(1);
-        PositionEntity resultEntity2 = result.getContent().get(2);
-//        PositionEntity resultEntity3 = result.getContent().get(3);
+        assertEquals(3, result.getTotalElements());
 
-        System.out.println(resultEntity0.getId());
-        System.out.println(resultEntity0.getName());
-        System.out.println(resultEntity0.getSalary());
-        System.out.println(resultEntity0.getWorktype().getName());
+        assertEquals(30000.0, result.getContent().get(0).getSalary());
+        assertEquals("Technical director", result.getContent().get(0).getName());
+        assertEquals(5L, result.getContent().get(0).getId());
+        assertEquals(1L, result.getContent().get(0).getWorktype().getId());
+        assertEquals("Salary", result.getContent().get(0).getWorktype().getName());
 
-        System.out.println(resultEntity1.getId());
-        System.out.println(resultEntity1.getName());
-        System.out.println(resultEntity1.getSalary());
-        System.out.println(resultEntity1.getWorktype().getName());
+        assertEquals(25000.0, result.getContent().get(1).getSalary());
+        assertEquals("Chief engineer", result.getContent().get(1).getName());
+        assertEquals(4L, result.getContent().get(1).getId());
+        assertEquals(1L, result.getContent().get(1).getWorktype().getId());
+        assertEquals("Salary", result.getContent().get(1).getWorktype().getName());
 
-        System.out.println(resultEntity2.getId());
-        System.out.println(resultEntity2.getName());
-        System.out.println(resultEntity2.getSalary());
-        System.out.println(resultEntity2.getWorktype().getName());
-//
-//        System.out.println(resultEntity3.getId());
-//        System.out.println(resultEntity3.getName());
-//        System.out.println(resultEntity3.getSalary());
-//
-//        WorktypeEntity worktype = worktypeService.findById(1L);
-//        criteria.setFieldName("worktype");
-//        criteria.setOperation(":");
-//        criteria.setFieldValue(worktype);
-//
-//        Page<PositionEntity> result2 = positionService.findByFilterWithNewCriteriaAndSpecification(criteria);
-//
-//        assertNotNull(result2);
-////        assertEquals(1, result.getTotalElements());
-//        System.out.println("elements2 ---------> " + result2.getTotalElements());
+        assertEquals(20000.0, result.getContent().get(2).getSalary());
+        assertEquals("Engineer", result.getContent().get(2).getName());
+        assertEquals(3L, result.getContent().get(2).getId());
+        assertEquals(1L, result.getContent().get(2).getWorktype().getId());
+        assertEquals("Salary", result.getContent().get(2).getWorktype().getName());
     }
 
     @Test
@@ -225,9 +197,18 @@ class PositionServiceTest {
         assertEquals(1000.0, result.getSalary());
     }
 
-    @Disabled
     @Test
+    @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
+            StaticSqlSchemaClasspathes.WORKTYPESS_SCHEMA, StaticSqlSchemaClasspathes.WORKTYPESS_DATA,
+            StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA})
     void worktypeCheckByWorktypeDTOTest() {
+        WorktypeDTO dto = new WorktypeDTO();
+        dto.setName("Salary");
+        dto.setId(1L);
+
+        WorktypeEntity result = positionService.worktypeCheck(dto);
+        assertEquals(1L, result.getId());
+        assertEquals("Salary", result.getName());
     }
 
     @Test
