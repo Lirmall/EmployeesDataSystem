@@ -54,6 +54,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.6.1'
 
+    implementation 'org.apache.poi:poi-ooxml:4.0.1'
+    implementation 'org.apache.poi:poi:4.0.1'
+
 //TODO разобраться с новыми алгоритмами шифрования и поднять версию библиотек токенов
 
 //    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
