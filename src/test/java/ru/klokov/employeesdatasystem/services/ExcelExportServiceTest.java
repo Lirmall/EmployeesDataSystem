@@ -1,6 +1,7 @@
 package ru.klokov.employeesdatasystem.services;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,13 +19,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 @PropertySource("classpath:application-dataJpaTest.properties")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ComponentScan(basePackageClasses = {SortColumnChecker.class, EmployeeRepository.class,
-        RangeRepository.class, PositionRepository.class,
-        EmployeeRangeService.class, PositionEmployeeService.class, EmployeeGenderService.class,
-        WorktypeEmployeeService.class, EmplPosRangeService.class,
-        SecurityConfig.class, DefaultPermissionEvaluator.class})
+@ComponentScan(basePackageClasses = {ExcelExportService.class})
 @ActiveProfiles("dataJpaTest")
-class ExcelGeneratorServiceTest {
+class ExcelExportServiceTest {
+
+    @Autowired
+    private ExcelExportService excelExportService;
+
+    private static final String FILENAME = "excelFileName";
 
     @Test
     @Sql(scripts = {StaticSqlSchemaClasspathes.CLEAN_DB,
@@ -35,5 +37,6 @@ class ExcelGeneratorServiceTest {
             StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA,
             StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA})
     void generateEmployeesToExcel() {
+
     }
 }
