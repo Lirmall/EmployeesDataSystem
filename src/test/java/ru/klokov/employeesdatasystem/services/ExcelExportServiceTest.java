@@ -10,9 +10,13 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import ru.klokov.employeesdatasystem.StaticSqlSchemaClasspathes;
 import ru.klokov.employeesdatasystem.config.SecurityConfig;
+import ru.klokov.employeesdatasystem.headers.EmployeeHeader;
 import ru.klokov.employeesdatasystem.repositories.*;
 import ru.klokov.employeesdatasystem.security.DefaultPermissionEvaluator;
 import ru.klokov.employeesdatasystem.utils.SortColumnChecker;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,7 +40,7 @@ class ExcelExportServiceTest {
             StaticSqlSchemaClasspathes.POSITIONS_SCHEMA, StaticSqlSchemaClasspathes.POSITIONS_DATA,
             StaticSqlSchemaClasspathes.EMPLOYEES_SCHEMA, StaticSqlSchemaClasspathes.EMPLOYEES_DATA,
             StaticSqlSchemaClasspathes.EMPL_POS_RANGE_SCHEMA, StaticSqlSchemaClasspathes.EMPL_POS_RANGE_DATA})
-    void generateEmployeesToExcel() {
-
+    void generateEmployeesToExcel1() {
+        List<EmployeeHeader> headers = Arrays.asList(EmployeeHeader.values());
     }
 }

@@ -6,8 +6,11 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
+import ru.klokov.employeesdatasystem.entities.EmployeeEntity;
 import ru.klokov.employeesdatasystem.headers.IHeader;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -16,11 +19,11 @@ public class ExcelExportService {
     private static final String POSITION_SHEET_NAME ="Positions";
     private static final String SALARY_SHEET_NAME ="Salaries";
 
-    public void generateEmployeesToExcel(List<? extends IHeader> headers, String excelFileName) {
+    public void generateEmployeesToExcel(List<? extends IHeader> headers, String excelFileName) throws IOException {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet(EMPLOYEE_SHEET_NAME);
         createHeaderRow(headers, sheet);
-
+        writeBytes(workbook);
     }
 
     private void createHeaderRow(List<? extends IHeader> headers, Sheet sheet) {
@@ -28,6 +31,21 @@ public class ExcelExportService {
         for (int i = 0; i < headers.size(); i++) {
             headerRow.createCell(i).setCellValue(headers.get(i).getName());
             sheet.setColumnWidth(i, headers.get(i).getWidth() * 256);
+        }
+    }
+
+    private void fillEmployees(Sheet sheet, List<EmployeeEntity> entities){
+
+    }
+
+    private void writeBytes(Workbook workbook) throws IOException {
+
+        try(ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+            workbook.write(byteArrayOutputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            workbook.close();
         }
     }
  }
