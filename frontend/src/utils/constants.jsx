@@ -1,0 +1,8 @@
+export const ABOUT_ROUTE = '/about'
+export const HOME_ROUTE = '/'
+export const POSITIONS_CHOOSE_ROUTE = '/positions'
+export const ALL_POSITIONS_ROUTE = '/positions/all'
+export const SERVER_FILTER_POSITIONS_ROUTE = '/positions/filter'
+export const POSITION_EDIT_PAGE_ROUTE = '/positions/:id'
+export const SALARY_ROUTE = '/salary'
+export const ERROR_ROUTE = '/error'
