@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 class RangeControllerTest {
-    private static final String URL_TEMPLATE = "/api/v1/admin/common/ranges";
+    private static final String URL_TEMPLATE = "/api/v1/common/ranges";
 
     @Autowired
     private MockMvc mockMvc;

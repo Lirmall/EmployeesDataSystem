@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/api/v1/admin/common/employees")
+@RequestMapping("/api/v1/common/employees")
 @RequiredArgsConstructor
 public class EmployeeController {
 

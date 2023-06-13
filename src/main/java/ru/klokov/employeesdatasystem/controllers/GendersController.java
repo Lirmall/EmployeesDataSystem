@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/api/v1/admin/common/genders")
+@RequestMapping("/api/v1/common/genders")
 @RequiredArgsConstructor
 public class GendersController {
 

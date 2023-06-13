@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/api/v1/admin/common/security")
+@RequestMapping("/api/v1/common/security")
 @RequiredArgsConstructor
 public class SecurityUserController {
 

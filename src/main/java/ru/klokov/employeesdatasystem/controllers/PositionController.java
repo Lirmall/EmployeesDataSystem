@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/api/v1/admin/common/positions")
+@RequestMapping("/api/v1/common/positions")
 @RequiredArgsConstructor
 public class PositionController {
 
