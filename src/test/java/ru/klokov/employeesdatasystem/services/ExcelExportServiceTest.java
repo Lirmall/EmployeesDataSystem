@@ -83,54 +83,6 @@ class ExcelExportServiceTest {
 
         System.out.println();
 
-        for (int i = 0; i < 9; i++) {
-            int row = 0;
-            CellType cellType = getCellType(sheet, row, i);
-            if(cellType == CellType.STRING) {
-                System.out.println("assertEquals(\"" + getCellDataAsString(sheet, row, i) + "\", getCellDataAsString(sheet, rowNum, " + i + "));");
-            } else if (cellType == CellType.NUMERIC) {
-                System.out.println("assertEquals(" + getCellDataAsNumeric(sheet, row, i) + ", getCellDataAsNumeric(sheet, rowNum, " + i + "));");
-            } else if (cellType == CellType.BOOLEAN) {
-                System.out.println("assertEquals(" + getCellDataAsBoolean(sheet, row, i) + ", getCellDataAsBoolean(sheet, rowNum, " + i + "));");
-            }else {
-                System.out.println("assertEquals(\"" + getCellDataAsString(sheet, row, i) + "\", getCellDataAsString(sheet, rowNum, " + i + "));");
-            }
-        }
-
-        System.out.println();
-
-        for (int i = 0; i < 9; i++) {
-            int row = 1;
-            CellType cellType = getCellType(sheet, row, i);
-            if(cellType == CellType.STRING) {
-                System.out.println("assertEquals(\"" + getCellDataAsString(sheet, row, i) + "\", getCellDataAsString(sheet, rowNum, " + i + "));");
-            } else if (cellType == CellType.NUMERIC) {
-                System.out.println("assertEquals(" + getCellDataAsNumeric(sheet, row, i) + ", getCellDataAsNumeric(sheet, rowNum, " + i + "));");
-            } else if (cellType == CellType.BOOLEAN) {
-                System.out.println("assertEquals(" + getCellDataAsBoolean(sheet, row, i) + ", getCellDataAsBoolean(sheet, rowNum, " + i + "));");
-            }else {
-                System.out.println("assertEquals(\"" + getCellDataAsString(sheet, row, i) + "\", getCellDataAsString(sheet, rowNum, " + i + "));");
-            }
-        }
-
-        System.out.println();
-
-        for (int i = 0; i < 9; i++) {
-            int row = 2;
-            CellType cellType = getCellType(sheet, row, i);
-            if(cellType == CellType.STRING) {
-                System.out.println("assertEquals(\"" + getCellDataAsString(sheet, row, i) + "\", getCellDataAsString(sheet, rowNum, " + i + "));");
-            } else if (cellType == CellType.NUMERIC) {
-                System.out.println("assertEquals(" + getCellDataAsNumeric(sheet, row, i) + ", getCellDataAsNumeric(sheet, rowNum, " + i + "));");
-            } else if (cellType == CellType.BOOLEAN) {
-                System.out.println("assertEquals(" + getCellDataAsBoolean(sheet, row, i) + ", getCellDataAsBoolean(sheet, rowNum, " + i + "));");
-            }else {
-                System.out.println("assertEquals(\"" + getCellDataAsString(sheet, row, i) + "\", getCellDataAsString(sheet, rowNum, " + i + "));");
-            }
-        }
-
-        System.out.println();
-
         int rowNum = 0;
 
         assertEquals("Фамилия", getCellDataAsString(sheet, rowNum, 0));
@@ -195,10 +147,4 @@ class ExcelExportServiceTest {
         Cell cell = row.getCell(cellNum);
         return cell.getCellType();
     }
-
-
-
-
-
-
 }
