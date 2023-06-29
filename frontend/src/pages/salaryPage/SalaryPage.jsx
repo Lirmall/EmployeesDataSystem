@@ -7,6 +7,7 @@ import {useFetching} from "../../components/hooks/useFetching";
 import EmployeeService from "../../API/EmployeeService";
 import MyButton from "../../components/UI/button/MyButton";
 import axios from "axios";
+import {BASE_URL} from "../../utils/constants";
 
 const SalaryPage = () => {
 
@@ -55,14 +56,17 @@ const SalaryPage = () => {
     }
 
     const sendData = async (url, data) => {
-        const response = await axios.post(url, data)
+        const response = await axios.post(url, data,
+            {headers: {
+                    'Authorization': localStorage.getItem("jwtToken")
+                }})
         const result = response.data;
         console.log("data ", data)
         console.log("url ", url)
         return result;
     }
 
-    const testUrl = '/salary/salaryOnPeriodByEmployee'
+    const testUrl = BASE_URL + '/salary/salaryOnPeriodByEmployee'
 
     return (
         <div>
