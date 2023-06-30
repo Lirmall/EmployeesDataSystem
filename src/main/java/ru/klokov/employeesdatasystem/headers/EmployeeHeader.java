@@ -12,7 +12,7 @@ public enum EmployeeHeader implements IHeader {
     GENDER("Пол", 20),
     BIRTHDAY("Дата рождения", 20),
     SALARY("Текущая зарплата", 20),
-    WORKSTART_DATE("Дата принятия на работу", 20),
+    WORKSTART_DATE("Дата принятия на работу", 40),
     DISMISSED("Сотрудник уволен", 20),
     DISMISSED_DATE("Дата увольнения", 20);
 

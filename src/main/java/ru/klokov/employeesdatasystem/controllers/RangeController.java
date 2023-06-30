@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/api/v1/admin/common/ranges")
+@RequestMapping("/api/v1/common/ranges")
 @RequiredArgsConstructor
 public class RangeController {
 

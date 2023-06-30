@@ -9,12 +9,16 @@ import AllPositions from "../pages/AllPositions";
 import PositionsChosePage from "../pages/PositionsChosePage";
 import ServerFilterPositionsPage from "../pages/positionsPages/ServerFilterPositionsPage";
 import SalaryPage from "../pages/salaryPage/SalaryPage";
+import LoginPage from "../pages/LoginPage";
 
 const AppRouter = () => {
     return (
         <Switch>
             <Route exact path="/">
                 <Home/>
+            </Route>
+            <Route exact path="/login">
+                <LoginPage/>
             </Route>
             <Route path="/about">
                 <About/>

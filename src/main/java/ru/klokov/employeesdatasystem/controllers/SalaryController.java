@@ -16,7 +16,7 @@ import ru.klokov.employeesdatasystem.mappers.WorktypeEntityDTOMapper;
 import ru.klokov.employeesdatasystem.services.SalaryService;
 
 @RestController
-@RequestMapping("/api/v1/admin/common/salary")
+@RequestMapping("/api/v1/common/salary")
 @RequiredArgsConstructor
 public class SalaryController {
 
